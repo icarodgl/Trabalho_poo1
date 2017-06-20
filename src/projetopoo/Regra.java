@@ -10,5 +10,7 @@ package projetopoo;
  * @author lucas
  */
 public class Regra {
-    
+    private String tipo;
+    private int ladoD;
+    private int ladoE;
 }
