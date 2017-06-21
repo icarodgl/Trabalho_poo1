@@ -9,6 +9,9 @@ package projetopoo;
  *
  * @author lucas
  */
-public class Tarefa {
+public class Tarefa extends ObjetoDeFLuxo{
+
+    private int tempo;
+    
     
 }
