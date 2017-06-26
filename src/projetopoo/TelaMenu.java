@@ -42,15 +42,15 @@ public class TelaMenu extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         cadastroMod = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        AlterarMod = new javax.swing.JMenuItem();
+        ExcluirMod = new javax.swing.JMenuItem();
+        pesquisarMod = new javax.swing.JMenuItem();
+        cadInstancia = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        AltInstancia = new javax.swing.JMenuItem();
+        excInstancia = new javax.swing.JMenuItem();
+        relatInstancia = new javax.swing.JMenuItem();
+        listInstancia = new javax.swing.JMenuItem();
 
         jMenuItem5.setText("jMenuItem5");
 
@@ -79,33 +79,33 @@ public class TelaMenu extends javax.swing.JFrame {
         });
         jMenu1.add(cadastroMod);
 
-        jMenuItem2.setText("Alterar");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        AlterarMod.setText("Alterar");
+        AlterarMod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                AlterarModActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        jMenu1.add(AlterarMod);
 
-        jMenuItem4.setText("Excluir");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+        ExcluirMod.setText("Excluir");
+        ExcluirMod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
+                ExcluirModActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem4);
+        jMenu1.add(ExcluirMod);
 
-        jMenuItem10.setText("Pesquisar");
-        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+        pesquisarMod.setText("Pesquisar");
+        pesquisarMod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem10ActionPerformed(evt);
+                pesquisarModActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem10);
+        jMenu1.add(pesquisarMod);
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Instancia de Modelo");
+        cadInstancia.setText("Instancia de Modelo");
 
         jMenuItem6.setText("Cadastrar");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
@@ -113,41 +113,41 @@ public class TelaMenu extends javax.swing.JFrame {
                 jMenuItem6ActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem6);
+        cadInstancia.add(jMenuItem6);
 
-        jMenuItem7.setText("Alterar");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+        AltInstancia.setText("Alterar");
+        AltInstancia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
+                AltInstanciaActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem7);
+        cadInstancia.add(AltInstancia);
 
-        jMenuItem8.setText("Excluir");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+        excInstancia.setText("Excluir");
+        excInstancia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
+                excInstanciaActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem8);
+        cadInstancia.add(excInstancia);
 
-        jMenuItem9.setText("Relatório");
-        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+        relatInstancia.setText("Relatório");
+        relatInstancia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem9ActionPerformed(evt);
+                relatInstanciaActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem9);
+        cadInstancia.add(relatInstancia);
 
-        jMenuItem3.setText("Listar");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+        listInstancia.setText("Listar");
+        listInstancia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
+                listInstanciaActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem3);
+        cadInstancia.add(listInstancia);
 
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(cadInstancia);
 
         setJMenuBar(jMenuBar1);
 
@@ -180,54 +180,54 @@ public class TelaMenu extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void AlterarModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlterarModActionPerformed
         
         AlterarModelo altM = new AlterarModelo();
         jDesktopPane1.add(altM);
         altM.setVisible(true);
         
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_AlterarModActionPerformed
 
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+    private void ExcluirModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcluirModActionPerformed
        ExcluirModelo exMod = new ExcluirModelo();
         jDesktopPane1.add(exMod);
         exMod.setVisible(true);
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
+    }//GEN-LAST:event_ExcluirModActionPerformed
 
-    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+    private void pesquisarModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarModActionPerformed
         PesquisarModelo pesMod = new PesquisarModelo();
         jDesktopPane1.add(pesMod);
         pesMod.setVisible(true);
 
 
-    }//GEN-LAST:event_jMenuItem10ActionPerformed
+    }//GEN-LAST:event_pesquisarModActionPerformed
 
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+    private void AltInstanciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AltInstanciaActionPerformed
         AlterarInstancia alti = new AlterarInstancia();
         jDesktopPane1.add(alti);
         alti.setVisible(true);
 
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
+    }//GEN-LAST:event_AltInstanciaActionPerformed
 
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+    private void excInstanciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excInstanciaActionPerformed
         ExcluirInstancia exci = new ExcluirInstancia();
         jDesktopPane1.add(exci);
         exci.setVisible(true);
 
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
+    }//GEN-LAST:event_excInstanciaActionPerformed
 
-    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+    private void relatInstanciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relatInstanciaActionPerformed
         RelatorioInstancia relati = new RelatorioInstancia();
         jDesktopPane1.add(relati);
         relati.setVisible(true);
 
-    }//GEN-LAST:event_jMenuItem9ActionPerformed
+    }//GEN-LAST:event_relatInstanciaActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void listInstanciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listInstanciaActionPerformed
         ListarInstancia listi = new ListarInstancia();
         jDesktopPane1.add(listi);
         listi.setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+    }//GEN-LAST:event_listInstanciaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -266,19 +266,19 @@ public class TelaMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem AltInstancia;
+    private javax.swing.JMenuItem AlterarMod;
+    private javax.swing.JMenuItem ExcluirMod;
+    private javax.swing.JMenu cadInstancia;
     private javax.swing.JMenuItem cadastroMod;
+    private javax.swing.JMenuItem excInstancia;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenuItem listInstancia;
+    private javax.swing.JMenuItem pesquisarMod;
+    private javax.swing.JMenuItem relatInstancia;
     // End of variables declaration//GEN-END:variables
 }
