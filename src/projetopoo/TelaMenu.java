@@ -66,11 +66,13 @@ public class TelaMenu extends javax.swing.JFrame {
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGap(0, 598, Short.MAX_VALUE)
         );
 
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Apps-Calibre-B-icon.png"))); // NOI18N
         jMenu1.setText("Modelo");
 
+        cadastroMod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/new.png"))); // NOI18N
         cadastroMod.setText("Cadastrar");
         cadastroMod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,6 +81,7 @@ public class TelaMenu extends javax.swing.JFrame {
         });
         jMenu1.add(cadastroMod);
 
+        AlterarMod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/write.png"))); // NOI18N
         AlterarMod.setText("Alterar");
         AlterarMod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,6 +90,7 @@ public class TelaMenu extends javax.swing.JFrame {
         });
         jMenu1.add(AlterarMod);
 
+        ExcluirMod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/delete.png"))); // NOI18N
         ExcluirMod.setText("Excluir");
         ExcluirMod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,6 +99,7 @@ public class TelaMenu extends javax.swing.JFrame {
         });
         jMenu1.add(ExcluirMod);
 
+        pesquisarMod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/search-icon.png"))); // NOI18N
         pesquisarMod.setText("Pesquisar");
         pesquisarMod.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,8 +110,10 @@ public class TelaMenu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        cadInstancia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Folder-Data-icon.png"))); // NOI18N
         cadInstancia.setText("Instancia de Modelo");
 
+        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/new.png"))); // NOI18N
         jMenuItem6.setText("Cadastrar");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,6 +122,7 @@ public class TelaMenu extends javax.swing.JFrame {
         });
         cadInstancia.add(jMenuItem6);
 
+        AltInstancia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/write.png"))); // NOI18N
         AltInstancia.setText("Alterar");
         AltInstancia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,6 +131,7 @@ public class TelaMenu extends javax.swing.JFrame {
         });
         cadInstancia.add(AltInstancia);
 
+        excInstancia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/delete.png"))); // NOI18N
         excInstancia.setText("Excluir");
         excInstancia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,6 +140,7 @@ public class TelaMenu extends javax.swing.JFrame {
         });
         cadInstancia.add(excInstancia);
 
+        relatInstancia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/report.png"))); // NOI18N
         relatInstancia.setText("Relatório");
         relatInstancia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,6 +149,7 @@ public class TelaMenu extends javax.swing.JFrame {
         });
         cadInstancia.add(relatInstancia);
 
+        listInstancia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/list.png"))); // NOI18N
         listInstancia.setText("Listar");
         listInstancia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,7 +170,7 @@ public class TelaMenu extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE)
         );
 
         pack();
