@@ -43,7 +43,7 @@ public class TelaMenu extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         ImageIcon icon = new ImageIcon(getClass().getResource("/imagens/modelagem.jpeg"));
         Image image = icon.getImage();
-        jDesktopPane1 = new javax.swing.JDesktopPane(){
+        AreaDeTrabalho = new javax.swing.JDesktopPane(){
             public void paintComponent(Graphics g){
                 g.drawImage(image,0,0,getWidth(),getHeight(),this);
             }
@@ -56,7 +56,7 @@ public class TelaMenu extends javax.swing.JFrame {
         ExcluirMod = new javax.swing.JMenuItem();
         pesquisarMod = new javax.swing.JMenuItem();
         cadInstancia = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
+        CadInstancia = new javax.swing.JMenuItem();
         AltInstancia = new javax.swing.JMenuItem();
         excInstancia = new javax.swing.JMenuItem();
         relatInstancia = new javax.swing.JMenuItem();
@@ -66,16 +66,16 @@ public class TelaMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jDesktopPane1.setPreferredSize(new java.awt.Dimension(800, 600));
+        AreaDeTrabalho.setPreferredSize(new java.awt.Dimension(800, 600));
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout AreaDeTrabalhoLayout = new javax.swing.GroupLayout(AreaDeTrabalho);
+        AreaDeTrabalho.setLayout(AreaDeTrabalhoLayout);
+        AreaDeTrabalhoLayout.setHorizontalGroup(
+            AreaDeTrabalhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 800, Short.MAX_VALUE)
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        AreaDeTrabalhoLayout.setVerticalGroup(
+            AreaDeTrabalhoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 598, Short.MAX_VALUE)
         );
 
@@ -123,14 +123,14 @@ public class TelaMenu extends javax.swing.JFrame {
         cadInstancia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Folder-Data-icon.png"))); // NOI18N
         cadInstancia.setText("Instancia de Modelo");
 
-        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/new.png"))); // NOI18N
-        jMenuItem6.setText("Cadastrar");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        CadInstancia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/new.png"))); // NOI18N
+        CadInstancia.setText("Cadastrar");
+        CadInstancia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
+                CadInstanciaActionPerformed(evt);
             }
         });
-        cadInstancia.add(jMenuItem6);
+        cadInstancia.add(CadInstancia);
 
         AltInstancia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/write.png"))); // NOI18N
         AltInstancia.setText("Alterar");
@@ -176,11 +176,11 @@ public class TelaMenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+            .addComponent(AreaDeTrabalho, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE)
+            .addComponent(AreaDeTrabalho, javax.swing.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE)
         );
 
         pack();
@@ -189,35 +189,35 @@ public class TelaMenu extends javax.swing.JFrame {
     private void cadastroModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroModActionPerformed
         // TODO add your handling code here:
         CadastrarModelo cadM = new CadastrarModelo();
-        jDesktopPane1.add(cadM);
+        AreaDeTrabalho.add(cadM);
         cadM.setVisible(true);
         
     }//GEN-LAST:event_cadastroModActionPerformed
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+    private void CadInstanciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadInstanciaActionPerformed
         CadastrarInstancia cadi = new CadastrarInstancia();
-        jDesktopPane1.add(cadi);
+        AreaDeTrabalho.add(cadi);
         cadi.setVisible(true);
 
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+    }//GEN-LAST:event_CadInstanciaActionPerformed
 
     private void AlterarModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlterarModActionPerformed
         
         AlterarModelo altM = new AlterarModelo();
-        jDesktopPane1.add(altM);
+        AreaDeTrabalho.add(altM);
         altM.setVisible(true);
         
     }//GEN-LAST:event_AlterarModActionPerformed
 
     private void ExcluirModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcluirModActionPerformed
        ExcluirModelo exMod = new ExcluirModelo();
-        jDesktopPane1.add(exMod);
+        AreaDeTrabalho.add(exMod);
         exMod.setVisible(true);
     }//GEN-LAST:event_ExcluirModActionPerformed
 
     private void pesquisarModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarModActionPerformed
         PesquisarModelo pesMod = new PesquisarModelo();
-        jDesktopPane1.add(pesMod);
+        AreaDeTrabalho.add(pesMod);
         pesMod.setVisible(true);
 
 
@@ -225,28 +225,28 @@ public class TelaMenu extends javax.swing.JFrame {
 
     private void AltInstanciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AltInstanciaActionPerformed
         AlterarInstancia alti = new AlterarInstancia();
-        jDesktopPane1.add(alti);
+        AreaDeTrabalho.add(alti);
         alti.setVisible(true);
 
     }//GEN-LAST:event_AltInstanciaActionPerformed
 
     private void excInstanciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excInstanciaActionPerformed
         ExcluirInstancia exci = new ExcluirInstancia();
-        jDesktopPane1.add(exci);
+        AreaDeTrabalho.add(exci);
         exci.setVisible(true);
 
     }//GEN-LAST:event_excInstanciaActionPerformed
 
     private void relatInstanciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relatInstanciaActionPerformed
         RelatorioInstancia relati = new RelatorioInstancia();
-        jDesktopPane1.add(relati);
+        AreaDeTrabalho.add(relati);
         relati.setVisible(true);
 
     }//GEN-LAST:event_relatInstanciaActionPerformed
 
     private void listInstanciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listInstanciaActionPerformed
         ListarInstancia listi = new ListarInstancia();
-        jDesktopPane1.add(listi);
+        AreaDeTrabalho.add(listi);
         listi.setVisible(true);
     }//GEN-LAST:event_listInstanciaActionPerformed
 
@@ -289,15 +289,15 @@ public class TelaMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem AltInstancia;
     private javax.swing.JMenuItem AlterarMod;
+    private javax.swing.JDesktopPane AreaDeTrabalho;
+    private javax.swing.JMenuItem CadInstancia;
     private javax.swing.JMenuItem ExcluirMod;
     private javax.swing.JMenu cadInstancia;
     private javax.swing.JMenuItem cadastroMod;
     private javax.swing.JMenuItem excInstancia;
-    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem listInstancia;
     private javax.swing.JMenuItem pesquisarMod;
     private javax.swing.JMenuItem relatInstancia;

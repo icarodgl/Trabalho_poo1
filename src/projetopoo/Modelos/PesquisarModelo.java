@@ -38,7 +38,6 @@ public class PesquisarModelo extends javax.swing.JInternalFrame {
         setResizable(true);
         setTitle("Pesquisar Modelo");
         setMinimumSize(new java.awt.Dimension(400, 400));
-        setPreferredSize(new java.awt.Dimension(400, 600));
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
         jToggleButton1.setText("Pesquisar");
@@ -70,8 +69,8 @@ public class PesquisarModelo extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 259, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jToggleButton1)))
                 .addContainerGap())
