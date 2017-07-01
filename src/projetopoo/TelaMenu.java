@@ -14,6 +14,9 @@ import projetopoo.Modelos.PesquisarModelo;
 import projetopoo.Modelos.AlterarModelo;
 import projetopoo.Modelos.ExcluirModelo;
 import projetopoo.Modelos.CadastrarModelo;
+import java.awt.Image;
+import java.awt.Graphics;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -38,7 +41,14 @@ public class TelaMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem5 = new javax.swing.JMenuItem();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        ImageIcon icon = new ImageIcon(getClass().getResource("/imagens/modelagem.jpeg"));
+        Image image = icon.getImage();
+        jDesktopPane1 = new javax.swing.JDesktopPane(){
+            public void paintComponent(Graphics g){
+                g.drawImage(image,0,0,getWidth(),getHeight(),this);
+            }
+
+        };
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         cadastroMod = new javax.swing.JMenuItem();
@@ -166,7 +176,7 @@ public class TelaMenu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
