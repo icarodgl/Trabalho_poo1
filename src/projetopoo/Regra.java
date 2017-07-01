@@ -1,4 +1,4 @@
-package poo;
+package projetopoo;
 
 public class Regra {
     private String tipo;
