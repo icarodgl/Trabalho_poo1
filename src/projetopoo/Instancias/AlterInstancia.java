@@ -9,12 +9,12 @@ package projetopoo.Instancias;
  *
  * @author lucas
  */
-public class CadastrarInstancia extends javax.swing.JInternalFrame {
+public class AlterInstancia extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form CadastrarInstancia
      */
-    public CadastrarInstancia() {
+    public AlterInstancia() {
         initComponents();
     }
 
