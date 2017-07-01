@@ -24,7 +24,7 @@ public class Tarefa extends ObjFluxo {
             this.setTipo("Tarefa");
     }
 
-    private void setTipo(String tarefa) {
+    public void setTipo(String tarefa) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

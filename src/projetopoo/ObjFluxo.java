@@ -1,4 +1,4 @@
-package poo;
+package projetopoo;
 
 
 import java.util.Collection;
