@@ -23,7 +23,7 @@ import javax.swing.ImageIcon;
  * @author lucas
  */
 public class TelaMenu extends javax.swing.JFrame {
-
+    ListaInstanciados listaM = new ListaInstanciados();
     /**
      * Creates new form dominio
      */
@@ -198,7 +198,7 @@ public class TelaMenu extends javax.swing.JFrame {
         CadastrarInstancia cadi = new CadastrarInstancia();
         AreaDeTrabalho.add(cadi);
         cadi.setVisible(true);
-
+        cadi.setListaM(listaM);
     }//GEN-LAST:event_CadInstanciaActionPerformed
 
     private void AlterarModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlterarModActionPerformed
@@ -227,6 +227,7 @@ public class TelaMenu extends javax.swing.JFrame {
         AlterarInstancia alti = new AlterarInstancia();
         AreaDeTrabalho.add(alti);
         alti.setVisible(true);
+        alti.setListaM(listaM);
 
     }//GEN-LAST:event_AltInstanciaActionPerformed
 
