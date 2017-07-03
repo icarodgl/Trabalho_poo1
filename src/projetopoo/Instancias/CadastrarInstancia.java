@@ -5,6 +5,9 @@
  */
 package projetopoo.Instancias;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import javax.swing.table.DefaultTableModel;
 import projetopoo.ListaInstanciados;
 import projetopoo.ModeloInstanciado;
@@ -274,7 +277,38 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
         mod.setId(Integer.parseInt(id));
         mod.setNome(nome);
         listaM.add(mod);
-        dispose();
+        Connection c = null;
+      Statement stmt = null;
+      try {
+         Class.forName("org.postgresql.Driver");
+         c = DriverManager
+            .getConnection("jdbc:postgresql://localhost:5432/POO1",
+            "postgres", "135246");
+         c.setAutoCommit(false);
+         System.out.println("Opened database successfully");
+
+         stmt = c.createStatement();
+         String sql = "INSERT INTO modeloinstanciado (nomeinstancia, atividade, tid, tipo, recurso, dataini, datafim, terminado, idinstancia) "
+            + "VALUES ('"+nome+"',"
+                 + " '"+listaM.get(0).getAtividade().get(0).getNome()+"',"
+                 + ""+mod.getId()+","
+                 + " '"+obj.getTipo()+"',"
+                 + " '"+rec.getRecurso()+"',"
+                 + " '"+mod.getDataHoraI()+"',"
+                 + " '"+mod.getDataHoraF()+"' ,"
+                 + "'"+mod.getTerminado()+"',"
+                 + ""+id+");";
+         stmt.executeUpdate(sql);
+
+         stmt.close();
+         c.commit();
+         c.close();
+      } catch (Exception e) {
+         System.err.println( e.getClass().getName()+": "+ e.getMessage() );
+         System.exit(0);
+      }
+      System.out.println("Records created successfully");
+      dispose();
     }//GEN-LAST:event_cadastrarInstanciaActionPerformed
 
 
