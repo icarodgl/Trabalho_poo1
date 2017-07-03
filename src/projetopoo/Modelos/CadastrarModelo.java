@@ -5,6 +5,14 @@
  */
 package projetopoo.Modelos;
 
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import projetopoo.Regra;
+import projetopoo.Dominio;
+import projetopoo.Modelo;
+import projetopoo.ObjFluxo;
+
 /**
  *
  * @author lucas
@@ -14,8 +22,15 @@ public class CadastrarModelo extends javax.swing.JInternalFrame {
     /**
      * Creates new form CadastrarModelo
      */
+    ArrayList<Regra> arrayReg = new ArrayList();
+    ArrayList<Modelo> arrayModelo = new ArrayList();
+    DefaultTableModel model;
+    DefaultTableModel model1;
+    Dominio dom = new Dominio();
     public CadastrarModelo() {
         initComponents();
+        model =(DefaultTableModel)tabelaRegras.getModel();
+        model1 =(DefaultTableModel)tabelaDominio.getModel();
     }
 
     /**
@@ -53,6 +68,10 @@ public class CadastrarModelo extends javax.swing.JInternalFrame {
         fieldDominioAti = new javax.swing.JTextField();
         fielDominioTipo = new javax.swing.JTextField();
         fieldDominioRec = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        fieldDominioID = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        fieldIdModelo = new javax.swing.JTextField();
 
         jCheckBoxMenuItem1.setSelected(true);
         jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
@@ -71,6 +90,11 @@ public class CadastrarModelo extends javax.swing.JInternalFrame {
         });
 
         botaoCadastrarModelo.setText("Cadastrar");
+        botaoCadastrarModelo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCadastrarModeloActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Regras");
 
@@ -84,13 +108,15 @@ public class CadastrarModelo extends javax.swing.JInternalFrame {
         });
 
         botaoCadDominio.setText("Novo Dominio");
+        botaoCadDominio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoCadDominioActionPerformed(evt);
+            }
+        });
 
         tabelaDominio.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "ID", "Atividade", "Tipo", "Recurso"
@@ -100,10 +126,7 @@ public class CadastrarModelo extends javax.swing.JInternalFrame {
 
         tabelaRegras.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Tipo", "Esquerdo", "Direito"
@@ -112,16 +135,9 @@ public class CadastrarModelo extends javax.swing.JInternalFrame {
             Class[] types = new Class [] {
                 java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
             };
-            boolean[] canEdit = new boolean [] {
-                true, true, false
-            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
         });
         jScrollPane4.setViewportView(tabelaRegras);
@@ -138,6 +154,22 @@ public class CadastrarModelo extends javax.swing.JInternalFrame {
 
         jLabel11.setText("Recurso");
 
+        jLabel8.setText("ID");
+
+        fieldDominioID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fieldDominioIDActionPerformed(evt);
+            }
+        });
+
+        jLabel12.setText("ID");
+
+        fieldIdModelo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fieldIdModeloActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -146,13 +178,21 @@ public class CadastrarModelo extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(31, 31, 31))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(92, 92, 92)
-                                .addComponent(jLabel2))
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(92, 92, 92)
+                                        .addComponent(jLabel2))
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(fieldDominioID, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(fieldNomeModelo)
                             .addComponent(jScrollPane4)
@@ -171,7 +211,6 @@ public class CadastrarModelo extends javax.swing.JInternalFrame {
                                         .addComponent(fieldRegraDir, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(botaoCadRegra))))
-                            .addComponent(jScrollPane3)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -191,39 +230,52 @@ public class CadastrarModelo extends javax.swing.JInternalFrame {
                                         .addComponent(botaoCadDominio))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(botaoCadastrarModelo)))
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(fieldIdModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(botaoCadastrarModelo))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(46, 46, 46)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(fieldNomeModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(fieldRegraTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(fieldRegraDir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botaoCadRegra)
-                            .addComponent(fieldRegraEsq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(fieldNomeModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(fieldRegraTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel6))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(fieldRegraDir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(botaoCadRegra)
+                                    .addComponent(fieldRegraEsq, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addComponent(jLabel2))
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jLabel2))
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel5)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -232,18 +284,20 @@ public class CadastrarModelo extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(fielDominioTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(fieldDominioRec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botaoCadDominio)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(fieldDominioAti, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(botaoCadDominio)
+                            .addComponent(fieldDominioAti, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fieldDominioID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel9)
+                        .addComponent(jLabel10)
+                        .addComponent(jLabel8)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botaoCadastrarModelo)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botaoCadastrarModelo)
+                    .addComponent(jLabel12)
+                    .addComponent(fieldIdModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -263,11 +317,56 @@ public class CadastrarModelo extends javax.swing.JInternalFrame {
 
     private void botaoCadRegraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadRegraActionPerformed
         // TODO add your handling code here:
+        String tipo = fieldRegraTipo.getText();
+        String regraEsq = fieldRegraEsq.getText();
+        String regraDir = fieldRegraDir.getText();
+        Regra reg = new Regra();
+        reg.setTipo(tipo);
+        reg.setLadoE(Integer.parseInt(regraEsq));
+        reg.setLadoD(Integer.parseInt(regraDir));
+        arrayReg.add(reg);
+        model.insertRow(model.getRowCount(),new Object[]{reg.getTipo(),reg.getLadoE(),reg.getLadoD()});
     }//GEN-LAST:event_botaoCadRegraActionPerformed
 
     private void fieldNomeModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldNomeModeloActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_fieldNomeModeloActionPerformed
+
+    private void botaoCadDominioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadDominioActionPerformed
+        // TODO add your handling code here:
+        String tipo = fielDominioTipo.getText();
+	String nome = fieldDominioAti.getText();
+        String recurso = fieldDominioRec.getText();
+        String id = fieldDominioID.getText();
+        ObjFluxo at = new ObjFluxo();
+        at.setNome(nome);
+        dom.setAtividade(at);
+        dom.setRecurso(recurso);
+        dom.setTipo(tipo);
+        dom.setTid(Integer.parseInt(id));
+        model1.insertRow(model1.getRowCount(),new Object[]{fieldDominioID.getText(),fieldDominioAti.getText(),fielDominioTipo.getText(),fieldDominioRec.getText()});
+    }//GEN-LAST:event_botaoCadDominioActionPerformed
+
+    private void fieldDominioIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldDominioIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fieldDominioIDActionPerformed
+
+    private void fieldIdModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldIdModeloActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fieldIdModeloActionPerformed
+
+    
+    private void botaoCadastrarModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarModeloActionPerformed
+        // TODO add your handling code here:
+        String nome = fieldNomeModelo.getText();
+        String id = fieldIdModelo.getText();
+        Modelo mod = new Modelo();
+        mod.setId(Integer.parseInt(id));
+        mod.setNome(nome);
+        mod.setDominio(dom);
+        mod.setRegra(arrayReg);
+        dispose();
+    }//GEN-LAST:event_botaoCadastrarModeloActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -276,7 +375,9 @@ public class CadastrarModelo extends javax.swing.JInternalFrame {
     private javax.swing.JToggleButton botaoCadastrarModelo;
     private javax.swing.JTextField fielDominioTipo;
     private javax.swing.JTextField fieldDominioAti;
+    private javax.swing.JTextField fieldDominioID;
     private javax.swing.JTextField fieldDominioRec;
+    private javax.swing.JTextField fieldIdModelo;
     private javax.swing.JTextField fieldNomeModelo;
     private javax.swing.JTextField fieldRegraDir;
     private javax.swing.JTextField fieldRegraEsq;
@@ -285,12 +386,14 @@ public class CadastrarModelo extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane3;

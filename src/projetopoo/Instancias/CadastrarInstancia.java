@@ -80,10 +80,7 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Atividade", "TID", "Tipo", "Recurso", "Data Inicio", "Data Fim", "Terminado"
@@ -153,9 +150,9 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel10)
-                                .addComponent(jLabel9)
                                 .addComponent(jLabel11))
                             .addComponent(jLabel7)
                             .addComponent(jLabel8))))
