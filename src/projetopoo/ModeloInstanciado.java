@@ -17,7 +17,7 @@ public class ModeloInstanciado {
     private ArrayList <ObjFluxo> atividade = new ArrayList<ObjFluxo>();
     private ArrayList <Integer> tid = new ArrayList<Integer>();
     private ArrayList <Recurso> recursoAlocado = new ArrayList <Recurso>();
-    private ArrayList <Boolean> terminado = new ArrayList <Boolean> ();  
+    private ArrayList <String> terminado = new ArrayList <String> ();  
     private ArrayList <String> dataHoraI = new ArrayList<String> ();
     private ArrayList <String> dataHoraF = new ArrayList<String>();
 
@@ -29,7 +29,7 @@ public class ModeloInstanciado {
           imprimir= imprimir+"  "+ atividade.get(i)+" |";
           imprimir= imprimir+"  "+ atividade.get(i).getTipo()+" |";
           imprimir= imprimir+"  "+ recursoAlocado.get(i).getRecurso()+" |";
-          if (terminado.get(i)){
+          if (terminado.get(i).equals("sim")){
               imprimir= imprimir+"  Sim |";
               imprimir= imprimir+"  "+ dataHoraI+" |";
               imprimir= imprimir+"  "+ dataHoraF+" |\n";
@@ -62,48 +62,48 @@ public class ModeloInstanciado {
         return atividade;
     }
 
-    public void setAtividade(ArrayList<ObjFluxo> atividade) {
-        this.atividade = atividade;
+    public void setAtividade(ObjFluxo atividade) {
+        this.atividade.add(atividade);
     }
 
     public ArrayList<Integer> getTid() {
         return tid;
     }
 
-    public void setTid(ArrayList<Integer> tid) {
-        this.tid = tid;
+    public void setTid(Integer tid) {
+        this.tid.add(tid);
     }
 
     public ArrayList<Recurso> getRecursoAlocado() {
         return recursoAlocado;
     }
 
-    public void setRecursoAlocado(ArrayList<Recurso> recursoAlocado) {
-        this.recursoAlocado = recursoAlocado;
+    public void setRecursoAlocado(Recurso recursoAlocado) {
+        this.recursoAlocado.add(recursoAlocado);
     }
 
-    public ArrayList<Boolean> getTerminado() {
+    public ArrayList<String> getTerminado() {
         return terminado;
     }
 
-    public void setTerminado(ArrayList<Boolean> terminado) {
-        this.terminado = terminado;
+    public void setTerminado(String terminado) {
+        this.terminado.add(terminado);
     }
 
     public ArrayList<String> getDataHoraI() {
         return dataHoraI;
     }
 
-    public void setDataHoraI(ArrayList<String> dataHoraI) {
-        this.dataHoraI = dataHoraI;
+    public void setDataHoraI(String dataHoraI) {
+        this.dataHoraI.add(dataHoraI);
     }
 
     public ArrayList<String> getDataHoraF() {
         return dataHoraF;
     }
 
-    public void setDataHoraF(ArrayList<String> dataHoraF) {
-        this.dataHoraF = dataHoraF;
+    public void setDataHoraF(String dataHoraF) {
+        this.dataHoraF.add(dataHoraF);
     }
     
     
