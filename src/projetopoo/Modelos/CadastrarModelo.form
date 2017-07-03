@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JInternalFrameFormInfo">
   <NonVisualComponents>
     <Component class="javax.swing.JCheckBoxMenuItem" name="jCheckBoxMenuItem1">
       <Properties>
@@ -33,11 +33,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="26" max="32767" attributes="0"/>
-          </Group>
+          <Component id="jPanel1" alignment="1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -66,25 +62,25 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="nomeModelo" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jScrollPane4" alignment="0" pref="0" max="32767" attributes="0"/>
+                              <Component id="fieldNomeModelo" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jScrollPane4" alignment="0" max="32767" attributes="0"/>
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="regraTipo" min="-2" pref="101" max="-2" attributes="0"/>
+                                      <Component id="fieldRegraTipo" min="-2" pref="101" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="regraEsq" min="-2" pref="101" max="-2" attributes="0"/>
+                                      <Component id="fieldRegraEsq" min="-2" pref="101" max="-2" attributes="0"/>
                                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="regraDir" min="-2" pref="101" max="-2" attributes="0"/>
+                                          <Component id="fieldRegraDir" min="-2" pref="101" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="CadRegra" min="-2" max="-2" attributes="0"/>
+                                          <Component id="botaoCadRegra" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -97,18 +93,18 @@
                                           <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="dominioAti" min="-2" pref="107" max="-2" attributes="0"/>
+                                          <Component id="fieldDominioAti" min="-2" pref="107" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="dominioTipo" min="-2" pref="100" max="-2" attributes="0"/>
+                                          <Component id="fielDominioTipo" min="-2" pref="100" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="jLabel11" alignment="0" min="-2" pref="62" max="-2" attributes="0"/>
                                       <Group type="102" alignment="0" attributes="0">
-                                          <Component id="dominioRec" min="-2" pref="100" max="-2" attributes="0"/>
+                                          <Component id="fieldDominioRec" min="-2" pref="100" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="CadDominio" min="-2" max="-2" attributes="0"/>
+                                          <Component id="botaoCadDominio" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -116,7 +112,7 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="210" max="32767" attributes="0"/>
-                          <Component id="jToggleButton1" min="-2" max="-2" attributes="0"/>
+                          <Component id="botaoCadastrarModelo" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
@@ -126,10 +122,10 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                      <Component id="nomeModelo" min="-2" max="-2" attributes="0"/>
+                      <Component id="fieldNomeModelo" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -139,7 +135,7 @@
                               <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Component id="regraTipo" min="-2" max="-2" attributes="0"/>
+                          <Component id="fieldRegraTipo" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -148,9 +144,9 @@
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="regraDir" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="CadRegra" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="regraEsq" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="fieldRegraDir" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="botaoCadRegra" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="fieldRegraEsq" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -168,9 +164,9 @@
                           <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="dominioTipo" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="dominioRec" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="CadDominio" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="fielDominioTipo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="fieldDominioRec" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="botaoCadDominio" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -180,13 +176,13 @@
                               <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="dominioAti" min="-2" max="-2" attributes="0"/>
+                          <Component id="fieldDominioAti" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jScrollPane3" min="-2" pref="106" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jToggleButton1" min="-2" max="-2" attributes="0"/>
+                  <Component id="botaoCadastrarModelo" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -198,14 +194,14 @@
             <Property name="text" type="java.lang.String" value="Nome"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="nomeModelo">
+        <Component class="javax.swing.JTextField" name="fieldNomeModelo">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nomeModeloActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fieldNomeModeloActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
         </Component>
-        <Component class="javax.swing.JToggleButton" name="jToggleButton1">
+        <Component class="javax.swing.JToggleButton" name="botaoCadastrarModelo">
           <Properties>
             <Property name="text" type="java.lang.String" value="Cadastrar"/>
           </Properties>
@@ -220,15 +216,15 @@
             <Property name="text" type="java.lang.String" value="Dominio"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="CadRegra">
+        <Component class="javax.swing.JToggleButton" name="botaoCadRegra">
           <Properties>
             <Property name="text" type="java.lang.String" value="Nova Regra"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="CadRegraActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoCadRegraActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JToggleButton" name="CadDominio">
+        <Component class="javax.swing.JToggleButton" name="botaoCadDominio">
           <Properties>
             <Property name="text" type="java.lang.String" value="Novo Dominio"/>
           </Properties>
@@ -323,7 +319,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JTextField" name="regraTipo">
+        <Component class="javax.swing.JTextField" name="fieldRegraTipo">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
@@ -335,9 +331,9 @@
             <Property name="text" type="java.lang.String" value="Esquerdo"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="regraEsq">
+        <Component class="javax.swing.JTextField" name="fieldRegraEsq">
         </Component>
-        <Component class="javax.swing.JTextField" name="regraDir">
+        <Component class="javax.swing.JTextField" name="fieldRegraDir">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
@@ -359,11 +355,11 @@
             <Property name="text" type="java.lang.String" value="Recurso"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="dominioAti">
+        <Component class="javax.swing.JTextField" name="fieldDominioAti">
         </Component>
-        <Component class="javax.swing.JTextField" name="dominioTipo">
+        <Component class="javax.swing.JTextField" name="fielDominioTipo">
         </Component>
-        <Component class="javax.swing.JTextField" name="dominioRec">
+        <Component class="javax.swing.JTextField" name="fieldDominioRec">
         </Component>
       </SubComponents>
     </Container>
