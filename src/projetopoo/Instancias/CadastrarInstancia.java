@@ -6,9 +6,11 @@
 package projetopoo.Instancias;
 
 import javax.swing.table.DefaultTableModel;
+import projetopoo.ListaInstanciados;
 import projetopoo.ModeloInstanciado;
 import projetopoo.ObjFluxo;
 import projetopoo.Recurso;
+import java.util.ArrayList;
 
 /**
  *
@@ -19,6 +21,15 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
     /**
      * Creates new form CadastrarInstancia
      */
+    ListaInstanciados listaM;
+
+    public ListaInstanciados getListaM() {
+        return listaM;
+    }
+
+    public void setListaM(ListaInstanciados listaM) {
+        this.listaM = listaM;
+    }
     DefaultTableModel model;
     ModeloInstanciado mod = new ModeloInstanciado();
     ObjFluxo obj = new ObjFluxo();
@@ -262,6 +273,7 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
         String nome = NomeInstancia.getText();
         mod.setId(Integer.parseInt(id));
         mod.setNome(nome);
+        listaM.add(mod);
         dispose();
     }//GEN-LAST:event_cadastrarInstanciaActionPerformed
 
