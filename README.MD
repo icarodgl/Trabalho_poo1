@@ -1,3 +1,4 @@
+Para Utilizar o programa instale o Postgresql e crie um banco de dados "POO" com as tabelas:
 ```sql
 CREATE TABLE modelo (
     nome varchar(20),
