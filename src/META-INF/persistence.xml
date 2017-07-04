@@ -10,4 +10,14 @@
       <property name="javax.persistence.jdbc.password" value="135246"/>
     </properties>
   </persistence-unit>
+  <persistence-unit name="POOPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>projetopoo.Instancias.Instancia</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/POO"/>
+      <property name="javax.persistence.jdbc.user" value="postgres"/>
+      <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="123123"/>
+    </properties>
+  </persistence-unit>
 </persistence>

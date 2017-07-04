@@ -17,6 +17,7 @@ import projetopoo.Modelos.CadastrarModelo;
 import java.awt.Image;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
+import projetopoo.Instancias.ajuda;
 
 /**
  *
@@ -41,6 +42,9 @@ public class TelaMenu extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu3 = new javax.swing.JMenu();
         ImageIcon icon = new ImageIcon(getClass().getResource("/imagens/modelagem.jpeg"));
         Image image = icon.getImage();
         AreaDeTrabalho = new javax.swing.JDesktopPane(){
@@ -61,11 +65,20 @@ public class TelaMenu extends javax.swing.JFrame {
         excInstancia = new javax.swing.JMenuItem();
         relatInstancia = new javax.swing.JMenuItem();
         listInstancia = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        Ajuda = new javax.swing.JMenuItem();
 
         jMenuItem5.setText("jMenuItem5");
 
+        jMenu2.setText("File");
+        jMenuBar2.add(jMenu2);
+
+        jMenu3.setText("Edit");
+        jMenuBar2.add(jMenu3);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        AreaDeTrabalho.setName("Programa POO"); // NOI18N
         AreaDeTrabalho.setPreferredSize(new java.awt.Dimension(800, 600));
 
         javax.swing.GroupLayout AreaDeTrabalhoLayout = new javax.swing.GroupLayout(AreaDeTrabalho);
@@ -170,6 +183,18 @@ public class TelaMenu extends javax.swing.JFrame {
 
         jMenuBar1.add(cadInstancia);
 
+        jMenu4.setText("Help");
+
+        Ajuda.setText("Ajuda");
+        Ajuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AjudaActionPerformed(evt);
+            }
+        });
+        jMenu4.add(Ajuda);
+
+        jMenuBar1.add(jMenu4);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -182,6 +207,8 @@ public class TelaMenu extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(AreaDeTrabalho, javax.swing.GroupLayout.DEFAULT_SIZE, 598, Short.MAX_VALUE)
         );
+
+        AreaDeTrabalho.getAccessibleContext().setAccessibleName("Programa POO");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -254,6 +281,13 @@ public class TelaMenu extends javax.swing.JFrame {
         listi.listartudo();
     }//GEN-LAST:event_listInstanciaActionPerformed
 
+    private void AjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AjudaActionPerformed
+        ajuda relati = new ajuda();
+        AreaDeTrabalho.add(relati);
+        relati.setVisible(true);
+        relati.setListaM(listaM);
+    }//GEN-LAST:event_AjudaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -291,6 +325,7 @@ public class TelaMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Ajuda;
     private javax.swing.JMenuItem AltInstancia;
     private javax.swing.JMenuItem AlterarMod;
     private javax.swing.JDesktopPane AreaDeTrabalho;
@@ -300,7 +335,11 @@ public class TelaMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem cadastroMod;
     private javax.swing.JMenuItem excInstancia;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem listInstancia;
     private javax.swing.JMenuItem pesquisarMod;
