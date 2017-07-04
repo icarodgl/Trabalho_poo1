@@ -235,7 +235,7 @@ public class TelaMenu extends javax.swing.JFrame {
         ExcluirInstancia exci = new ExcluirInstancia();
         AreaDeTrabalho.add(exci);
         exci.setVisible(true);
-
+        exci.setListaM(listaM);
     }//GEN-LAST:event_excInstanciaActionPerformed
 
     private void relatInstanciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relatInstanciaActionPerformed

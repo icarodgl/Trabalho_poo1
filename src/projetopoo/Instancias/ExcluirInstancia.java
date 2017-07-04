@@ -5,18 +5,39 @@
  */
 package projetopoo.Instancias;
 
+
+import javax.swing.table.DefaultTableModel;
+import projetopoo.ListaInstanciados;
+import projetopoo.ModeloInstanciado;
+import projetopoo.ObjFluxo;
+import projetopoo.Recurso;
+import java.util.ArrayList;
+
 /**
  *
  * @author lucas
  */
 public class ExcluirInstancia extends javax.swing.JInternalFrame {
+     ListaInstanciados listaM;
+     DefaultTableModel model;
 
+    public ListaInstanciados getListaM() {
+        return listaM;
+    }
+
+    public void setListaM(ListaInstanciados listaM) {
+        this.listaM = listaM;
+    }
+     
     /**
-     * Creates new form ExcluirInstancia
+     * Creates new form AlterarInstancia
      */
     public ExcluirInstancia() {
         initComponents();
+        model =(DefaultTableModel)tableexc.getModel();
     }
+    
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -27,17 +48,77 @@ public class ExcluirInstancia extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ListarInstancias = new javax.swing.JComboBox<>();
-        BtExcluir = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jtNomeE = new javax.swing.JTextField();
+        jbPesquisarE = new javax.swing.JButton();
+        jtIdE = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableexc = new javax.swing.JTable();
+        jbExcluir = new javax.swing.JButton();
 
+        setBorder(null);
         setClosable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Excluir Instancia");
+        setTitle("Alterar");
 
-        ListarInstancias.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLabel1.setText("Nome:");
 
-        BtExcluir.setText("Excluir");
+        jtNomeE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtNomeEActionPerformed(evt);
+            }
+        });
+
+        jbPesquisarE.setText("Pesquisar");
+        jbPesquisarE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbPesquisarEActionPerformed(evt);
+            }
+        });
+
+        jtIdE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtIdEActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("ID:");
+
+        tableexc.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Atividade", "TID", "Tipo", "Recurso Alocado", "Terminado", "Data-hora de Inicio", "Data-hora de Termino"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tableexc);
+        if (tableexc.getColumnModel().getColumnCount() > 0) {
+            tableexc.getColumnModel().getColumn(0).setResizable(false);
+            tableexc.getColumnModel().getColumn(1).setResizable(false);
+            tableexc.getColumnModel().getColumn(2).setResizable(false);
+            tableexc.getColumnModel().getColumn(3).setResizable(false);
+            tableexc.getColumnModel().getColumn(4).setResizable(false);
+            tableexc.getColumnModel().getColumn(5).setResizable(false);
+            tableexc.getColumnModel().getColumn(6).setResizable(false);
+        }
+
+        jbExcluir.setText("Excluir");
+        jbExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbExcluirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -46,28 +127,83 @@ public class ExcluirInstancia extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ListarInstancias, 0, 565, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(BtExcluir)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtNomeE, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtIdE, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jbPesquisarE)))
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jbExcluir)
+                .addGap(300, 300, 300))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(ListarInstancias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jtNomeE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbPesquisarE)
+                    .addComponent(jtIdE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(BtExcluir)
-                .addContainerGap(239, Short.MAX_VALUE))
+                .addComponent(jbExcluir)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jtNomeEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtNomeEActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtNomeEActionPerformed
+
+    private void jbPesquisarEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPesquisarEActionPerformed
+        int tempId = Integer.parseInt(jtIdE.getText());
+        tempId=listaM.buscaModeloI(tempId);
+        for(int i=0; i<listaM.get(tempId).getAtividade().size();i++){
+            if(tableexc.getRowCount()>0)model.removeRow(0);
+        }
+        for(int i=0; i<listaM.get(tempId).getAtividade().size();i++){
+        model.insertRow(model.getRowCount(),new Object[]{listaM.get(tempId).getAtividade().get(i).getNome(), listaM.get(tempId).getTid().get(i), listaM.get(tempId).getAtividade().get(i).getTipo(), listaM.get(tempId).getRecursoAlocado().get(i).getRecurso(), listaM.get(tempId).getTerminado().get(i), listaM.get(tempId).getDataHoraI().get(i), listaM.get(tempId).getDataHoraF().get(i)});
+        }
+        jtNomeE.setText(listaM.get(tempId).getNome());
+    }//GEN-LAST:event_jbPesquisarEActionPerformed
+
+    private void jtIdEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtIdEActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtIdEActionPerformed
+
+    private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
+        int tempId = Integer.parseInt(jtIdE.getText());
+        tempId=listaM.buscaModeloI(tempId);
+        listaM.remove(tempId);
+         
+         
+               
+               
+               
+    }//GEN-LAST:event_jbExcluirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtExcluir;
-    private javax.swing.JComboBox<String> ListarInstancias;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbExcluir;
+    private javax.swing.JButton jbPesquisarE;
+    private javax.swing.JTextField jtIdE;
+    private javax.swing.JTextField jtNomeE;
+    private javax.swing.JTable tableexc;
     // End of variables declaration//GEN-END:variables
 }

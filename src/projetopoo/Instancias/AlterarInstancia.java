@@ -139,10 +139,10 @@ public class AlterarInstancia extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jbPesquisar)))
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(304, 304, 304)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbSalvar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(287, 287, 287))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,10 +155,10 @@ public class AlterarInstancia extends javax.swing.JInternalFrame {
                     .addComponent(jtId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(93, 93, 93)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jbSalvar)
-                .addGap(73, 73, 73))
+                .addGap(20, 20, 20))
         );
 
         pack();
@@ -172,9 +172,14 @@ public class AlterarInstancia extends javax.swing.JInternalFrame {
         int tempId = Integer.parseInt(jtId.getText());
         tempId=listaM.buscaModeloI(tempId);
         for(int i=0; i<listaM.get(tempId).getAtividade().size();i++){
-        if(tablealt.getRowCount()>0)model.removeRow(0);
+            if(tablealt.getRowCount()>0)model.removeRow(0);
+        }
+        for(int i=0; i<listaM.get(tempId).getAtividade().size();i++){
         model.insertRow(model.getRowCount(),new Object[]{listaM.get(tempId).getAtividade().get(i).getNome(), listaM.get(tempId).getTid().get(i), listaM.get(tempId).getAtividade().get(i).getTipo(), listaM.get(tempId).getRecursoAlocado().get(i).getRecurso(), listaM.get(tempId).getTerminado().get(i), listaM.get(tempId).getDataHoraI().get(i), listaM.get(tempId).getDataHoraF().get(i)});
         }
+        jtNome.setText(listaM.get(tempId).getNome());
+        
+
     }//GEN-LAST:event_jbPesquisarActionPerformed
 
     private void jtIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtIdActionPerformed
@@ -211,24 +216,20 @@ public class AlterarInstancia extends javax.swing.JInternalFrame {
             if (tablealt.getValueAt(i,6) != null){
                 fim = tablealt.getValueAt(i,6).toString();
            }
-       }
-       mod.setTid(Integer.parseInt(tid));
-            mod.setDataHoraF(fim);
-            mod.setDataHoraI(ini);
-            mod.setTerminado(terminado);
+        mod.setTid(Integer.parseInt(tid));
+        mod.setDataHoraF(fim);
+        mod.setDataHoraI(ini);
+        mod.setTerminado(terminado);
         obj.setTipo(tipo);
         obj.setNome(atividade);
         rec.setRecurso(recurso);
         mod.setAtividade(obj);
         mod.setRecursoAlocado(rec);
         int tempId = Integer.parseInt(jtId.getText());
-         System.out.println(tempId);
         tempId=listaM.buscaModeloI(tempId);
-         System.out.println(tempId);
          listaM.remove(tempId);
          listaM.add(tempId,mod);
-         System.out.println(listaM.get(0).getId());
-         
+   }
          
                
                
