@@ -1,11 +1,10 @@
 package projetopoo;
 import java.util.ArrayList;
-import java.util.Collection;
 
 public class Modelo {
     private int id;
     private String nome;
-    private ArrayList<Regra> regra = new ArrayList<Regra>();
+    private ArrayList<Regra> regra = new ArrayList();
     private Dominio dominio;
 
     public int getId() {
@@ -38,8 +37,5 @@ public class Modelo {
 
     public void setDominio(Dominio dominio) {
         this.dominio = dominio;
-    }
-	
-    
-    
+    }	 
 }
