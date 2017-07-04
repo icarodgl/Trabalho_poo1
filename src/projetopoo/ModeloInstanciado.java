@@ -25,18 +25,18 @@ public class ModeloInstanciado {
     public String ImprimirRelatorio(){
         String imprimir = "|    Atividade   |   TID |   Tipo    | Recurso Alocado |   Terminado  |   Data-hora de Inicio | Data-hora de Termino  |\n";
         for(int i=0; i<atividade.size() ; i++){
-          imprimir= imprimir+"  | "+ atividade.get(i).getNome()+" |";
-          imprimir= imprimir+"  "+ atividade.get(i)+" |";
+          imprimir= imprimir+"| "+ atividade.get(i).getNome()+"  |";
+          imprimir= imprimir+"  "+ tid.get(i)+" |";
           imprimir= imprimir+"  "+ atividade.get(i).getTipo()+" |";
           imprimir= imprimir+"  "+ recursoAlocado.get(i).getRecurso()+" |";
           if (terminado.get(i).equals("sim")){
               imprimir= imprimir+"  Sim |";
               imprimir= imprimir+"  "+ dataHoraI+" |";
-              imprimir= imprimir+"  "+ dataHoraF+" |\n";
+              imprimir= imprimir+"  "+ dataHoraF+" |\n---------------------------------------------------------------------------------------------------------------------------------------------------|\n";
           }
           else{
               imprimir= imprimir+"  Não |";
-              imprimir= imprimir+"  |               |   |               |\n";
+              imprimir= imprimir+"  |               |   |               |\n---------------------------------------------------------------------------------------------------------------------------------------------------|\n";
           }
         }
         return(imprimir);

@@ -242,6 +242,7 @@ public class TelaMenu extends javax.swing.JFrame {
         RelatorioInstancia relati = new RelatorioInstancia();
         AreaDeTrabalho.add(relati);
         relati.setVisible(true);
+        relati.setListaM(listaM);
 
     }//GEN-LAST:event_relatInstanciaActionPerformed
 
