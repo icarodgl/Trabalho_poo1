@@ -188,6 +188,7 @@ public class ExcluirInstancia extends javax.swing.JInternalFrame {
         int tempId = Integer.parseInt(jtIdE.getText());
         tempId=listaM.buscaModeloI(tempId);
         listaM.remove(tempId);
+        dispose();
          
          
                

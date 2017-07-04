@@ -5,17 +5,31 @@
  */
 package projetopoo.Instancias;
 
+import javax.swing.table.DefaultTableModel;
+import projetopoo.ListaInstanciados;
+
 /**
  *
  * @author lucas
  */
 public class ListarInstancia extends javax.swing.JInternalFrame {
+    ListaInstanciados listaM;
+    DefaultTableModel model;
 
+    public ListaInstanciados getListaM() {
+        return listaM;
+    }
+
+    public void setListaM(ListaInstanciados listaM) {
+        this.listaM = listaM;
+    }
+     
     /**
      * Creates new form ListarInstancia
      */
     public ListarInstancia() {
         initComponents();
+        model =(DefaultTableModel)tablelista.getModel();
     }
 
     /**
@@ -27,8 +41,9 @@ public class ListarInstancia extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        ListarInstancias = new javax.swing.JList<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablelista = new javax.swing.JTable();
+        fechar = new javax.swing.JButton();
 
         setBorder(null);
         setClosable(true);
@@ -36,35 +51,94 @@ public class ListarInstancia extends javax.swing.JInternalFrame {
         setResizable(true);
         setTitle("Listar Instancia");
 
-        ListarInstancias.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+        tablelista.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "ID", "Nome", "Terminado"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
-        jScrollPane1.setViewportView(ListarInstancias);
+        jScrollPane2.setViewportView(tablelista);
+        if (tablelista.getColumnModel().getColumnCount() > 0) {
+            tablelista.getColumnModel().getColumn(0).setResizable(false);
+            tablelista.getColumnModel().getColumn(1).setResizable(false);
+            tablelista.getColumnModel().getColumn(2).setResizable(false);
+        }
+
+        fechar.setText("Fechar");
+        fechar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fecharActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap(86, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(58, 58, 58))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(fechar)
+                        .addGap(256, 256, 256))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(fechar)
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void fecharActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fecharActionPerformed
+        dispose();
+    }//GEN-LAST:event_fecharActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList<String> ListarInstancias;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton fechar;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable tablelista;
     // End of variables declaration//GEN-END:variables
+
+    public void listartudo(){
+        String terminado="sim";
+        for(int i=0; i<listaM.size();i++){
+            for(int j=0; j<listaM.get(i).getTerminado().size();j++){
+            if("sim".equalsIgnoreCase(listaM.get(i).getTerminado().get(j))){
+                terminado="Sim";
+            }
+            else{
+                terminado="Nao";
+            }
+        }
+            model.insertRow(model.getRowCount(),new Object[]{listaM.get(i).getId(), listaM.get(i).getNome(), terminado});
+        }
+    
+    }
+       
 }
+

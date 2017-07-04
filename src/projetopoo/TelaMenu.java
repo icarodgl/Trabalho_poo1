@@ -249,6 +249,8 @@ public class TelaMenu extends javax.swing.JFrame {
         ListarInstancia listi = new ListarInstancia();
         AreaDeTrabalho.add(listi);
         listi.setVisible(true);
+        listi.setListaM(listaM);
+        listi.listartudo();
     }//GEN-LAST:event_listInstanciaActionPerformed
 
     /**
