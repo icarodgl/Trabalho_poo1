@@ -18,14 +18,13 @@ import java.awt.Image;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import projetopoo.Instancias.ajuda;
-import projetopoo.ListaInstanciados;
 
 /**
  *
  * @author lucas
  */
 public class TelaMenu extends javax.swing.JFrame {
-    ListaInstanciados listaM = new ListaInstanciados();
+    //ListaInstanciados listaM = new ListaInstanciados();
     /**
      * Creates new form dominio
      */
@@ -226,7 +225,7 @@ public class TelaMenu extends javax.swing.JFrame {
         CadastrarInstancia cadi = new CadastrarInstancia();
         AreaDeTrabalho.add(cadi);
         cadi.setVisible(true);
-        cadi.setListaM(listaM);
+        //cadi.setListaM(listaM);
     }//GEN-LAST:event_CadInstanciaActionPerformed
 
     private void AlterarModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlterarModActionPerformed
@@ -255,7 +254,7 @@ public class TelaMenu extends javax.swing.JFrame {
         AlterarInstancia alti = new AlterarInstancia();
         AreaDeTrabalho.add(alti);
         alti.setVisible(true);
-        alti.setListaM(listaM);
+        //alti.setListaM(listaM);
 
     }//GEN-LAST:event_AltInstanciaActionPerformed
 
@@ -263,14 +262,14 @@ public class TelaMenu extends javax.swing.JFrame {
         ExcluirInstancia exci = new ExcluirInstancia();
         AreaDeTrabalho.add(exci);
         exci.setVisible(true);
-        exci.setListaM(listaM);
+       // exci.setListaM(listaM);
     }//GEN-LAST:event_excInstanciaActionPerformed
 
     private void relatInstanciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relatInstanciaActionPerformed
         RelatorioInstancia relati = new RelatorioInstancia();
         AreaDeTrabalho.add(relati);
         relati.setVisible(true);
-        relati.setListaM(listaM);
+        //relati.setListaM(listaM);
 
     }//GEN-LAST:event_relatInstanciaActionPerformed
 
@@ -278,7 +277,7 @@ public class TelaMenu extends javax.swing.JFrame {
         ListarInstancia listi = new ListarInstancia();
         AreaDeTrabalho.add(listi);
         listi.setVisible(true);
-        listi.setListaM(listaM);
+        //listi.setListaM(listaM);
         listi.listartudo();
     }//GEN-LAST:event_listInstanciaActionPerformed
 
@@ -286,7 +285,7 @@ public class TelaMenu extends javax.swing.JFrame {
         ajuda relati = new ajuda();
         AreaDeTrabalho.add(relati);
         relati.setVisible(true);
-        relati.setListaM(listaM);
+        //relati.setListaM(listaM);
     }//GEN-LAST:event_AjudaActionPerformed
 
     /**
