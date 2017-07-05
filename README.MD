@@ -21,10 +21,12 @@ CREATE TABLE Atividade (
     id serial PRIMARY KEY,
     nome varchar(50),
     tid varchar(50),
+    inicio varchar(50),
+    fim varchar(50),
     tipo varchar(50)
 );
 
-CREATE TABLE Recruso (
+CREATE TABLE Recurso (
     id serial PRIMARY KEY,
     nome varchar(50),
     tipo varchar(50),
@@ -38,7 +40,7 @@ CREATE TABLE modelo_regra (
 
 CREATE TABLE Atividade_recurso (
     FK_Atividade_id serial,
-    FK_Recruso_id serial
+    FK_Recurso_id serial
 );
 
 CREATE TABLE Dominio_Atividade (
@@ -63,8 +65,8 @@ ALTER TABLE Atividade_recurso ADD CONSTRAINT FK_Atividade_recurso_0
     REFERENCES Atividade (id);
  
 ALTER TABLE Atividade_recurso ADD CONSTRAINT FK_Atividade_recurso_1
-    FOREIGN KEY (FK_Recruso_id)
-    REFERENCES Recruso (id);
+    FOREIGN KEY (FK_Recurso_id)
+    REFERENCES Recurso (id);
  
 ALTER TABLE Dominio_Atividade ADD CONSTRAINT FK_Dominio_Atividade_0
     FOREIGN KEY (FK_Atividade_id)
