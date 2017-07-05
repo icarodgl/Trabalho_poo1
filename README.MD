@@ -17,7 +17,6 @@ CREATE TABLE Modelo (
 
 CREATE TABLE Dominio (
     id serial PRIMARY KEY,
-    Nome varchar(50),
     FK_Atividade_id serial
 );
 
