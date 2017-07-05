@@ -1,3 +1,4 @@
+``` sql
 /* Em construção: */
 
 CREATE TABLE Modelo (
@@ -72,3 +73,4 @@ ALTER TABLE Dominio_Atividade ADD CONSTRAINT FK_Dominio_Atividade_0
 ALTER TABLE Dominio_Atividade ADD CONSTRAINT FK_Dominio_Atividade_1
     FOREIGN KEY (FK_Dominio_id)
     REFERENCES Dominio (id);
+```
