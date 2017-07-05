@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package projetopoo;
+package telas;
 
 import projetopoo.Instancias.AlterarInstancia;
 import projetopoo.Instancias.CadastrarInstancia;
@@ -18,6 +18,7 @@ import java.awt.Image;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import projetopoo.Instancias.ajuda;
+import projetopoo.ListaInstanciados;
 
 /**
  *

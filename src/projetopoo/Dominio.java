@@ -14,41 +14,24 @@ import java.util.ArrayList;
 
 
 public class Dominio {
-    private ArrayList <ObjFluxo> atividade = new ArrayList<ObjFluxo>();
-    private ArrayList <Integer> tid = new ArrayList<Integer>();
-    private ArrayList <String> tipo = new ArrayList <String>();
-    private ArrayList <String> recurso = new ArrayList <String>();
+    private int id;
+    private ArrayList <Atividade> atividades = new ArrayList();
 
-    public ArrayList<ObjFluxo> getAtividade() {
-        return atividade;
+    public int getId() {
+        return id;
     }
 
-    public void setAtividade(ObjFluxo atividade) {
-        this.atividade.add(atividade);
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public ArrayList<Integer> getTid() {
-        return tid;
+
+    public ArrayList<Atividade> getAtividades() {
+        return atividades;
     }
 
-    public void setTid(Integer tid) {
-        this.tid.add(tid);
+    public void setAtividades(Atividade a) {
+        this.atividades.add(a);
     }
 
-    public ArrayList<String> getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo.add(tipo);
-    }
-
-    public ArrayList<String> getRecurso() {
-        return recurso;
-    }
-
-    public void setRecurso(String recurso) {
-        this.recurso.add(recurso);
-    }
-    
 }

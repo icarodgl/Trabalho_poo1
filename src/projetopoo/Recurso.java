@@ -10,17 +10,17 @@ package projetopoo;
  * @author calos
  */
 public class Recurso {
-    private String recurso;
+    private String nome;
     private String tipo;
     private String descricao;
-    private int idRecurso;
+    private int id;
 
-    public String getRecurso() {
-        return recurso;
+    public String getNome() {
+        return nome;
     }
 
-    public void setRecurso(String recurso) {
-        this.recurso = recurso;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getTipo() {
@@ -39,11 +39,12 @@ public class Recurso {
         this.descricao = descricao;
     }
 
-    public int getIdRecurso() {
-        return idRecurso;
+    public int getId() {
+        return id;
     }
 
-    public void setIdRecurso(int idRecurso) {
-        this.idRecurso = idRecurso;
+    public void setId(int id) {
+        this.id = id;
     }
+
 }

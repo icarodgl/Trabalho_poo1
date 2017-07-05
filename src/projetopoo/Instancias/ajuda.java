@@ -128,6 +128,11 @@ public class ajuda extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(Tabela);
 
         comboE.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione" }));
+        comboE.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                comboEFocusGained(evt);
+            }
+        });
         comboE.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 comboEMouseClicked(evt);
@@ -230,12 +235,16 @@ public class ajuda extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_TabelaAncestorAdded
 
     private void comboEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEActionPerformed
-        carregaComboBox();
+       
     }//GEN-LAST:event_comboEActionPerformed
 
     private void comboEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboEMouseClicked
-       carregaComboBox();
+       
     }//GEN-LAST:event_comboEMouseClicked
+
+    private void comboEFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_comboEFocusGained
+       carregaComboBox();
+    }//GEN-LAST:event_comboEFocusGained
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ADD;

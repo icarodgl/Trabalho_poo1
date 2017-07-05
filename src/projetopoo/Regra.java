@@ -3,8 +3,8 @@ package projetopoo;
 public class Regra {
     private int id;
     private String tipo;
-    private int ladoD;
-    private int ladoE;
+    private String ladoD;
+    private String ladoE;
 
     public int getId() {
         return id;
@@ -22,19 +22,20 @@ public class Regra {
         this.tipo = tipo;
     }
 
-    public int getLadoD() {
+    public String getLadoD() {
         return ladoD;
     }
 
-    public void setLadoD(int ladoD) {
+    public void setLadoD(String ladoD) {
         this.ladoD = ladoD;
     }
 
-    public int getLadoE() {
+    public String getLadoE() {
         return ladoE;
     }
 
-    public void setLadoE(int ladoE) {
+    public void setLadoE(String ladoE) {
         this.ladoE = ladoE;
     }
+
 }
