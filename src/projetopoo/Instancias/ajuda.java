@@ -56,6 +56,7 @@ public class ajuda extends javax.swing.JInternalFrame {
         Tabela = new javax.swing.JTable();
         fieldEsq = new javax.swing.JTextField();
         fieldDir = new javax.swing.JTextField();
+        comboE = new javax.swing.JComboBox<>();
 
         setBorder(null);
         setClosable(true);
@@ -126,15 +127,26 @@ public class ajuda extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(Tabela);
 
+        comboE.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione" }));
+        comboE.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                comboEMouseClicked(evt);
+            }
+        });
+        comboE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboEActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(fechar)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,7 +164,12 @@ public class ajuda extends javax.swing.JInternalFrame {
                                 .addComponent(ADD))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(comboE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(fechar)))
                 .addGap(22, 22, 22))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
         );
@@ -174,7 +191,9 @@ public class ajuda extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(fechar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fechar)
+                    .addComponent(comboE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -210,9 +229,18 @@ public class ajuda extends javax.swing.JInternalFrame {
        
     }//GEN-LAST:event_TabelaAncestorAdded
 
+    private void comboEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEActionPerformed
+        carregaComboBox();
+    }//GEN-LAST:event_comboEActionPerformed
+
+    private void comboEMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboEMouseClicked
+       carregaComboBox();
+    }//GEN-LAST:event_comboEMouseClicked
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ADD;
     private javax.swing.JTable Tabela;
+    private javax.swing.JComboBox<String> comboE;
     private javax.swing.JButton fechar;
     private javax.swing.JTextField fieldDir;
     private javax.swing.JTextField fieldEsq;
@@ -229,10 +257,9 @@ public class ajuda extends javax.swing.JInternalFrame {
 public void carregaTabela() {
         
         DefaultTableModel modelo = (DefaultTableModel) Tabela.getModel();
+        atualizaRegras();
         modelo.setNumRows(0);
-        Crud c = new Crud();
-
-        for (Regra r : c.readRegra()) {
+        for (Regra r : this.regras) {
             modelo.addRow(new Object[]{
                 r.getId(),
                 r.getTipo(),
@@ -243,4 +270,21 @@ public void carregaTabela() {
         }
 
 }
+public void carregaComboBox() {
+        comboE.removeAllItems();
+        atualizaRegras();
+        for (Regra r : this.regras) {
+                comboE.addItem((r.getLadoE())+"");
+            };
+
+}
+
+public void atualizaRegras(){
+    Crud c = new Crud();
+    this.regras = new ArrayList();
+    for (Regra r : c.readRegra()) {
+                this.regras.add(r);
+            };
+}
+
 }
