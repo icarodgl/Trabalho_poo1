@@ -2,48 +2,48 @@
 /* Em construção: */
 
 CREATE TABLE Modelo (
-    id serial PRIMARY KEY
-    FK_Dominio_id serial,
+    id serial PRIMARY KEY,
+    FK_Dominio_id serial
 );
 
 CREATE TABLE Regra (
-    id serial PRIMARY KEY
-    tipo varchar(50)
-    ladoE varchar(50)
-    ladoD varchar(50),
+    id serial PRIMARY KEY,
+    tipo varchar(50),
+    ladoE varchar(50),
+    ladoD varchar(50)
 );
 
 CREATE TABLE Dominio (
-    id serial PRIMARY KEY,
+    id serial PRIMARY KEY
 );
 
 CREATE TABLE Atividade (
-    id serial PRIMARY KEY
-    nome varchar(50)
-    tid varchar(50)
-    tipo varchar(50),
+    id serial PRIMARY KEY,
+    nome varchar(50),
+    tid varchar(50),
+    tipo varchar(50)
 );
 
 CREATE TABLE Recruso (
-    id serial PRIMARY KEY
-    nome varchar(50)
-    tipo varchar(50)
-    descricao varchar(100),
+    id serial PRIMARY KEY,
+    nome varchar(50),
+    tipo varchar(50),
+    descricao varchar(100)
 );
 
 CREATE TABLE modelo_regra (
-    FK_Regra_id serial
-    FK_Modelo_id serial,
+    FK_Regra_id serial,
+    FK_Modelo_id serial
 );
 
 CREATE TABLE Atividade_recurso (
-    FK_Atividade_id serial
-    FK_Recruso_id serial,
+    FK_Atividade_id serial,
+    FK_Recruso_id serial
 );
 
 CREATE TABLE Dominio_Atividade (
-    FK_Atividade_id serial
-    FK_Dominio_id serial,
+    FK_Atividade_id serial,
+    FK_Dominio_id serial
 );
  
 ALTER TABLE Modelo ADD CONSTRAINT FK_Modelo_1
