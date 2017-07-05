@@ -1,53 +1,78 @@
-Para Utilizar o programa instale o Postgresql e crie um banco de dados "POO" com as tabelas:
-```sql
+``` sql
 /* Em construção: */
-
-CREATE TABLE Regra (
-    ID serial PRIMARY KEY,
-    Direita varchar(20),
-    Esquerda varchar(20)
-);
 
 CREATE TABLE Modelo (
     id serial PRIMARY KEY,
-    Nome varchar(50),
-    FK_Regra_ID serial,
     FK_Dominio_id serial
 );
 
-CREATE TABLE Dominio (
+CREATE TABLE Regra (
     id serial PRIMARY KEY,
-    FK_Atividade_id serial
+    tipo varchar(50),
+    ladoE varchar(50),
+    ladoD varchar(50)
+);
+
+CREATE TABLE Dominio (
+    id serial PRIMARY KEY
 );
 
 CREATE TABLE Atividade (
     id serial PRIMARY KEY,
-    tid varchar(50),
     nome varchar(50),
+    tid varchar(50),
+    inicio varchar(50),
+    fim varchar(50),
     tipo varchar(50)
 );
 
 CREATE TABLE Recurso (
     id serial PRIMARY KEY,
-    tipo varchar(50),
     nome varchar(50),
-    descricao varchar(50),
-    FK_Atividade_id serial
+    tipo varchar(50),
+    descricao varchar(100)
+);
+
+CREATE TABLE modelo_regra (
+    FK_Regra_id serial,
+    FK_Modelo_id serial
+);
+
+CREATE TABLE Atividade_recurso (
+    FK_Atividade_id serial,
+    FK_Recurso_id serial
+);
+
+CREATE TABLE Dominio_Atividade (
+    FK_Atividade_id serial,
+    FK_Dominio_id serial
 );
  
 ALTER TABLE Modelo ADD CONSTRAINT FK_Modelo_1
-    FOREIGN KEY (FK_Regra_ID)
-    REFERENCES Regra (ID);
- 
-ALTER TABLE Modelo ADD CONSTRAINT FK_Modelo_2
     FOREIGN KEY (FK_Dominio_id)
     REFERENCES Dominio (id);
  
-ALTER TABLE Dominio ADD CONSTRAINT FK_Dominio_1
+ALTER TABLE modelo_regra ADD CONSTRAINT FK_modelo_regra_0
+    FOREIGN KEY (FK_Regra_id)
+    REFERENCES Regra (id);
+ 
+ALTER TABLE modelo_regra ADD CONSTRAINT FK_modelo_regra_1
+    FOREIGN KEY (FK_Modelo_id)
+    REFERENCES Modelo (id);
+ 
+ALTER TABLE Atividade_recurso ADD CONSTRAINT FK_Atividade_recurso_0
     FOREIGN KEY (FK_Atividade_id)
     REFERENCES Atividade (id);
  
-ALTER TABLE Recurso ADD CONSTRAINT FK_Recurso_1
+ALTER TABLE Atividade_recurso ADD CONSTRAINT FK_Atividade_recurso_1
+    FOREIGN KEY (FK_Recurso_id)
+    REFERENCES Recurso (id);
+ 
+ALTER TABLE Dominio_Atividade ADD CONSTRAINT FK_Dominio_Atividade_0
     FOREIGN KEY (FK_Atividade_id)
     REFERENCES Atividade (id);
-    ```
+ 
+ALTER TABLE Dominio_Atividade ADD CONSTRAINT FK_Dominio_Atividade_1
+    FOREIGN KEY (FK_Dominio_id)
+    REFERENCES Dominio (id);
+```
