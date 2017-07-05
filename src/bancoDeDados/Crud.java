@@ -30,28 +30,57 @@ public class Crud {
         PreparedStatement stmt = null;
 
         try {
-            stmt = con.prepareStatement("INSERT INTO modelo (nome)VALUES(?)");
+            stmt = con.prepareStatement("INSERT INTO modelo (nome, id, fk_dominio_id)VALUES(?, ?, ?)");
             stmt.setString(1, m.getNome());
+            stmt.setInt(2, m.getId());
+            stmt.setInt(3, m.getDominio().getId());
             stmt.executeUpdate();
-
+            for (Regra r: m.getRegra()){
+                stmt = con.prepareStatement("INSERT INTO modelo_regra (fk_modelo_id, fk_regra_id)VALUES(?, ?)");
+                stmt.setInt(1, m.getId());
+                stmt.setInt(2, r.getId());
+                stmt.executeUpdate();
+            }
             JOptionPane.showMessageDialog(null, "Salvo com sucesso!");
         } catch (SQLException ex) {
-            System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Erro!"+ex);
         } finally {
             Conector.closeConnection(con, stmt);
         }
 
     }
 
-    public List<Modelo> readModelo() {
+    public List<Modelo> read() {
 
         PreparedStatement stmt = null;
         ResultSet rs = null;
-
-        List<Modelo> modelos = new ArrayList();
-
+        PreparedStatement stmt2 = null;
+        ArrayList <Modelo> modelos = new ArrayList();
         try {
-            stmt = con.prepareStatement("SELECT * FROM modelo");
+            stmt = con.prepareStatement("select	modelo.id as modelo_id,\n" +
+                                    "	dominio.id as dominio_id,\n" +
+                                    "	regra.id as regra_id,\n" +
+                                    "	regra.tipo as regra_tipo,\n" +
+                                    "	regra.ladoe as regra_ladoe,\n" +
+                                    "	regra.ladod as regra_ladod,\n" +
+                                    "	atividade.id as atividade_id,\n" +
+                                    "	atividade.nome as atividade_nome,\n" +
+                                    "	atividade.tid as atividade_tid,\n" +
+                                    "	atividade.tipo as atividade_tipo,\n" +
+                                    "	recurso.id as recurso_id,\n" +
+                                    "	recurso.nome as recurso_nome,\n" +
+                                    "	recurso.tipo as recurso_tipo,\n" +
+                                    "	recurso.descricao as recurso_rescricao\n" +
+                                    "	\n" +
+                                    "\n" +
+                                    "	from modelo \n" +
+                                    "	inner join dominio on (modelo.fk_dominio_id = dominio.id)\n" +
+                                    "	inner join modelo_regra as mr on(mr.fk_modelo_id = modelo.id)\n" +
+                                    "	inner join regra on (mr.fk_regra_id = regra.id)\n" +
+                                    "	inner join dominio_atividade as doa on (doa.fk_dominio_id = dominio.id)\n" +
+                                    "	inner join atividade on (doa.fk_atividade_id = atividade.id)\n" +
+                                    "	inner join atividade_recurso as ar on (ar.fk_atividade_id = atividade.id)\n" +
+                                    "	inner join recurso on (ar.fk_recurso_id = recurso.id);");
             rs = stmt.executeQuery();
 
             while (rs.next()) {
