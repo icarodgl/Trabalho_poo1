@@ -1,85 +1,78 @@
-Para Utilizar o programa instale o Postgresql e crie um banco de dados "POO" com as tabelas:
-```sql
-CREATE TABLE modelo (
-    nome varchar(20),
+``` sql
+/* Em construção: */
+
+CREATE TABLE Modelo (
+    id serial PRIMARY KEY,
+    FK_Dominio_id serial
+);
+
+CREATE TABLE Regra (
+    id serial PRIMARY KEY,
+    tipo varchar(50),
+    ladoE varchar(50),
+    ladoD varchar(50)
+);
+
+CREATE TABLE Dominio (
     id serial PRIMARY KEY
 );
 
-CREATE TABLE instancia (
+CREATE TABLE Atividade (
     id serial PRIMARY KEY,
-    Nome varchar(20)
+    nome varchar(50),
+    tid varchar(50),
+    inicio varchar(50),
+    fim varchar(50),
+    tipo varchar(50)
 );
 
-CREATE TABLE regra (
+CREATE TABLE Recurso (
     id serial PRIMARY KEY,
-    tipo varchar(20),
-    esquerda varchar(20),
-    direita varchar(20)
+    nome varchar(50),
+    tipo varchar(50),
+    descricao varchar(100)
 );
 
-CREATE TABLE dominio (
-    id serial PRIMARY KEY,
-    aividade varchar(20),
-    tipo varchar(20)
+CREATE TABLE modelo_regra (
+    FK_Regra_id serial,
+    FK_Modelo_id serial
 );
 
-CREATE TABLE atividade (
-    id serial PRIMARY KEY,
-    nome varchar(20),
-    tid varchar(20),
-    tipo varchar(20),
-    data_ini varchar(20),
-    data_fim varchar(20),
-    FK_recurso_id serial
+CREATE TABLE Atividade_recurso (
+    FK_Atividade_id serial,
+    FK_Recurso_id serial
 );
 
-CREATE TABLE recurso (
-    id serial PRIMARY KEY,
-    tipo varchar(20),
-    nome varchar(20),
-    descricao varchar(20)
-);
-
-CREATE TABLE instanciaAtividade (
-    FK_instancia_id serial,
-    FK_atividade_id serial
-);
-
-CREATE TABLE modeloRegras (
-    FK_modelo_id serial,
-    FK_regra_id serial
-);
-
-CREATE TABLE ModeloDominio (
-    FK_modelo_id serial,
-    FK_dominio_id serial
+CREATE TABLE Dominio_Atividade (
+    FK_Atividade_id serial,
+    FK_Dominio_id serial
 );
  
-ALTER TABLE atividade ADD CONSTRAINT FK_atividade_1
-    FOREIGN KEY (FK_recurso_id)
-    REFERENCES recurso (id);
+ALTER TABLE Modelo ADD CONSTRAINT FK_Modelo_1
+    FOREIGN KEY (FK_Dominio_id)
+    REFERENCES Dominio (id);
  
-ALTER TABLE instanciaAtividade ADD CONSTRAINT FK_instanciaAtividade_0
-    FOREIGN KEY (FK_instancia_id)
-    REFERENCES instancia (id);
+ALTER TABLE modelo_regra ADD CONSTRAINT FK_modelo_regra_0
+    FOREIGN KEY (FK_Regra_id)
+    REFERENCES Regra (id);
  
-ALTER TABLE instanciaAtividade ADD CONSTRAINT FK_instanciaAtividade_1
-    FOREIGN KEY (FK_atividade_id)
-    REFERENCES atividade (id);
+ALTER TABLE modelo_regra ADD CONSTRAINT FK_modelo_regra_1
+    FOREIGN KEY (FK_Modelo_id)
+    REFERENCES Modelo (id);
  
-ALTER TABLE modeloRegras ADD CONSTRAINT FK_modeloRegras_0
-    FOREIGN KEY (FK_modelo_id)
-    REFERENCES modelo (id);
+ALTER TABLE Atividade_recurso ADD CONSTRAINT FK_Atividade_recurso_0
+    FOREIGN KEY (FK_Atividade_id)
+    REFERENCES Atividade (id);
  
-ALTER TABLE modeloRegras ADD CONSTRAINT FK_modeloRegras_1
-    FOREIGN KEY (FK_regra_id)
-    REFERENCES regra (id);
+ALTER TABLE Atividade_recurso ADD CONSTRAINT FK_Atividade_recurso_1
+    FOREIGN KEY (FK_Recurso_id)
+    REFERENCES Recurso (id);
  
-ALTER TABLE ModeloDominio ADD CONSTRAINT FK_ModeloDominio_0
-    FOREIGN KEY (FK_modelo_id)
-    REFERENCES modelo (id);
+ALTER TABLE Dominio_Atividade ADD CONSTRAINT FK_Dominio_Atividade_0
+    FOREIGN KEY (FK_Atividade_id)
+    REFERENCES Atividade (id);
  
-ALTER TABLE ModeloDominio ADD CONSTRAINT FK_ModeloDominio_1
-    FOREIGN KEY (FK_dominio_id)
-    REFERENCES dominio (id);
-    ```
+ALTER TABLE Dominio_Atividade ADD CONSTRAINT FK_Dominio_Atividade_1
+    FOREIGN KEY (FK_Dominio_id)
+    REFERENCES Dominio (id);
+```

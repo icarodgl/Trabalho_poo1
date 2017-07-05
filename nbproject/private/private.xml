@@ -3,10 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/home/lucas/LEDs/POO1/tpoo3/Trabalho_poo1/src/projetopoo/Regra.java</file>
             <file>file:/home/lucas/LEDs/POO1/tpoo3/Trabalho_poo1/src/projetopoo/Modelos/NovaRegra.java</file>
             <file>file:/home/lucas/LEDs/POO1/tpoo3/Trabalho_poo1/src/projetopoo/Instancias/AlterarInstancia.java</file>
             <file>file:/home/lucas/LEDs/POO1/tpoo3/Trabalho_poo1/src/projetopoo/Modelos/CadastrarModelo.java</file>
+=======
+            <file>file:/home/icaro/Documentos/POO1/Trabalho_poo1/src/projetopoo/Atividade.java</file>
+            <file>file:/home/icaro/Documentos/POO1/Trabalho_poo1/src/projetopoo/Modelo.java</file>
+            <file>file:/home/icaro/Documentos/POO1/Trabalho_poo1/src/projetopoo/InstanciaAtividade.java</file>
+            <file>file:/home/icaro/Documentos/POO1/Trabalho_poo1/src/projetopoo/Dominio.java</file>
+>>>>>>> 60f2927c017071e5e11d4b97ee59aec88c055261
         </group>
     </open-files>
 </project-private>
