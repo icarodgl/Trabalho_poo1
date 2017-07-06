@@ -1,7 +1,7 @@
 ``` sql
 CREATE TABLE Modelo (
     id serial PRIMARY KEY,
-    nome
+    nome varchar(50)
 );
 
 CREATE TABLE Regra (

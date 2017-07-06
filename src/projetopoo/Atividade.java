@@ -15,9 +15,18 @@ public class Atividade {
     private int id;
     private String Nome;
     private String tipo;
+    private String tiporecurso;
     private ArrayList <Recurso> recursos;
     private String inicio;
     private String fim;
+
+    public String getTiporecurso() {
+        return tiporecurso;
+    }
+
+    public void setTiporecurso(String tiporecurso) {
+        this.tiporecurso = tiporecurso;
+    }
 
     public int getId() {
         return id;

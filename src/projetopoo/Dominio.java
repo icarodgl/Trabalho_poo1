@@ -32,8 +32,8 @@ public class Dominio {
         return a;
     }
 
-    public void setAtividades(Atividade a) {
-        this.atividades.add(a);
+    public void setAtividades(ArrayList<Atividade> a) {
+        this.atividades = a;
     }
 
 }

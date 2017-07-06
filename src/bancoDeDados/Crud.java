@@ -19,26 +19,103 @@ import projetopoo.*;
  */
 public class Crud {
     
-    Connection con;
+    public int pegaIdRegra(){
+        Connection con = Conector.getConnection();
+    PreparedStatement stmt = null;
+        ResultSet rs = null;
+        int i = 0;
+        try {
+            stmt = con.prepareStatement("select max(id) as id from regra");
+            rs = stmt.executeQuery();
+            rs.next();
+            i = rs.getInt("id");
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "PegaIdRegra Erro!" + ex);
+        }finally {
+            Conector.closeConnection(con, stmt);
+        }
+        return i;
     
-    public Crud() {
-        con = Conector.getConnection();
+    }
+        public int pegaIdRecurso(){
+        Connection con = Conector.getConnection();
+    PreparedStatement stmt = null;
+        ResultSet rs = null;
+        int i = 0;
+        try {
+            stmt = con.prepareStatement("select max(id) as id from recurso");
+            rs = stmt.executeQuery();
+            rs.next();
+            i = rs.getInt("id");
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar: " + ex);
+        }finally {
+            Conector.closeConnection(con, stmt);
+        }
+        return i;
+    
     }
     public void ligaModeloRegras(Modelo m){
+        Connection cx = Conector.getConnection();
         PreparedStatement stmt = null;
     try{
     for (Regra r: m.getRegra()){
-                stmt = con.prepareStatement("INSERT INTO modelo_regra (fk_modelo_id, fk_regra_id)VALUES(?, ?)");
+            create(r);
+            r.setId(pegaIdRegra());
+                stmt = cx.prepareStatement("INSERT INTO modelo_regra (fk_modelo_id, fk_regra_id)VALUES(?, ?)");
                 stmt.setInt(1, m.getId());
                 stmt.setInt(2, r.getId());
                 stmt.executeUpdate();
                 
             }
     } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro!"+ex);
-        } finally {
+            JOptionPane.showMessageDialog(null, "Liga Modelo Regra Erro!"+ex);
+        }finally {
+            Conector.closeConnection(cx, stmt);
+        }
+    }
+    public void ligaAtividadeRecurso(Atividade a){
+        Connection con = Conector.getConnection();
+        PreparedStatement stmt = null;
+    try{
+    for (Recurso r: a.getRecursos()){
+//            create(r);
+//            r.setId(pegaIdRecurso());
+                stmt = con.prepareStatement("INSERT INTO atividade_recurso "
+                        + "(fk_atividade_id, fk_recurso_id)VALUES(?, ?)");
+                stmt.setInt(1, a.getId());
+                stmt.setInt(2, r.getId());
+                stmt.executeUpdate();
+            }
+    } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Liga Atividade Recurso Erro!"+ex);
+        }finally {
             Conector.closeConnection(con, stmt);
         }
+    }
+    public void ligaModeloAtividades(Modelo m){
+        Connection cx = Conector.getConnection();
+        PreparedStatement stmt = null;
+    try{
+    for (Atividade a: m.getDominio().getAtividades()){
+            create(a);
+            a.setId(pegaIdAtividade());
+                stmt = cx.prepareStatement("INSERT INTO dominio (fk_atividade_id, fk_modelo_id)VALUES(?, ?)");
+                stmt.setInt(1, a.getId());
+                stmt.setInt(2, m.getId());
+                stmt.executeUpdate();
+                ligaAtividadeRecurso(a);
+                
+                
+            }
+    } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Liga Modelo Atividade Erro!"+ex);
+        }finally {
+            Conector.closeConnection(cx, stmt);
+        }
+        
     }
     /**
      *
@@ -46,6 +123,7 @@ public class Crud {
      * liga o modelo a suas atividades
      */
     public void CriaDominio(Dominio d){
+        Connection con = Conector.getConnection();
         PreparedStatement stmt = null;
         ArrayList<Atividade> at;
         at = d.getAtividades();
@@ -58,15 +136,14 @@ public class Crud {
                 stmt.executeUpdate();
             }
     } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro!"+ex);
+            JOptionPane.showMessageDialog(null, "Cria Dominio Erro!"+ex);
         } finally {
             Conector.closeConnection(con, stmt);
         }
     }
     public void create(Regra r) {
-
+        Connection con = Conector.getConnection();
         PreparedStatement stmt = null;
-
         try {
             stmt = con.prepareStatement("INSERT INTO regra (tipo, ladoe, ladod)VALUES( ?, ?, ?)");
             stmt.setString(1, r.getTipo());
@@ -75,23 +152,65 @@ public class Crud {
             stmt.executeUpdate();
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro!"+ex);
+            JOptionPane.showMessageDialog(null, "Create Regra Erro!"+ex);
         } finally {
             Conector.closeConnection(con, stmt);
         }
 
     }
+    public int pegaIdAtividade(){
+        Connection con = Conector.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        int i = 0;
+        try {
+            stmt = con.prepareStatement("select max(id) as id from atividade");
+            rs = stmt.executeQuery();
+            rs.next();
+            i = rs.getInt("id");
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar: " + ex);
+        }finally {
+            Conector.closeConnection(con, stmt);
+        }
+        return i;
+        
+    }
+        public int pegaIdModelo() {
+        Connection con = Conector.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        int i = 0;
+        try {
+            stmt = con.prepareStatement("select max(id) as id from modelo");
+            rs = stmt.executeQuery();
+            rs.next();
+            i = rs.getInt("id");
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "PegaIdModelo Erro! " + ex);
+        } finally {
+            Conector.closeConnection(con, stmt);
+        }
+        return i;
+    }
     public void create(Modelo m) {
+        Connection con = Conector.getConnection();
         PreparedStatement stmt = null;
         try {
             stmt = con.prepareStatement("INSERT INTO modelo (nome)VALUES(?)");
             stmt.setString(1, m.getNome());
             stmt.executeUpdate();
+            
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro!"+ex);
-        } finally {
+            JOptionPane.showMessageDialog(null, "Create Modelo Erro!"+ex);
+        }finally {
             Conector.closeConnection(con, stmt);
         }
+        m.setId(pegaIdModelo());
+        ligaModeloRegras(m);
+        ligaModeloAtividades(m);
     }
     /**
      *
@@ -99,41 +218,41 @@ public class Crud {
      * passar a atividade com o array de seus recursos
      */
     public void alocaRecurso(Atividade a) {
+        Connection cx = Conector.getConnection();
         PreparedStatement stmt = null;
-
         try {
             for (Recurso r: a.getRecursos()){
-                stmt = con.prepareStatement("INSERT INTO atividade_recurso ( fk_atividade_id, fk_recurso_id)VALUES( ?, ?)");
+                stmt = cx.prepareStatement("INSERT INTO atividade_recurso ( fk_atividade_id, fk_recurso_id)VALUES( ?, ?)");
                 stmt.setInt(1, a.getId());
                 stmt.setInt(2, r.getId());
                 stmt.executeUpdate();
             }
         } catch (SQLException ex) {
-            System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Aloca Recurso Erro!"+ex);
         } finally {
-            Conector.closeConnection(con, stmt);
+            Conector.closeConnection(cx, stmt);
         }
 
     }
     public void create(Atividade a) {
-
+        Connection cx = Conector.getConnection();
         PreparedStatement stmt = null;
 
         try {
-            stmt = con.prepareStatement("INSERT INTO atividade ( nome, tid, tipo)VALUES( ?, ?, ?)");
+            stmt = cx.prepareStatement("INSERT INTO atividade ( nome, tid, tipo)VALUES( ?, ?, ?)");
             stmt.setString(1, a.getNome());
             stmt.setInt(2, 0);
             stmt.setString(3, a.getTipo());
             stmt.executeUpdate();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro!"+ex);
+            JOptionPane.showMessageDialog(null, "create Recurso Erro!"+ex);
         } finally {
-            Conector.closeConnection(con, stmt);
+            Conector.closeConnection(cx, stmt);
         }
 
     }
     public void create(Recurso r) {
-
+        Connection con = Conector.getConnection();
         PreparedStatement stmt = null;
 
         try {
@@ -143,14 +262,14 @@ public class Crud {
             stmt.setString(3, r.getDescricao());
             stmt.executeUpdate();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro!"+ex);
+            JOptionPane.showMessageDialog(null, "Create Recurso Erro!"+ex);
         } finally {
             Conector.closeConnection(con, stmt);
         }
 
     }
-    public List<Recurso> listaRecurso() {
-
+    public ArrayList<Recurso> listaRecurso() {
+        Connection con = Conector.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         ArrayList <Recurso> recursos = new ArrayList();
@@ -181,6 +300,7 @@ public class Crud {
      * @return lista de recursos para inserir na atividade
      */
     public List<Recurso> carregaRecursoAtividade(int id){
+        Connection con = Conector.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         ArrayList <Recurso> recursos = new ArrayList();
@@ -210,7 +330,7 @@ public class Crud {
     
     }
     public List<Atividade> listaAtividade() {
-
+        Connection con = Conector.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         ArrayList <Atividade> atividades = new ArrayList();
@@ -236,6 +356,7 @@ public class Crud {
     }
 
     public List<Modelo> readModelo() {
+        Connection con = Conector.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
@@ -248,7 +369,6 @@ public class Crud {
             while (rs.next()) {
 
                 Modelo modelo = new Modelo();
-
                 modelo.setId(rs.getInt("id"));
                 modelo.setNome(rs.getString("nome"));
                 modelos.add(modelo);
@@ -265,7 +385,7 @@ public class Crud {
     }
 
     public void update(Modelo m) {
-
+        Connection con = Conector.getConnection();
         PreparedStatement stmt = null;
 
         try {
@@ -284,6 +404,7 @@ public class Crud {
     }
     
     public void delete(Modelo p) {
+        Connection con = Conector.getConnection();
         PreparedStatement stmt = null;
         try {
             stmt = con.prepareStatement("DELETE FROM modelo WHERE id = ?");
@@ -297,6 +418,7 @@ public class Crud {
         }
     }
     public void delete(Recurso r) {
+        Connection con = Conector.getConnection();
         PreparedStatement stmt = null;
         try {
             stmt = con.prepareStatement("DELETE FROM recurso WHERE id = ?");
@@ -310,6 +432,7 @@ public class Crud {
         }
     }
     public void delete(Atividade a) {
+        Connection con = Conector.getConnection();
         PreparedStatement stmt = null;
         try {
             stmt = con.prepareStatement("DELETE FROM atividade WHERE id = ?");
@@ -321,8 +444,10 @@ public class Crud {
         } finally {
             Conector.closeConnection(con, stmt);
         }
+        
     }
     public void delete(Regra r) {
+        Connection con = Conector.getConnection();
         PreparedStatement stmt = null;
         try {
             stmt = con.prepareStatement("DELETE FROM regra WHERE id = ?");
