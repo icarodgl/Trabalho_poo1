@@ -5,7 +5,6 @@
  */
 package telas;
 
-import projetopoo.Instancias.AlterarInstancia;
 import projetopoo.Instancias.CadastrarInstancia;
 import projetopoo.Instancias.ExcluirInstancia;
 import projetopoo.Instancias.ListarInstancia;
@@ -13,7 +12,7 @@ import projetopoo.Instancias.RelatorioInstancia;
 import projetopoo.Modelos.PesquisarModelo;
 import projetopoo.Modelos.AlterarModelo;
 import projetopoo.Modelos.ExcluirModelo;
-import projetopoo.Modelos.CadastrarModelo;
+import projetopoo.Modelos.CadastrarModelo1;
 import java.awt.Image;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
@@ -215,7 +214,7 @@ public class TelaMenu extends javax.swing.JFrame {
 
     private void cadastroModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastroModActionPerformed
         // TODO add your handling code here:
-        CadastrarModelo cadM = new CadastrarModelo();
+        CadastrarModelo1 cadM = new CadastrarModelo1();
         AreaDeTrabalho.add(cadM);
         cadM.setVisible(true);
         
@@ -230,9 +229,9 @@ public class TelaMenu extends javax.swing.JFrame {
 
     private void AlterarModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlterarModActionPerformed
         
-        AlterarModelo altM = new AlterarModelo();
-        AreaDeTrabalho.add(altM);
-        altM.setVisible(true);
+//        AlterarModelo altM = new AlterarModelo();
+//        AreaDeTrabalho.add(altM);
+//        altM.setVisible(true);
         
     }//GEN-LAST:event_AlterarModActionPerformed
 
@@ -251,9 +250,9 @@ public class TelaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_pesquisarModActionPerformed
 
     private void AltInstanciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AltInstanciaActionPerformed
-        AlterarInstancia alti = new AlterarInstancia();
-        AreaDeTrabalho.add(alti);
-        alti.setVisible(true);
+//        AlterarInstancia alti = new AlterarInstancia();
+//        AreaDeTrabalho.add(alti);
+//        alti.setVisible(true);
         //alti.setListaM(listaM);
 
     }//GEN-LAST:event_AltInstanciaActionPerformed

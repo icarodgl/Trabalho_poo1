@@ -233,7 +233,7 @@ public class Crud {
         }
 
         return atividades;
-
+    }
 
     public List<Modelo> readModelo() {
         PreparedStatement stmt = null;

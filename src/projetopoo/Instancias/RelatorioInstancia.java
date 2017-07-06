@@ -7,9 +7,9 @@ package projetopoo.Instancias;
 
 
 import javax.swing.table.DefaultTableModel;
-import projetopoo.ListaInstanciados;
-import projetopoo.ModeloInstanciado;
-import projetopoo.ObjFluxo;
+//import projetopoo.ListaInstanciados;
+//import projetopoo.ModeloInstanciado;
+//import projetopoo.ObjFluxo;
 import projetopoo.Recurso;
 import java.util.ArrayList;
 
@@ -18,16 +18,16 @@ import java.util.ArrayList;
  * @author lucas
  */
 public class RelatorioInstancia extends javax.swing.JInternalFrame {
-     ListaInstanciados listaM;
+     //ListaInstanciados listaM;
      DefaultTableModel model;
 
-    public ListaInstanciados getListaM() {
-        return listaM;
-    }
-
-    public void setListaM(ListaInstanciados listaM) {
-        this.listaM = listaM;
-    }
+//    public ListaInstanciados getListaM() {
+//        return listaM;
+//    }
+//
+//    public void setListaM(ListaInstanciados listaM) {
+//        this.listaM = listaM;
+//    }
      
     /**
      * Creates new form AlterarInstancia

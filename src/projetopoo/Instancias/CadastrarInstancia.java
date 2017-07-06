@@ -9,7 +9,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import javax.swing.table.DefaultTableModel;
-
 import projetopoo.Recurso;
 import java.util.ArrayList;
 
@@ -22,23 +21,23 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
     /**
      * Creates new form CadastrarInstancia
      */
-    ListaInstanciados listaM;
+   // ListaInstanciados listaM;
 
-    public ListaInstanciados getListaM() {
-        return listaM;
-    }
-
-    public void setListaM(ListaInstanciados listaM) {
-        this.listaM = listaM;
-    }
-    DefaultTableModel model;
-    ModeloInstanciado mod = new ModeloInstanciado();
-    ObjFluxo obj = new ObjFluxo();
-    Recurso rec = new Recurso();
-    public CadastrarInstancia() {
-        initComponents();
-        model =(DefaultTableModel)tabelaInstancia.getModel();
-    }
+//    public ListaInstanciados getListaM() {
+//        return listaM;
+//    }
+//
+//    public void setListaM(ListaInstanciados listaM) {
+//        this.listaM = listaM;
+//    }
+//    DefaultTableModel model;
+//    ModeloInstanciado mod = new ModeloInstanciado();
+//    ObjFluxo obj = new ObjFluxo();
+//    Recurso rec = new Recurso();
+//    public CadastrarInstancia() {
+//        initComponents();
+//        model =(DefaultTableModel)tabelaInstancia.getModel();
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.

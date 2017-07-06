@@ -11,7 +11,6 @@ import javax.swing.table.DefaultTableModel;
 import projetopoo.Regra;
 import projetopoo.Dominio;
 import projetopoo.Modelo;
-import projetopoo.ObjFluxo;
 
 /**
  *
@@ -29,8 +28,8 @@ public class CadastrarModelo1 extends javax.swing.JInternalFrame {
     Dominio dom = new Dominio();
     public CadastrarModelo1() {
         initComponents();
-        model =(DefaultTableModel)tabelaRegras.getModel();
-        model1 =(DefaultTableModel)tabelaDominio.getModel();
+//        model =(DefaultTableModel)tabelaRegras.getModel();
+//        model1 =(DefaultTableModel)tabelaDominio.getModel();
     }
 
     /**
@@ -317,15 +316,15 @@ public class CadastrarModelo1 extends javax.swing.JInternalFrame {
 
     private void botaoCadRegraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadRegraActionPerformed
         // TODO add your handling code here:
-        String tipo = fieldRegraTipo.getText();
-        String regraEsq = fieldRegraEsq.getText();
-        String regraDir = fieldRegraDir.getText();
-        Regra reg = new Regra();
-        reg.setTipo(tipo);
-        reg.setLadoE(Integer.parseInt(regraEsq));
-        reg.setLadoD(Integer.parseInt(regraDir));
-        arrayReg.add(reg);
-        model.insertRow(model.getRowCount(),new Object[]{reg.getTipo(),reg.getLadoE(),reg.getLadoD()});
+//        String tipo = fieldRegraTipo.getText();
+//        String regraEsq = fieldRegraEsq.getText();
+//        String regraDir = fieldRegraDir.getText();
+//        Regra reg = new Regra();
+//        reg.setTipo(tipo);
+//        reg.setLadoE(Integer.parseInt(regraEsq));
+//        reg.setLadoD(Integer.parseInt(regraDir));
+//        arrayReg.add(reg);
+//        model.insertRow(model.getRowCount(),new Object[]{reg.getTipo(),reg.getLadoE(),reg.getLadoD()});
     }//GEN-LAST:event_botaoCadRegraActionPerformed
 
     private void fieldNomeModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldNomeModeloActionPerformed
@@ -353,14 +352,14 @@ public class CadastrarModelo1 extends javax.swing.JInternalFrame {
     
     private void botaoCadastrarModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarModeloActionPerformed
         // TODO add your handling code here:
-        String nome = fieldNomeModelo.getText();
-        String id = fieldIdModelo.getText();
-        Modelo mod = new Modelo();
-        mod.setId(Integer.parseInt(id));
-        mod.setNome(nome);
-        mod.setDominio(dom);
-        mod.setRegra(arrayReg);
-        dispose();
+//        String nome = fieldNomeModelo.getText();
+//        String id = fieldIdModelo.getText();
+//        Modelo mod = new Modelo();
+//        mod.setId(Integer.parseInt(id));
+//        mod.setNome(nome);
+//        mod.setDominio(dom);
+//        mod.setRegra(arrayReg);
+//        dispose();
     }//GEN-LAST:event_botaoCadastrarModeloActionPerformed
 
     private void filedDepedenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filedDepedenciaActionPerformed

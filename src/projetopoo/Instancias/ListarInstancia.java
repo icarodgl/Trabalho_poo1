@@ -6,23 +6,23 @@
 package projetopoo.Instancias;
 
 import javax.swing.table.DefaultTableModel;
-import projetopoo.ListaInstanciados;
+//import projetopoo.ListaInstanciados;
 
 /**
  *
  * @author lucas
  */
 public class ListarInstancia extends javax.swing.JInternalFrame {
-    ListaInstanciados listaM;
+    //ListaInstanciados listaM;
     DefaultTableModel model;
 
-    public ListaInstanciados getListaM() {
-        return listaM;
-    }
-
-    public void setListaM(ListaInstanciados listaM) {
-        this.listaM = listaM;
-    }
+//    public ListaInstanciados getListaM() {
+//        return listaM;
+//    }
+//
+//    public void setListaM(ListaInstanciados listaM) {
+//        this.listaM = listaM;
+//    }
      
     /**
      * Creates new form ListarInstancia
@@ -125,18 +125,18 @@ public class ListarInstancia extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     public void listartudo(){
-        String terminado="sim";
-        for(int i=0; i<listaM.size();i++){
-            for(int j=0; j<listaM.get(i).getTerminado().size();j++){
-            if("sim".equalsIgnoreCase(listaM.get(i).getTerminado().get(j))){
-                terminado="Sim";
-            }
-            else{
-                terminado="Nao";
-            }
-        }
-            model.insertRow(model.getRowCount(),new Object[]{listaM.get(i).getId(), listaM.get(i).getNome(), terminado});
-        }
+//        String terminado="sim";
+//        for(int i=0; i<listaM.size();i++){
+//            for(int j=0; j<listaM.get(i).getTerminado().size();j++){
+//            if("sim".equalsIgnoreCase(listaM.get(i).getTerminado().get(j))){
+//                terminado="Sim";
+//            }
+//            else{
+//                terminado="Nao";
+//            }
+//        }
+//            model.insertRow(model.getRowCount(),new Object[]{listaM.get(i).getId(), listaM.get(i).getNome(), terminado});
+//        }
     
     }
        

@@ -7,9 +7,6 @@ package projetopoo.Instancias;
 
 
 import javax.swing.table.DefaultTableModel;
-import projetopoo.ListaInstanciados;
-import projetopoo.ModeloInstanciado;
-import projetopoo.ObjFluxo;
 import projetopoo.Recurso;
 import java.util.ArrayList;
 
@@ -18,24 +15,17 @@ import java.util.ArrayList;
  * @author lucas
  */
 public class ExcluirInstancia extends javax.swing.JInternalFrame {
-     ListaInstanciados listaM;
      DefaultTableModel model;
 
-    public ListaInstanciados getListaM() {
-        return listaM;
-    }
-
-    public void setListaM(ListaInstanciados listaM) {
-        this.listaM = listaM;
-    }
+    
      
     /**
      * Creates new form AlterarInstancia
      */
-    public ExcluirInstancia() {
-        initComponents();
-        model =(DefaultTableModel)tableexc.getModel();
-    }
+//    public ExcluirInstancia() {
+//        initComponents();
+//        model =(DefaultTableModel)tableexc.getModel();
+//    }
     
 
 
@@ -113,10 +103,10 @@ public class ExcluirInstancia extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
-        int tempId = Integer.parseInt(jtIdE.getText());
-        tempId=listaM.buscaModeloI(tempId);
-        listaM.remove(tempId);
-        dispose();
+//        int tempId = Integer.parseInt(jtIdE.getText());
+//        tempId=listaM.buscaModeloI(tempId);
+//        listaM.remove(tempId);
+//        dispose();
          
          
                

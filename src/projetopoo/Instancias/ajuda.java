@@ -8,7 +8,7 @@ package projetopoo.Instancias;
 import bancoDeDados.Crud;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
-import projetopoo.ListaInstanciados;
+//import projetopoo.ListaInstanciados;
 import projetopoo.Regra;
 
 /**
@@ -16,16 +16,16 @@ import projetopoo.Regra;
  * @author lucas
  */
 public class ajuda extends javax.swing.JInternalFrame {
-    ListaInstanciados listaM;
+    //ListaInstanciados listaM;
     DefaultTableModel model;
     private ArrayList<Regra> regras;
-    public ListaInstanciados getListaM() {
-        return listaM;
-    }
-
-    public void setListaM(ListaInstanciados listaM) {
-        this.listaM = listaM;
-    }
+//    public ListaInstanciados getListaM() {
+//        return listaM;
+//    }
+//
+//    public void setListaM(ListaInstanciados listaM) {
+//        this.listaM = listaM;
+//    }
      
     /**
      * Creates new form ListarInstancia
@@ -221,8 +221,8 @@ public class ajuda extends javax.swing.JInternalFrame {
        Crud c = new Crud();
        
        r.setTipo(fieldTipo.getText());
-       r.setLadoE(Integer.parseInt(fieldEsq.getText()));
-       r.setLadoD(Integer.parseInt(fieldDir.getText()));
+       //r.setLadoE(Integer.parseInt(fieldEsq.getText()));
+       //r.setLadoD(Integer.parseInt(fieldDir.getText()));
        fieldTipo.setText("");
        fieldEsq.setText("");
        fieldDir.setText("");
@@ -243,7 +243,7 @@ public class ajuda extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_comboEMouseClicked
 
     private void comboEFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_comboEFocusGained
-       carregaComboBox();
+       //carregaComboBox();
     }//GEN-LAST:event_comboEFocusGained
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -265,35 +265,35 @@ public class ajuda extends javax.swing.JInternalFrame {
 
 public void carregaTabela() {
         
-        DefaultTableModel modelo = (DefaultTableModel) Tabela.getModel();
-        atualizaRegras();
-        modelo.setNumRows(0);
-        for (Regra r : this.regras) {
-            modelo.addRow(new Object[]{
-                r.getId(),
-                r.getTipo(),
-                r.getLadoD(),
-                r.getLadoE()
-            });
-
-        }
-
-}
-public void carregaComboBox() {
-        comboE.removeAllItems();
-        atualizaRegras();
-        for (Regra r : this.regras) {
-                comboE.addItem((r.getLadoE())+"");
-            };
+//        DefaultTableModel modelo = (DefaultTableModel) Tabela.getModel();
+//        atualizaRegras();
+//        modelo.setNumRows(0);
+//        for (Regra r : this.regras) {
+//            modelo.addRow(new Object[]{
+//                r.getId(),
+//                r.getTipo(),
+//                r.getLadoD(),
+//                r.getLadoE()
+//            });
+//
+//        }
 
 }
+//public void carregaComboBox() {
+//        comboE.removeAllItems();
+//        atualizaRegras();
+//        for (Regra r : this.regras) {
+//                comboE.addItem((r.getLadoE())+"");
+//            };
+//
+//}
 
-public void atualizaRegras(){
-    Crud c = new Crud();
-    this.regras = new ArrayList();
-    for (Regra r : c.readRegra()) {
-                this.regras.add(r);
-            };
-}
+//public void atualizaRegras(){
+//    Crud c = new Crud();
+//    this.regras = new ArrayList();
+//    for (Regra r : c.readRegra()) {
+//                this.regras.add(r);
+//            };
+//}
 
 }
