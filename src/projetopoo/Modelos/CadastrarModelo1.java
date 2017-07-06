@@ -59,18 +59,18 @@ public class CadastrarModelo1 extends javax.swing.JInternalFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         fieldDominioAti = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        comboRecurso = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tabelaRegra = new javax.swing.JTable();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        filedDepedencia = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        comboEvento = new javax.swing.JComboBox<>();
         jToggleButton1 = new javax.swing.JToggleButton();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        fieldLadoE = new javax.swing.JTextField();
+        fieldLadoD = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
 
         jCheckBoxMenuItem1.setSelected(true);
@@ -141,9 +141,9 @@ public class CadastrarModelo1 extends javax.swing.JInternalFrame {
 
         jLabel11.setText("Recurso");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboRecurso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaRegra.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -159,15 +159,15 @@ public class CadastrarModelo1 extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tabelaRegra);
 
         jLabel13.setText("Regra");
 
         jLabel14.setText("Depedencia");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        filedDepedencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                filedDepedenciaActionPerformed(evt);
             }
         });
 
@@ -175,7 +175,7 @@ public class CadastrarModelo1 extends javax.swing.JInternalFrame {
 
         jLabel16.setText("Lado Direito");
 
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Evento", "Tarefa", "Sub Processo" }));
+        comboEvento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Evento", "Tarefa", "Sub Processo" }));
 
         jToggleButton1.setText("Adicionar Regra");
 
@@ -216,14 +216,14 @@ public class CadastrarModelo1 extends javax.swing.JInternalFrame {
                                                         .addComponent(jLabel10))
                                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                        .addComponent(comboEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                                 .addGap(30, 30, 30)
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addGap(0, 0, Short.MAX_VALUE))
                                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(comboRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                         .addComponent(botaoCadDominio, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -235,11 +235,11 @@ public class CadastrarModelo1 extends javax.swing.JInternalFrame {
                                                         .addGap(18, 18, 18)
                                                         .addComponent(jLabel16))
                                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(filedDepedencia, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addGap(18, 18, 18)
-                                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(fieldLadoE, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addGap(18, 18, 18)
-                                                        .addComponent(jTextField3)))
+                                                        .addComponent(fieldLadoD)))
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                                     .addComponent(botaoCadRegra)
@@ -270,8 +270,8 @@ public class CadastrarModelo1 extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fieldDominioAti, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoCadDominio)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboEvento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
@@ -288,9 +288,9 @@ public class CadastrarModelo1 extends javax.swing.JInternalFrame {
                     .addComponent(jLabel13))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(filedDepedencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fieldLadoE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fieldLadoD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jToggleButton1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -334,7 +334,7 @@ public class CadastrarModelo1 extends javax.swing.JInternalFrame {
 
     private void botaoCadDominioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadDominioActionPerformed
         // TODO add your handling code here:
-        String tipo = fielDominioTipo.getText();
+        /*String tipo = fielDominioTipo.getText();
 	String nome = fieldDominioAti.getText();
         String recurso = fieldDominioRec.getText();
         String id = fieldDominioID.getText();
@@ -344,7 +344,10 @@ public class CadastrarModelo1 extends javax.swing.JInternalFrame {
         dom.setRecurso(recurso);
         dom.setTipo(tipo);
         dom.setTid(Integer.parseInt(id));
-        model1.insertRow(model1.getRowCount(),new Object[]{fieldDominioID.getText(),fieldDominioAti.getText(),fielDominioTipo.getText(),fieldDominioRec.getText()});
+        model1.insertRow(model1.getRowCount(),new Object[]{fieldDominioID.getText(),fieldDominioAti.getText(),fielDominioTipo.getText(),fieldDominioRec.getText()});*/
+        NovoRecurso rec = new NovoRecurso();
+        rec.setVisible(true);
+                
     }//GEN-LAST:event_botaoCadDominioActionPerformed
 
     
@@ -360,20 +363,23 @@ public class CadastrarModelo1 extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_botaoCadastrarModeloActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void filedDepedenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filedDepedenciaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_filedDepedenciaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton botaoCadDominio;
     private javax.swing.JToggleButton botaoCadRegra;
     private javax.swing.JToggleButton botaoCadastrarModelo;
+    private javax.swing.JComboBox<String> comboEvento;
+    private javax.swing.JComboBox<String> comboRecurso;
     private javax.swing.JTextField fieldDominioAti;
+    private javax.swing.JTextField fieldLadoD;
+    private javax.swing.JTextField fieldLadoE;
     private javax.swing.JTextField fieldNomeModelo;
+    private javax.swing.JTextField filedDepedencia;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -390,11 +396,8 @@ public class CadastrarModelo1 extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JTable tabelaDominio;
+    private javax.swing.JTable tabelaRegra;
     // End of variables declaration//GEN-END:variables
 }
