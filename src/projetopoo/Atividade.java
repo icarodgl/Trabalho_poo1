@@ -11,11 +11,10 @@ import java.util.ArrayList;
  *
  * @author icaro
  */
-class Atividade {
+public class Atividade {
     private int id;
     private String Nome;
     private String tipo;
-    private String tid;
     private ArrayList <Recurso> recursos;
     private String inicio;
     private String fim;

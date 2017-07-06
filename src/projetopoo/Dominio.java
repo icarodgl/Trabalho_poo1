@@ -27,7 +27,9 @@ public class Dominio {
 
 
     public ArrayList<Atividade> getAtividades() {
-        return atividades;
+        ArrayList<Atividade> a = new ArrayList();
+        a = this.atividades;
+        return a;
     }
 
     public void setAtividades(Atividade a) {
