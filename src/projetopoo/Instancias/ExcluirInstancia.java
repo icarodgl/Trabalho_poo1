@@ -49,13 +49,10 @@ public class ExcluirInstancia extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jtNomeE = new javax.swing.JTextField();
-        jbPesquisarE = new javax.swing.JButton();
-        jtIdE = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tableexc = new javax.swing.JTable();
         jbExcluir = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jComboBox2 = new javax.swing.JComboBox<>();
 
         setBorder(null);
         setClosable(true);
@@ -63,55 +60,9 @@ public class ExcluirInstancia extends javax.swing.JInternalFrame {
         setResizable(true);
         setTitle("Alterar");
 
-        jLabel1.setText("Nome:");
+        jLabel1.setText("Nome Modelo");
 
-        jtNomeE.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtNomeEActionPerformed(evt);
-            }
-        });
-
-        jbPesquisarE.setText("Pesquisar");
-        jbPesquisarE.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbPesquisarEActionPerformed(evt);
-            }
-        });
-
-        jtIdE.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtIdEActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setText("ID:");
-
-        tableexc.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Atividade", "TID", "Tipo", "Recurso Alocado", "Terminado", "Data-hora de Inicio", "Data-hora de Termino"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane1.setViewportView(tableexc);
-        if (tableexc.getColumnModel().getColumnCount() > 0) {
-            tableexc.getColumnModel().getColumn(0).setResizable(false);
-            tableexc.getColumnModel().getColumn(1).setResizable(false);
-            tableexc.getColumnModel().getColumn(2).setResizable(false);
-            tableexc.getColumnModel().getColumn(3).setResizable(false);
-            tableexc.getColumnModel().getColumn(4).setResizable(false);
-            tableexc.getColumnModel().getColumn(5).setResizable(false);
-            tableexc.getColumnModel().getColumn(6).setResizable(false);
-        }
+        jLabel2.setText("Atividade");
 
         jbExcluir.setText("Excluir");
         jbExcluir.addActionListener(new java.awt.event.ActionListener() {
@@ -120,29 +71,27 @@ public class ExcluirInstancia extends javax.swing.JInternalFrame {
             }
         });
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jbExcluir)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtNomeE, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtIdE, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jbPesquisarE)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbExcluir)
-                .addGap(300, 300, 300))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addGap(30, 30, 30)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(82, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,39 +99,18 @@ public class ExcluirInstancia extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jtNomeE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbPesquisarE)
-                    .addComponent(jtIdE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
                 .addComponent(jbExcluir)
-                .addContainerGap())
+                .addContainerGap(218, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jtNomeEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtNomeEActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtNomeEActionPerformed
-
-    private void jbPesquisarEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbPesquisarEActionPerformed
-        int tempId = Integer.parseInt(jtIdE.getText());
-        tempId=listaM.buscaModeloI(tempId);
-        for(int i=0; i<listaM.get(tempId).getAtividade().size();i++){
-            if(tableexc.getRowCount()>0)model.removeRow(0);
-        }
-        for(int i=0; i<listaM.get(tempId).getAtividade().size();i++){
-        model.insertRow(model.getRowCount(),new Object[]{listaM.get(tempId).getAtividade().get(i).getNome(), listaM.get(tempId).getTid().get(i), listaM.get(tempId).getAtividade().get(i).getTipo(), listaM.get(tempId).getRecursoAlocado().get(i).getRecurso(), listaM.get(tempId).getTerminado().get(i), listaM.get(tempId).getDataHoraI().get(i), listaM.get(tempId).getDataHoraF().get(i)});
-        }
-        jtNomeE.setText(listaM.get(tempId).getNome());
-    }//GEN-LAST:event_jbPesquisarEActionPerformed
-
-    private void jtIdEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtIdEActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtIdEActionPerformed
 
     private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
         int tempId = Integer.parseInt(jtIdE.getText());
@@ -198,13 +126,10 @@ public class ExcluirInstancia extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbExcluir;
-    private javax.swing.JButton jbPesquisarE;
-    private javax.swing.JTextField jtIdE;
-    private javax.swing.JTextField jtNomeE;
-    private javax.swing.JTable tableexc;
     // End of variables declaration//GEN-END:variables
 }
