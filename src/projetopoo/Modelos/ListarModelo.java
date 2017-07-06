@@ -5,6 +5,12 @@
  */
 package projetopoo.Modelos;
 
+import bancoDeDados.Crud;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import projetopoo.Modelo;
+import projetopoo.Regra;
+
 /**
  *
  * @author lucas
@@ -16,6 +22,7 @@ public class ListarModelo extends javax.swing.JInternalFrame {
      */
     public ListarModelo() {
         initComponents();
+        carregaTabelaRegras();
     }
 
     /**
@@ -28,45 +35,45 @@ public class ListarModelo extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jToggleButton1 = new javax.swing.JToggleButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
+        Tabela = new javax.swing.JTable();
 
         setClosable(true);
         setMaximizable(true);
         setResizable(true);
         setTitle("Listar Modelo");
 
-        jToggleButton1.setText("Novo");
+        Tabela.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Modelo 1", "Modelo 2", "Modelo 3", "Modelo 4", "Modelo 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+            },
+            new String [] {
+                "Id", "Nome"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(Tabela);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jToggleButton1)))
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 462, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jToggleButton1)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -83,11 +90,24 @@ public class ListarModelo extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void carregaTabelaRegras() {
+        Crud c = new Crud();
+        ArrayList<Modelo> modelos;
+        modelos = (ArrayList<Modelo>) c.listaModelo();
+        DefaultTableModel modelo = (DefaultTableModel) Tabela.getModel();
+        modelo.setNumRows(0);
+        for (Modelo m : modelos) {
+            modelo.addRow(new Object[]{
+                m.getId(),
+                m.getNome()
+            });
+            
+        }
 
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList<String> jList1;
+    private javax.swing.JTable Tabela;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JToggleButton jToggleButton1;
     // End of variables declaration//GEN-END:variables
 }

@@ -17,6 +17,7 @@ import java.awt.Image;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
 import projetopoo.Instancias.ajuda;
+import projetopoo.Modelos.ListarModelo;
 
 /**
  *
@@ -58,6 +59,7 @@ public class TelaMenu extends javax.swing.JFrame {
         AlterarMod = new javax.swing.JMenuItem();
         ExcluirMod = new javax.swing.JMenuItem();
         pesquisarMod = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         cadInstancia = new javax.swing.JMenu();
         CadInstancia = new javax.swing.JMenuItem();
         AltInstancia = new javax.swing.JMenuItem();
@@ -129,6 +131,15 @@ public class TelaMenu extends javax.swing.JFrame {
             }
         });
         jMenu1.add(pesquisarMod);
+
+        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/list.png"))); // NOI18N
+        jMenuItem1.setText("Listar");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
 
         jMenuBar1.add(jMenu1);
 
@@ -287,6 +298,12 @@ public class TelaMenu extends javax.swing.JFrame {
         //relati.setListaM(listaM);
     }//GEN-LAST:event_AjudaActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        ListarModelo relati = new ListarModelo();
+        AreaDeTrabalho.add(relati);
+        relati.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -339,6 +356,7 @@ public class TelaMenu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem listInstancia;
     private javax.swing.JMenuItem pesquisarMod;

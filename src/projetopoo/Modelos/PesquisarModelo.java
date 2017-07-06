@@ -5,17 +5,30 @@
  */
 package projetopoo.Modelos;
 
+import bancoDeDados.Crud;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import projetopoo.*;
+
 /**
  *
  * @author lucas
  */
 public class PesquisarModelo extends javax.swing.JInternalFrame {
-
+    ArrayList <Modelo> modelos;
+    ArrayList <Regra> regras;
+    Modelo m;
+    Dominio d;
+    Crud c;
+    ArrayList <Atividade> a;
     /**
      * Creates new form CadastrarModelo
      */
     public PesquisarModelo() {
         initComponents();
+        carregaModelos();
+        carregaComboBox();
+        
     }
 
     /**
@@ -28,10 +41,11 @@ public class PesquisarModelo extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        ListaDeModelos = new javax.swing.JList<>();
-        jTextField4 = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tabela2 = new javax.swing.JTable();
+        combo1 = new javax.swing.JComboBox<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tabela1 = new javax.swing.JTable();
 
         setClosable(true);
         setMaximizable(true);
@@ -40,26 +54,53 @@ public class PesquisarModelo extends javax.swing.JInternalFrame {
         setMinimumSize(new java.awt.Dimension(400, 400));
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
-        jToggleButton1.setText("Pesquisar");
-        jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
+        tabela2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Regra", "Esquerda", "Direita"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tabela2);
+
+        combo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        combo1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                combo1MouseClicked(evt);
+            }
+        });
+        combo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jToggleButton1ActionPerformed(evt);
+                combo1ActionPerformed(evt);
             }
         });
 
-        ListaDeModelos.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane1.setViewportView(ListaDeModelos);
+        tabela1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        jTextField4.setText("Nome do modelo");
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+            },
+            new String [] {
+                "Nome", "Tipo", "Recurso"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
+        jScrollPane3.setViewportView(tabela1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -68,23 +109,22 @@ public class PesquisarModelo extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jToggleButton1)))
+                        .addComponent(combo1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(combo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jToggleButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField4))
-                .addContainerGap())
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         getContentPane().add(jPanel1);
@@ -92,20 +132,66 @@ public class PesquisarModelo extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jToggleButton1ActionPerformed
+    private void combo1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_combo1MouseClicked
+        c = new Crud();
+        if (combo1.getSelectedIndex() >=0) {
+            
+        m = modelos.get(combo1.getSelectedIndex());
+        regras = c.listaRegras(m);
+        a = c.listaAtividade(m);
+        d.setAtividades(a);
+        m.setDominio(d);
+        carregaTabela1(m);
+        carregaTabela2(m);
+        }
+    }//GEN-LAST:event_combo1MouseClicked
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    private void combo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo1ActionPerformed
 
+    }//GEN-LAST:event_combo1ActionPerformed
+    public void carregaTabela1(Modelo m) {
+        
+        DefaultTableModel modelo = (DefaultTableModel) tabela1.getModel();
+        modelo.setNumRows(0);
+        for (Atividade a : m.getDominio().getAtividades()) {
+            modelo.addRow(new Object[]{
+                a.getNome(),
+                a.getTipo(),
+                a.getRecursos().get(0).getTipo()
+            });
+            
+        }
+    }
+    public void carregaTabela2(Modelo m) {
+        DefaultTableModel modelo = (DefaultTableModel) tabela2.getModel();
+        modelo.setNumRows(0);
+        for (Regra r : regras) {
+            modelo.addRow(new Object[]{
+                r.getTipo(),
+                r.getLadoE(),
+                r.getLadoD()
+            });
+            
+        }
+}
+    public void carregaModelos(){
+        c = new Crud();
+        modelos = (ArrayList<Modelo>) c.listaModelo();
+       
+    }
+    public void carregaComboBox() {
+        combo1.removeAllItems();
+        for (Modelo m : this.modelos) {
+                combo1.addItem(m.getNome()+"");
+            };
 
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JList<String> ListaDeModelos;
+    private javax.swing.JComboBox<String> combo1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable tabela1;
+    private javax.swing.JTable tabela2;
     // End of variables declaration//GEN-END:variables
 }

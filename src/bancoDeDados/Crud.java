@@ -354,8 +354,64 @@ public class Crud {
 
         return atividades;
     }
+        public ArrayList<Atividade> listaAtividade(Modelo m) {
+        Connection con = Conector.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ArrayList <Atividade> atividades = new ArrayList();
+        try {
+            stmt = con.prepareStatement("select * from modelo \n" +
+"	inner join dominio on (modelo.id = dominio.fk_modelo_id)\n" +
+"	inner join atividade on (atividade.id = dominio.fk_atividade_id)\n" +
+"	where modelo.id = "+m.getId());
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                Atividade a = new Atividade();
+                a.setId(rs.getInt("id"));
+                a.setNome(rs.getString("nome"));
+                a.setTipo(rs.getString("tipo"));
+                a.setRecursos((Recurso) carregaRecursoAtividade(a.getId()));
+                atividades.add(a);
+            }
 
-    public List<Modelo> readModelo() {
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao ler: " + ex);
+        } finally {
+            Conector.closeConnection(con, stmt, rs);
+        }
+
+        return atividades;
+    }
+        
+    public ArrayList<Regra> listaRegras(Modelo m) {
+        Connection con = Conector.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ArrayList <Regra> regras = new ArrayList();
+        try {
+            stmt = con.prepareStatement("select regra.id as id, regra.tipo as tipo, regra.ladoe as ladoe, regra.ladod as ladod from modelo\n" +
+"	inner join modelo_regra as mr on (modelo.id = mr.fk_modelo_id)\n" +
+"	inner join regra on (regra.id = mr.fk_regra_id)	where modelo.id ="+m.getId());
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                Regra r = new Regra();
+                r.setId(rs.getInt("id"));
+                r.setTipo(rs.getString("tipo"));
+                r.setLadoE(rs.getString("ladoe"));
+                r.setLadoD(rs.getString("ladod"));
+                regras.add(r);
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao ler: " + ex);
+        } finally {
+            Conector.closeConnection(con, stmt, rs);
+        }
+
+        return regras;
+    }
+
+    public List<Modelo> listaModelo() {
         Connection con = Conector.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
