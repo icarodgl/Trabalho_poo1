@@ -556,8 +556,17 @@ public class Crud {
         Connection con = Conector.getConnection();
         PreparedStatement stmt = null;
         try {
-            stmt = con.prepareStatement("DELETE FROM modelo WHERE id = ?");
+            stmt = con.prepareStatement("delete from modelo_regra\n" +
+            "where fk_modelo_id = ?;\n" +
+                                   "\n" +
+            "DELETE FROM dominio\n" +
+            "WHERE fk_modelo_id = ?;\n" +
+            "\n" +
+            "DELETE FROM modelo\n" +
+            "WHERE id = ?;");
             stmt.setInt(1, p.getId());
+            stmt.setInt(2, p.getId());
+            stmt.setInt(3, p.getId());
             stmt.executeUpdate();
 
         } catch (SQLException ex) {
@@ -565,6 +574,34 @@ public class Crud {
         } finally {
             Conector.closeConnection(con, stmt);
         }
+    }
+    public void deleteDominio(Modelo m) {
+        Connection con = Conector.getConnection();
+        PreparedStatement stmt = null;
+        try {
+            stmt = con.prepareStatement("ALTER TABLE dominio DROP CONSTRAINT fk_modelo_id");
+            stmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao excluir: " + ex);
+        } finally {
+            Conector.closeConnection(con, stmt);
+        }
+        deleteModeloRegra(m);
+    }
+    public void deleteModeloRegra(Modelo m) {
+        Connection con = Conector.getConnection();
+        PreparedStatement stmt = null;
+        try {
+            stmt = con.prepareStatement("ALTER TABLE modelo_regra DROP CONSTRAINT fk_modelo_id");
+            stmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao excluir: " + ex);
+        } finally {
+            Conector.closeConnection(con, stmt);
+        }
+        delete(m);
     }
     public void delete(Recurso r) {
         Connection con = Conector.getConnection();

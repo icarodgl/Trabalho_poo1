@@ -5,40 +5,101 @@
  */
 package projetopoo.Instancias;
 
+import bancoDeDados.Crud;
+import bancoDeDados.Icrud;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import javax.swing.table.DefaultTableModel;
 import projetopoo.Recurso;
 import java.util.ArrayList;
+import projetopoo.*;
 
 /**
  *
  * @author lucas
  */
 public class CadastrarInstancia extends javax.swing.JInternalFrame {
-
+    ArrayList <Modelo> modelos;
+    ArrayList <Regra> regras;
+    Modelo m;
+    Dominio d;
+    Crud c;
+    Icrud ic;
+    ArrayList <Recurso> re;
+    ArrayList <Atividade> atividades,an;
+    Modelo mn;
+    Dominio dn;
+    DefaultTableModel model;
     /**
      * Creates new form CadastrarInstancia
      */
-   // ListaInstanciados listaM;
+    
+    public CadastrarInstancia(){
+        initComponents();
+        m = new Modelo();
+        d = new Dominio();
+        carregaModelos();
+        carregaComboBox();
+        model =(DefaultTableModel)tabelaInstancia.getModel();
+    }
+    
+    public void carregaComboBox() {
+        comboModelo.removeAllItems();
+        for (Modelo m : this.modelos) {
+                comboModelo.addItem(m.getNome()+"");
+    }}
+    
+    public void carregaModelos(){
+        c = new Crud();
+        modelos = (ArrayList<Modelo>) c.listaModelo(); 
 
-//    public ListaInstanciados getListaM() {
-//        return listaM;
-//    }
-//
-//    public void setListaM(ListaInstanciados listaM) {
-//        this.listaM = listaM;
-//    }
-//    DefaultTableModel model;
-//    ModeloInstanciado mod = new ModeloInstanciado();
-//    ObjFluxo obj = new ObjFluxo();
-//    Recurso rec = new Recurso();
-//    public CadastrarInstancia() {
-//        initComponents();
-//        model =(DefaultTableModel)tabelaInstancia.getModel();
-//    }
-
+    }
+    
+    public void carregaComboBoxAti() {
+        comboAtividade.removeAllItems();
+        atividades = c.listaAtividade(m);
+        for (Atividade at : atividades) {
+                comboAtividade.addItem(at.getNome()+"");
+    }}
+    
+    public void carregaComboBoxRec(Atividade ati) {
+        comboRecurso.removeAllItems();
+        re= ati.getRecursos();
+         for (Recurso r : ati.getRecursos()) {
+                comboRecurso.addItem(r.getNome()+"");
+    }}
+    
+    public ArrayList<Recurso> buscaRnome(String n){
+        for (int i=0; i<re.size(); i++) {
+            if(n.equals(re.get(i).getNome())){
+                ArrayList<Recurso> recu = new ArrayList();
+                recu.add(re.get(i));
+                return(recu);
+            }
+        }
+        return null;
+    }
+  
+    public Atividade buscaAnome(String n){
+        for (int i=0; i<atividades.size(); i++) {
+            if(n.equals(atividades.get(i).getNome())){
+                return(atividades.get(i));
+            }
+        }
+        return null;
+    }
+    
+        public Modelo buscaMnome(String n){
+        for (int i=0; i<modelos.size(); i++) {
+            if(n.equals(modelos.get(i).getNome())){
+                return(modelos.get(i));
+            }
+        }
+        return null;
+    }
+        
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -52,6 +113,8 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         addAtividade = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabelaInstancia = new javax.swing.JTable();
         cadastrarInstancia = new javax.swing.JButton();
         comboModelo = new javax.swing.JComboBox<>();
         comboAtividade = new javax.swing.JComboBox<>();
@@ -61,6 +124,8 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
         fielddataInicio = new javax.swing.JTextField();
         fieldDataFim = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        botaoModelo = new javax.swing.JButton();
+        botaoAtividade = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -80,6 +145,40 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
             }
         });
 
+        tabelaInstancia.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Atividade", "TID", "Tipo", "Recurso", "Data Inicio", "Data Fim", "Terminado"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tabelaInstancia);
+        if (tabelaInstancia.getColumnModel().getColumnCount() > 0) {
+            tabelaInstancia.getColumnModel().getColumn(0).setResizable(false);
+            tabelaInstancia.getColumnModel().getColumn(1).setResizable(false);
+            tabelaInstancia.getColumnModel().getColumn(2).setResizable(false);
+            tabelaInstancia.getColumnModel().getColumn(3).setResizable(false);
+            tabelaInstancia.getColumnModel().getColumn(4).setResizable(false);
+            tabelaInstancia.getColumnModel().getColumn(5).setResizable(false);
+            tabelaInstancia.getColumnModel().getColumn(6).setResizable(false);
+        }
+
         cadastrarInstancia.setText("Cadastrar");
         cadastrarInstancia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,6 +189,16 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
         comboModelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         comboAtividade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboAtividade.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboAtividadeItemStateChanged(evt);
+            }
+        });
+        comboAtividade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboAtividadeActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Recurso Alocado");
 
@@ -99,39 +208,62 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Data Fim");
 
+        botaoModelo.setText("OK");
+        botaoModelo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoModeloActionPerformed(evt);
+            }
+        });
+
+        botaoAtividade.setText("OK");
+        botaoAtividade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botaoAtividadeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(comboAtividade, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(comboRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(34, 34, 34)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(fielddataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(fieldDataFim, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(cadastrarInstancia))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel1))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cadastrarInstancia, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
-                                    .addComponent(addAtividade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-                .addContainerGap(82, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(comboAtividade, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(comboModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(comboRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(34, 34, 34)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(fielddataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(21, 21, 21)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(fieldDataFim, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(addAtividade)))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(botaoModelo)
+                            .addComponent(botaoAtividade))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,97 +271,86 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(comboModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
+                    .addComponent(comboModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoModelo))
+                .addGap(16, 16, 16)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(comboAtividade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboAtividade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoAtividade))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addAtividade)
-                    .addComponent(comboRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fielddataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fieldDataFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 4, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(addAtividade)
+                            .addComponent(fielddataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fieldDataFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(comboRecurso)
+                        .addGap(2, 2, 2)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(cadastrarInstancia)
-                .addGap(46, 46, 46))
+                .addGap(24, 24, 24))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void addAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAtividadeActionPerformed
-        // TODO add your handling code here:
-        /*String atividade = fieldNome.getText();
-        String tid = fieldTid.getText();
-        String tipo = fieldTipo.getText();
-        String recurso = fieldRecurso.getText();
-        String ini = fieldDataInicio.getText();
-        String fim = fieldDataFim.getText();
-        String terminado = fieldTer.getText();
-        mod.setTid(Integer.parseInt(tid));
-        mod.setDataHoraF(fim);
-        mod.setDataHoraI(ini);
-        mod.setTerminado(terminado);
-        obj.setTipo(tipo);
-        obj.setNome(atividade);
-        rec.setRecurso(recurso);
-        mod.setAtividade(obj);
-        mod.setRecursoAlocado(rec);
-        model.insertRow(model.getRowCount(),new Object[]{fieldNome.getText(),fieldTid.getText(),fieldTipo.getText(),fieldRecurso.getText(),fieldDataInicio.getText(),fieldDataFim.getText(),fieldTer.getText()});
-        */
-        
+        an.add(buscaAnome(comboAtividade.getSelectedItem().toString()));
+        an.get(an.size()-1).setRecursos(buscaRnome(comboRecurso.getSelectedItem().toString()));
+        String dti = fielddataInicio.getText();
+        String dtf = fieldDataFim.getText();
+        String terminado = "Não";
+        if(!dtf.equals("")){
+        terminado = "Sim";
+        }
+        model.insertRow(model.getRowCount(),new Object[]{an.get(an.size()-1).getNome(),an.get(an.size()-1).getId(),an.get(an.size()-1).getTipo(), an.get(an.size()-1).getRecursos().get(0).getNome(), dti, dtf, terminado});
+       
     }//GEN-LAST:event_addAtividadeActionPerformed
 
     private void cadastrarInstanciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarInstanciaActionPerformed
-        // TODO add your handling code here:
-        /*String id = IDinstancia.getText();
-        String nome = NomeInstancia.getText();
-        mod.setId(Integer.parseInt(id));
-        mod.setNome(nome);
-        listaM.add(mod);*/
-//        Connection c = null;
-//      Statement stmt = null;
-//      try {
-//         Class.forName("org.postgresql.Driver");
-//         c = DriverManager
-//            .getConnection("jdbc:postgresql://localhost:5432/POO1",
-//            "postgres", "135246");
-//         c.setAutoCommit(false);
-//         System.out.println("Opened database successfully");
-//
-//         stmt = c.createStatement();
-//         String sql = "INSERT INTO modeloinstanciado (nomeinstancia, atividade, tid, tipo, recurso, dataini, datafim, terminado, idinstancia) "
-//            + "VALUES ('"+nome+"',"
-//                 + " '"+listaM.get(0).getAtividade().get(0).getNome()+"',"
-//                 + ""+mod.getId()+","
-//                 + " '"+obj.getTipo()+"',"
-//                 + " '"+rec.getRecurso()+"',"
-//                 + " '"+mod.getDataHoraI()+"',"
-//                 + " '"+mod.getDataHoraF()+"' ,"
-//                 + "'"+mod.getTerminado()+"',"
-//                 + ""+id+");";
-//         stmt.executeUpdate(sql);
-//
-//         stmt.close();
-//         c.commit();
-//         c.close();
-//      } catch (Exception e) {
-//         System.err.println( e.getClass().getName()+": "+ e.getMessage() );
-//         System.exit(0);
-//      }
-//      System.out.println("Records created successfully");
-      dispose();
+        mn.setId(m.getId());
+        mn.setNome(m.getNome());
+        mn.setRegra(m.getRegra());
+        dn.setId(d.getId());
+        dn.setAtividades(an);
+        mn.setDominio(dn);
+        ic.create(mn);
+        dispose();
     }//GEN-LAST:event_cadastrarInstanciaActionPerformed
+
+    private void comboAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAtividadeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboAtividadeActionPerformed
+
+    private void comboAtividadeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboAtividadeItemStateChanged
+          
+    }//GEN-LAST:event_comboAtividadeItemStateChanged
+
+    private void botaoModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoModeloActionPerformed
+        // TODO add your handling code here:
+        m = buscaMnome(comboModelo.getSelectedItem().toString());
+        carregaComboBoxAti();
+    }//GEN-LAST:event_botaoModeloActionPerformed
+
+    private void botaoAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtividadeActionPerformed
+        // TODO add your handling code here:
+        carregaComboBoxRec(buscaAnome(comboAtividade.getSelectedItem().toString()));
+    }//GEN-LAST:event_botaoAtividadeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addAtividade;
+    private javax.swing.JButton botaoAtividade;
+    private javax.swing.JButton botaoModelo;
     private javax.swing.JButton cadastrarInstancia;
     private javax.swing.JComboBox<String> comboAtividade;
     private javax.swing.JComboBox<String> comboModelo;
@@ -242,5 +363,8 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tabelaInstancia;
     // End of variables declaration//GEN-END:variables
+
 }

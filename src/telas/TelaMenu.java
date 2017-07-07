@@ -62,6 +62,7 @@ public class TelaMenu extends javax.swing.JFrame {
         CadInstancia = new javax.swing.JMenuItem();
         excInstancia = new javax.swing.JMenuItem();
         relatInstancia = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         jMenuItem5.setText("jMenuItem5");
 
@@ -167,6 +168,14 @@ public class TelaMenu extends javax.swing.JFrame {
         });
         cadInstancia.add(relatInstancia);
 
+        jMenuItem2.setText("jMenuItem2");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        cadInstancia.add(jMenuItem2);
+
         jMenuBar1.add(cadInstancia);
 
         setJMenuBar(jMenuBar1);
@@ -199,7 +208,6 @@ public class TelaMenu extends javax.swing.JFrame {
         CadastrarInstancia cadi = new CadastrarInstancia();
         AreaDeTrabalho.add(cadi);
         cadi.setVisible(true);
-        //cadi.setListaM(listaM);
     }//GEN-LAST:event_CadInstanciaActionPerformed
 
     private void AlterarModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlterarModActionPerformed
@@ -244,6 +252,13 @@ public class TelaMenu extends javax.swing.JFrame {
         AreaDeTrabalho.add(relati);
         relati.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        CadastrarInstancia cadi = new CadastrarInstancia();
+        AreaDeTrabalho.add(cadi);
+        cadi.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -295,6 +310,7 @@ public class TelaMenu extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem pesquisarMod;
     private javax.swing.JMenuItem relatInstancia;

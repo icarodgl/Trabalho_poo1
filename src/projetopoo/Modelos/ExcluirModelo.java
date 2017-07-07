@@ -22,8 +22,10 @@ public class ExcluirModelo extends javax.swing.JInternalFrame {
      */
     ArrayList <Modelo> modelos;
     Crud c;
+    Modelo m;
     public ExcluirModelo() {
         initComponents();
+        m = new Modelo();
         carregaModelos();
         carregaComboBox();
     }
@@ -115,8 +117,18 @@ public class ExcluirModelo extends javax.swing.JInternalFrame {
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButton1ActionPerformed
         // TODO add your handling code here:
+        c = new Crud();
+        c.delete(buscaMnome(combo1.getSelectedItem().toString()));
+        dispose();
     }//GEN-LAST:event_jToggleButton1ActionPerformed
-
+public Modelo buscaMnome(String n){
+        for (int i=0; i<modelos.size(); i++) {
+            if(n.equals(modelos.get(i).getNome())){
+                return(modelos.get(i));
+            }
+        }
+        return null;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> combo1;
