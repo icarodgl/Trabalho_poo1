@@ -294,12 +294,41 @@ public class Crud {
         return recursos;
 
     }
+        public ArrayList<Recurso> listaRecurso(Atividade a) {
+        Connection con = Conector.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ArrayList <Recurso> recursos = new ArrayList();
+        try {
+            stmt = con.prepareStatement("select recurso.id as id, recurso.nome as nome,recurso.tipo as tipo, recurso.descricao as descricao from  atividade\n" +
+"	inner join atividade_recurso as ar on(ar.fk_atividade_id = atividade.id)\n" +
+"	inner join recurso on (ar.fk_recurso_id = recurso.id)\n" +
+"	where atividade.id ="+a.getId());
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                Recurso recurso = new Recurso();
+                recurso.setId(rs.getInt("id"));
+                recurso.setNome(rs.getString("nome"));
+                recurso.setTipo(rs.getString("tipo"));
+                recurso.setDescricao(rs.getString("descricao"));
+                recursos.add(recurso);
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao ler: " + ex);
+        } finally {
+            Conector.closeConnection(con, stmt, rs);
+        }
+
+        return recursos;
+
+    }
     /**
      *
      * @param id da atividade
      * @return lista de recursos para inserir na atividade
      */
-    public List<Recurso> carregaRecursoAtividade(int id){
+    public ArrayList<Recurso> carregaRecursoAtividade(int id){
         Connection con = Conector.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -339,10 +368,11 @@ public class Crud {
             rs = stmt.executeQuery();
             while (rs.next()) {
                 Atividade a = new Atividade();
+                
                 a.setId(rs.getInt("id"));
                 a.setNome(rs.getString("nome"));
                 a.setTipo(rs.getString("tipo"));
-                a.setRecursos((Recurso) carregaRecursoAtividade(a.getId()));
+                a.setRecursos(carregaRecursoAtividade(a.getId()));
                 atividades.add(a);
             }
 
@@ -359,6 +389,7 @@ public class Crud {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         ArrayList <Atividade> atividades = new ArrayList();
+        ArrayList<Recurso> r;
         try {
             stmt = con.prepareStatement("select * from modelo \n" +
 "	inner join dominio on (modelo.id = dominio.fk_modelo_id)\n" +
@@ -367,10 +398,11 @@ public class Crud {
             rs = stmt.executeQuery();
             while (rs.next()) {
                 Atividade a = new Atividade();
+                r = carregaRecursoAtividade(a.getId());
                 a.setId(rs.getInt("id"));
                 a.setNome(rs.getString("nome"));
                 a.setTipo(rs.getString("tipo"));
-                a.setRecursos((Recurso) carregaRecursoAtividade(a.getId()));
+                a.setRecursos(r);
                 atividades.add(a);
             }
 

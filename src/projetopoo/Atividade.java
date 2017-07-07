@@ -59,7 +59,9 @@ public class Atividade {
     public void setRecursos(Recurso r) {
         this.recursos.add(r);
     }
-
+    public void setRecursos(ArrayList<Recurso> r) {
+        this.recursos = r;
+    }
     public Atividade() {
         this.recursos = new ArrayList();
     }

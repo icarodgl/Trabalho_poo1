@@ -20,12 +20,14 @@ public class PesquisarModelo extends javax.swing.JInternalFrame {
     Modelo m;
     Dominio d;
     Crud c;
-    ArrayList <Atividade> a;
+    ArrayList <Atividade> atividades;
     /**
      * Creates new form CadastrarModelo
      */
     public PesquisarModelo() {
         initComponents();
+        m = new Modelo();
+        d = new Dominio();
         carregaModelos();
         carregaComboBox();
         
@@ -46,6 +48,7 @@ public class PesquisarModelo extends javax.swing.JInternalFrame {
         combo1 = new javax.swing.JComboBox<>();
         jScrollPane3 = new javax.swing.JScrollPane();
         tabela1 = new javax.swing.JTable();
+        Pesquisar = new javax.swing.JButton();
 
         setClosable(true);
         setMaximizable(true);
@@ -102,6 +105,14 @@ public class PesquisarModelo extends javax.swing.JInternalFrame {
         });
         jScrollPane3.setViewportView(tabela1);
 
+        Pesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/search-icon.png"))); // NOI18N
+        Pesquisar.setText("Pesquisar");
+        Pesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PesquisarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -109,10 +120,11 @@ public class PesquisarModelo extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(combo1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(Pesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jScrollPane2))
                 .addContainerGap())
         );
@@ -120,8 +132,10 @@ public class PesquisarModelo extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(combo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(combo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Pesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -133,27 +147,34 @@ public class PesquisarModelo extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void combo1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_combo1MouseClicked
-        c = new Crud();
-        if (combo1.getSelectedIndex() >=0) {
-            
-        m = modelos.get(combo1.getSelectedIndex());
-        regras = c.listaRegras(m);
-        a = c.listaAtividade(m);
-        d.setAtividades(a);
-        m.setDominio(d);
-        carregaTabela1(m);
-        carregaTabela2(m);
-        }
+
     }//GEN-LAST:event_combo1MouseClicked
 
     private void combo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo1ActionPerformed
 
     }//GEN-LAST:event_combo1ActionPerformed
-    public void carregaTabela1(Modelo m) {
+
+    private void PesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarActionPerformed
+        c = new Crud();
+        if (combo1.getSelectedIndex() >=0) {
+            
+        m = modelos.get(combo1.getSelectedIndex());
+        regras = c.listaRegras(m);
+        atividades = c.listaAtividade(m);
+            for (Atividade at : atividades) {
+                at.setRecursos(c.listaRecurso(at));
+            }
+        d.setAtividades(atividades);
+        m.setDominio(d);
+        carregaTabela1();
+        carregaTabela2();
+        }
+    }//GEN-LAST:event_PesquisarActionPerformed
+    public void carregaTabela1() {
         
         DefaultTableModel modelo = (DefaultTableModel) tabela1.getModel();
         modelo.setNumRows(0);
-        for (Atividade a : m.getDominio().getAtividades()) {
+        for (Atividade a : d.getAtividades()) {
             modelo.addRow(new Object[]{
                 a.getNome(),
                 a.getTipo(),
@@ -162,7 +183,7 @@ public class PesquisarModelo extends javax.swing.JInternalFrame {
             
         }
     }
-    public void carregaTabela2(Modelo m) {
+    public void carregaTabela2() {
         DefaultTableModel modelo = (DefaultTableModel) tabela2.getModel();
         modelo.setNumRows(0);
         for (Regra r : regras) {
@@ -187,6 +208,7 @@ public class PesquisarModelo extends javax.swing.JInternalFrame {
 
 }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Pesquisar;
     private javax.swing.JComboBox<String> combo1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
