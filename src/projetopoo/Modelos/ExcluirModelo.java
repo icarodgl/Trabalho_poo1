@@ -5,6 +5,12 @@
  */
 package projetopoo.Modelos;
 
+import bancoDeDados.Crud;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import projetopoo.*;
+
+
 /**
  *
  * @author lucas
@@ -14,10 +20,25 @@ public class ExcluirModelo extends javax.swing.JInternalFrame {
     /**
      * Creates new form CadastrarModelo
      */
+    ArrayList <Modelo> modelos;
+    Crud c;
     public ExcluirModelo() {
         initComponents();
+        carregaModelos();
+        carregaComboBox();
     }
-
+    public void carregaModelos(){
+        c = new Crud();
+        modelos = (ArrayList<Modelo>) c.listaModelo();
+       
+    }
+    
+    public void carregaComboBox() {
+        combo1.removeAllItems();
+        for (Modelo m : this.modelos) {
+                combo1.addItem(m.getNome()+"");
+            };
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,7 +50,7 @@ public class ExcluirModelo extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        ListaDeModelo = new javax.swing.JComboBox<>();
+        combo1 = new javax.swing.JComboBox<>();
         jToggleButton1 = new javax.swing.JToggleButton();
 
         setClosable(true);
@@ -40,7 +61,7 @@ public class ExcluirModelo extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Modelo:");
 
-        ListaDeModelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        combo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jToggleButton1.setText("Excluir");
         jToggleButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -59,7 +80,7 @@ public class ExcluirModelo extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(ListaDeModelo, 0, 416, Short.MAX_VALUE))
+                        .addComponent(combo1, 0, 416, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jToggleButton1))))
@@ -69,7 +90,7 @@ public class ExcluirModelo extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ListaDeModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(combo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addComponent(jToggleButton1)
@@ -98,7 +119,7 @@ public class ExcluirModelo extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> ListaDeModelo;
+    private javax.swing.JComboBox<String> combo1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JToggleButton jToggleButton1;
