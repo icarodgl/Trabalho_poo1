@@ -117,6 +117,8 @@ public class Crud {
         }
         
     }
+    
+    
     /**
      *
      * @param d
@@ -412,16 +414,17 @@ public class Crud {
         ArrayList <Atividade> atividades = new ArrayList();
         ArrayList<Recurso> r;
         try {
-            stmt = con.prepareStatement("select * from modelo \n" +
+            stmt = con.prepareStatement("select *, atividade.nome as nomeAtiv, recurso.descricao as recD from modelo \n" +
 "	inner join dominio on (modelo.id = dominio.fk_modelo_id)\n" +
 "	inner join atividade on (atividade.id = dominio.fk_atividade_id)\n" +
-"	where modelo.id = "+m.getId());
+"	inner join atividade_recurso on (atividade_recurso.fk_atividade_id = atividade.id)\n" +
+"	inner join recurso on (atividade_recurso.fk_recurso_id = recurso.id)where modelo.id = "+m.getId());
             rs = stmt.executeQuery();
             while (rs.next()) {
                 Atividade a = new Atividade();
                 r = carregaRecursoAtividade(a.getId());
                 a.setId(rs.getInt("id"));
-                a.setNome(rs.getString("nome"));
+                a.setNome(rs.getString("nomeAtiv"));
                 a.setTipo(rs.getString("tipo"));
                 if(rs.getString("inicio").equals("")){
                     a.setInicio(null);

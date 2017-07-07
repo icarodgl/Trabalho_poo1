@@ -24,10 +24,11 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
     ArrayList <Modelo> modelos;
     ArrayList <Regra> regras;
     Modelo m;
+    Atividade a;
     Dominio d;
     Crud c;
     Icrud ic;
-    ArrayList <Recurso> re = new ArrayList<Recurso>();
+    ArrayList <Recurso> re;
     ArrayList <Atividade> atividades,an;
     Modelo mn;
     Dominio dn;
@@ -59,14 +60,23 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
     
     public void carregaComboBoxAti() {
         comboAtividade.removeAllItems();
-        atividades = c.listaAtividade(m);
-        for (Atividade at : atividades) {
-                comboAtividade.addItem(at.getNome()+"");
-    }}
+        for (Atividade a : d.getAtividades()) {
+            a.setRecursos(c.carregaRecursoAtividade(a.getId()));
+            String aux;
+            if (a.getRecursos().size() >0) {
+                aux= a.getRecursos().get(0).getTipo();
+            }
+            else{
+                aux = "Humano";
+            }
+            comboAtividade.addItem(a.getNome()+"");
+            
+        }
+    }
     
-    public void carregaComboBoxRec(Atividade ati) {
+    public void carregaComboBoxRec() {
         comboRecurso.removeAllItems();
-        re= ati.getRecursos();
+        re= c.listaRecurso();
          for (Recurso r : re) {
                 comboRecurso.addItem(r.getNome()+"");
     }}
@@ -317,41 +327,22 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
 
     private void botaoModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoModeloActionPerformed
         // TODO add your handling code here:
-        m = buscaMnome(comboModelo.getSelectedItem().toString());
+        c = new Crud();
+        m = modelos.get(comboModelo.getSelectedIndex());
+        atividades = c.listaAtividade(m);
+            for (Atividade at : atividades) {
+                at.setRecursos(c.listaRecurso(at));
+            }
+        d.setAtividades(atividades);
+        m.setDominio(d);
         carregaComboBoxAti();
     }//GEN-LAST:event_botaoModeloActionPerformed
 
     private void botaoAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtividadeActionPerformed
-        // TODO add your handling code here
-        an = new ArrayList<Atividade>();
-        an.add(buscaAnome(comboAtividade.getSelectedItem().toString()));
-        Atividade testa = new Atividade();
-        testa=buscaAnome(comboAtividade.getSelectedItem().toString());
-        carregaComboBoxRec(testa);      
-        System.out.println(testa.getRecursos().get(0).getNome());
-        an.get(0).setRecursos(buscaRnome(comboRecurso.getSelectedItem().toString()));
-        
-//        String dti = fielddataInicio.getText();
-//        String dtf = fieldDataFim.getText();
-        String terminado = "Não";
-//        if(!dtf.equals("")){
-//        terminado = "Sim";
-//        }
-//        model.insertRow(model.getRowCount(),new Object[]{an.get(an.size()-1).getNome(),an.get(an.size()-1).getId(),an.get(an.size()-1).getTipo(), an.get(an.size()-1).getRecursos().get(0).getNome(), "sasa", "asa", terminado});
-        
-//        c = new Crud();
-//        if (comboAtividade.getSelectedIndex() >=0) {
-//            
-//        m = modelos.get(comboAtividade.getSelectedIndex());
-//        regras = c.listaRegras(m);
-//        atividades = c.listaAtividade(m);
-//            for (Atividade at : atividades) {
-//                at.setRecursos(c.listaRecurso(at));
-//            }
-//        d.setAtividades(atividades);
-//        m.setDominio(d);
-//        carregaTabela1();
-//        }
+//    
+      
+      carregaComboBoxRec();
+//      
     }//GEN-LAST:event_botaoAtividadeActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
