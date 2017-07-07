@@ -93,7 +93,6 @@
                   <Component id="comboAtividade" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="botaoAtividade" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-<<<<<<< HEAD
               <EmptySpace pref="13" max="32767" attributes="0"/>
               <Component id="comboRecurso" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -106,31 +105,6 @@
                   <Component id="jScrollPane1" min="-2" pref="200" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" max="-2" attributes="0"/>
-=======
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="0" pref="5" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="addAtividade" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="fielddataInicio" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="fieldDataFim" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="comboRecurso" max="32767" attributes="0"/>
-                      <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <Component id="jScrollPane1" min="-2" pref="200" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
->>>>>>> 48feb6daa309109a1e482a488199e855c30cb181
               <Component id="cadastrarInstancia" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
           </Group>
@@ -158,23 +132,13 @@
         <Component class="javax.swing.JTable" name="tabelaInstancia">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-<<<<<<< HEAD
               <Table columnCount="6" rowCount="0">
                 <Column editable="false" title="Atividade" type="java.lang.String"/>
-=======
-              <Table columnCount="7" rowCount="0">
-                <Column editable="false" title="Atividade" type="java.lang.String"/>
-                <Column editable="false" title="TID" type="java.lang.String"/>
->>>>>>> 48feb6daa309109a1e482a488199e855c30cb181
                 <Column editable="false" title="Tipo" type="java.lang.String"/>
                 <Column editable="false" title="Recurso" type="java.lang.String"/>
                 <Column editable="false" title="Data Inicio" type="java.lang.String"/>
                 <Column editable="false" title="Data Fim" type="java.lang.String"/>
-<<<<<<< HEAD
                 <Column editable="false" title="Terminado" type="java.lang.Boolean"/>
-=======
-                <Column editable="false" title="Terminado" type="java.lang.String"/>
->>>>>>> 48feb6daa309109a1e482a488199e855c30cb181
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -205,14 +169,6 @@
                   <Renderer/>
                 </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
-<<<<<<< HEAD
-=======
-                  <Title/>
-                  <Editor/>
-                  <Renderer/>
-                </Column>
-                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
->>>>>>> 48feb6daa309109a1e482a488199e855c30cb181
                   <Title/>
                   <Editor/>
                   <Renderer/>
@@ -245,11 +201,6 @@
           </StringArray>
         </Property>
       </Properties>
-      <Events>
-        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="comboModeloItemStateChanged"/>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="comboModeloMouseClicked"/>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboModeloActionPerformed"/>
-      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
