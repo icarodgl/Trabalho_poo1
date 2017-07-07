@@ -80,6 +80,8 @@ public class Atividade {
     }
     public Atividade() {
         this.recursos = new ArrayList();
+        inicio = "";
+        fim = "1";
     }
     
     

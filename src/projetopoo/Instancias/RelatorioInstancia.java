@@ -5,38 +5,33 @@
  */
 package projetopoo.Instancias;
 
-
-import javax.swing.table.DefaultTableModel;
-//import projetopoo.ListaInstanciados;
-//import projetopoo.ModeloInstanciado;
-//import projetopoo.ObjFluxo;
-import projetopoo.Recurso;
+import bancoDeDados.Icrud;
 import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import projetopoo.*;
 
 /**
  *
  * @author lucas
  */
 public class RelatorioInstancia extends javax.swing.JInternalFrame {
-     //ListaInstanciados listaM;
-     DefaultTableModel model;
-
-//    public ListaInstanciados getListaM() {
-//        return listaM;
-//    }
-//
-//    public void setListaM(ListaInstanciados listaM) {
-//        this.listaM = listaM;
-//    }
-     
+    ArrayList <Modelo> modelos;
+    ArrayList <Regra> regras;
+    Modelo m;
+    Dominio d;
+    Icrud c;
+    ArrayList <Atividade> atividades;
     /**
-     * Creates new form AlterarInstancia
+     * Creates new form CadastrarModelo
      */
     public RelatorioInstancia() {
         initComponents();
+        m = new Modelo();
+        d = new Dominio();
+        carregaModelos();
+        carregaComboBox();
+        
     }
-    
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -47,65 +42,157 @@ public class RelatorioInstancia extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jPanel1 = new javax.swing.JPanel();
+        combo1 = new javax.swing.JComboBox<>();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tabela1 = new javax.swing.JTable();
+        Pesquisar = new javax.swing.JButton();
 
-        setBorder(null);
         setClosable(true);
         setMaximizable(true);
         setResizable(true);
-        setTitle("Alterar");
+        setTitle("Relatorio Instancia");
+        setMinimumSize(new java.awt.Dimension(400, 400));
+        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
-        jLabel1.setText(" Modelo");
+        combo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        combo1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                combo1MouseClicked(evt);
+            }
+        });
+        combo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combo1ActionPerformed(evt);
+            }
+        });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabela1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Atividade", "TID", "Tipo", "Recurso", "Inicio", "Fim", "Terminado"
+                "Nome", "Tipo", "Recurso", "inicio", "fim", "Terminado"
             }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, true
+            };
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(tabela1);
+
+        Pesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/search-icon.png"))); // NOI18N
+        Pesquisar.setText("Pesquisar");
+        Pesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PesquisarActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(combo1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Pesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)))
+                .addContainerGap())
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(73, Short.MAX_VALUE))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(combo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Pesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(143, 143, 143))
         );
+
+        getContentPane().add(jPanel1);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void combo1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_combo1MouseClicked
 
+    }//GEN-LAST:event_combo1MouseClicked
+
+    private void combo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo1ActionPerformed
+
+    }//GEN-LAST:event_combo1ActionPerformed
+
+    private void PesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarActionPerformed
+        c = new Icrud();
+        if (combo1.getSelectedIndex() >=0) {
+            
+        m = modelos.get(combo1.getSelectedIndex());
+        regras = c.listaRegras(m);
+        atividades = c.listaAtividade(m);
+            for (Atividade at : atividades) {
+                at.setRecursos(c.listaRecurso(at));
+            }
+        d.setAtividades(atividades);
+        m.setDominio(d);
+        carregaTabela1();
+        }
+    }//GEN-LAST:event_PesquisarActionPerformed
+    public void carregaTabela1() {
+        
+        DefaultTableModel modelo = (DefaultTableModel) tabela1.getModel();
+        modelo.setNumRows(0);
+        Boolean x;
+        x = true;
+        for (Atividade a : d.getAtividades()) {
+            if(a.getFim().equals("")){
+                x = false;
+            }
+            modelo.addRow(new Object[]{
+                a.getNome(),
+                a.getTipo(),
+                a.getRecursos().get(0).getNome(),
+                a.getInicio(),
+                a.getFim(),
+                x,
+            });
+            
+        }
+    }
+    
+    public void carregaModelos(){
+        c = new Icrud();
+        modelos = (ArrayList<Modelo>) c.listaModelo();
+       
+    }
+    public void carregaComboBox() {
+        combo1.removeAllItems();
+        for (Modelo m : this.modelos) {
+                combo1.addItem(m.getNome()+"");
+            };
+
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JButton Pesquisar;
+    private javax.swing.JComboBox<String> combo1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable tabela1;
     // End of variables declaration//GEN-END:variables
 }

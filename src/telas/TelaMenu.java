@@ -7,7 +7,6 @@ package telas;
 
 import projetopoo.Instancias.CadastrarInstancia;
 import projetopoo.Instancias.ExcluirInstancia;
-import projetopoo.Instancias.ListarInstancia;
 import projetopoo.Instancias.RelatorioInstancia;
 import projetopoo.Modelos.PesquisarModelo;
 import projetopoo.Modelos.AlterarModelo;
@@ -16,7 +15,6 @@ import projetopoo.Modelos.CadastrarModelo1;
 import java.awt.Image;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
-import projetopoo.Instancias.ajuda;
 import projetopoo.Modelos.ListarModelo;
 
 /**
@@ -62,12 +60,8 @@ public class TelaMenu extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
         cadInstancia = new javax.swing.JMenu();
         CadInstancia = new javax.swing.JMenuItem();
-        AltInstancia = new javax.swing.JMenuItem();
         excInstancia = new javax.swing.JMenuItem();
         relatInstancia = new javax.swing.JMenuItem();
-        listInstancia = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        Ajuda = new javax.swing.JMenuItem();
 
         jMenuItem5.setText("jMenuItem5");
 
@@ -155,15 +149,6 @@ public class TelaMenu extends javax.swing.JFrame {
         });
         cadInstancia.add(CadInstancia);
 
-        AltInstancia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/write.png"))); // NOI18N
-        AltInstancia.setText("Alterar");
-        AltInstancia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AltInstanciaActionPerformed(evt);
-            }
-        });
-        cadInstancia.add(AltInstancia);
-
         excInstancia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/delete.png"))); // NOI18N
         excInstancia.setText("Excluir");
         excInstancia.addActionListener(new java.awt.event.ActionListener() {
@@ -182,28 +167,7 @@ public class TelaMenu extends javax.swing.JFrame {
         });
         cadInstancia.add(relatInstancia);
 
-        listInstancia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/list.png"))); // NOI18N
-        listInstancia.setText("Listar");
-        listInstancia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                listInstanciaActionPerformed(evt);
-            }
-        });
-        cadInstancia.add(listInstancia);
-
         jMenuBar1.add(cadInstancia);
-
-        jMenu4.setText("Help");
-
-        Ajuda.setText("Ajuda");
-        Ajuda.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AjudaActionPerformed(evt);
-            }
-        });
-        jMenu4.add(Ajuda);
-
-        jMenuBar1.add(jMenu4);
 
         setJMenuBar(jMenuBar1);
 
@@ -260,14 +224,6 @@ public class TelaMenu extends javax.swing.JFrame {
 
     }//GEN-LAST:event_pesquisarModActionPerformed
 
-    private void AltInstanciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AltInstanciaActionPerformed
-//        AlterarInstancia alti = new AlterarInstancia();
-//        AreaDeTrabalho.add(alti);
-//        alti.setVisible(true);
-        //alti.setListaM(listaM);
-
-    }//GEN-LAST:event_AltInstanciaActionPerformed
-
     private void excInstanciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excInstanciaActionPerformed
         ExcluirInstancia exci = new ExcluirInstancia();
         AreaDeTrabalho.add(exci);
@@ -282,21 +238,6 @@ public class TelaMenu extends javax.swing.JFrame {
         //relati.setListaM(listaM);
 
     }//GEN-LAST:event_relatInstanciaActionPerformed
-
-    private void listInstanciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listInstanciaActionPerformed
-        ListarInstancia listi = new ListarInstancia();
-        AreaDeTrabalho.add(listi);
-        listi.setVisible(true);
-        //listi.setListaM(listaM);
-        listi.listartudo();
-    }//GEN-LAST:event_listInstanciaActionPerformed
-
-    private void AjudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AjudaActionPerformed
-        ajuda relati = new ajuda();
-        AreaDeTrabalho.add(relati);
-        relati.setVisible(true);
-        //relati.setListaM(listaM);
-    }//GEN-LAST:event_AjudaActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         ListarModelo relati = new ListarModelo();
@@ -341,8 +282,6 @@ public class TelaMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem Ajuda;
-    private javax.swing.JMenuItem AltInstancia;
     private javax.swing.JMenuItem AlterarMod;
     private javax.swing.JDesktopPane AreaDeTrabalho;
     private javax.swing.JMenuItem CadInstancia;
@@ -353,12 +292,10 @@ public class TelaMenu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem listInstancia;
     private javax.swing.JMenuItem pesquisarMod;
     private javax.swing.JMenuItem relatInstancia;
     // End of variables declaration//GEN-END:variables

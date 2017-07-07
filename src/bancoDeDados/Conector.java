@@ -12,7 +12,7 @@ public class Conector {
     private static final String DRIVER = "org.postgresql.Driver";
     private static final String URL = "jdbc:postgresql://localhost:5432/POO1";
     private static final String USER = "postgres";
-    private static final String PASS = "123123";
+    private static final String PASS = "135246";
     
     public static Connection getConnection() {
         try {
