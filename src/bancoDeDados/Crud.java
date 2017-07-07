@@ -239,11 +239,23 @@ public class Crud {
         PreparedStatement stmt = null;
 
         try {
-            stmt = cx.prepareStatement("INSERT INTO atividade ( nome, tid, tipo)VALUES( ?, ?, ?)");
+            stmt = cx.prepareStatement("INSERT INTO atividade ( nome, tid, tipo, inicio, fim)VALUES( ?, ?, ?, ?, ?)");
             stmt.setString(1, a.getNome());
-            stmt.setInt(2, 0);
+            stmt.setInt(2, a.getId());
             stmt.setString(3, a.getTipo());
+            if (a.getInicio() != null) {
+               stmt.setString(4, a.getInicio().toGMTString()); 
+            }else{
+            stmt.setString(4, "");
+            }if (a.getFim() != null) {
+                stmt.setString(5, a.getFim().toGMTString());
+            } else {
+                stmt.setString(5, "");
+            }
+            
+            
             stmt.executeUpdate();
+            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "create Recurso Erro!"+ex);
         } finally {
@@ -372,6 +384,15 @@ public class Crud {
                 a.setId(rs.getInt("id"));
                 a.setNome(rs.getString("nome"));
                 a.setTipo(rs.getString("tipo"));
+                if(rs.getString("inicio").equals("")){
+                    a.setInicio(null);
+                }else{
+                    a.setInicio(new Date(rs.getString("inicio")));
+                }if(rs.getString("fim").equals("")){
+                    a.setFim(null);
+                }else{
+                    a.setFim(new Date(rs.getString("fim")));
+                }
                 a.setRecursos(carregaRecursoAtividade(a.getId()));
                 atividades.add(a);
             }
@@ -402,6 +423,15 @@ public class Crud {
                 a.setId(rs.getInt("id"));
                 a.setNome(rs.getString("nome"));
                 a.setTipo(rs.getString("tipo"));
+                if(rs.getString("inicio").equals("")){
+                    a.setInicio(null);
+                }else{
+                    a.setInicio(new Date(rs.getString("inicio")));
+                }if(rs.getString("fim").equals("")){
+                    a.setFim(null);
+                }else{
+                    a.setFim(new Date(rs.getString("fim")));
+                }
                 a.setRecursos(r);
                 atividades.add(a);
             }
@@ -535,11 +565,11 @@ public class Crud {
         PreparedStatement stmt = null;
 
         try {
-            stmt = con.prepareStatement("UPDATE regra SET tipo = ?, ladoe = ?, ladod = ? WHERE id = ?");
+            stmt = con.prepareStatement("UPDATE atividade SET nome=?, tipo = ?, inicio = ?, fim = ? WHERE id = ?");
             stmt.setString(1, a.getNome());
             stmt.setString(2, a.getTipo());
-            stmt.setString(3, a.getInicio());
-            stmt.setString(4, a.getFim());
+            stmt.setString(3, a.getInicio().toString());
+            stmt.setString(4, a.getFim().toString());
             stmt.setInt(5, a.getId());
             stmt.executeUpdate();
 

@@ -175,10 +175,18 @@ public class PesquisarModelo extends javax.swing.JInternalFrame {
         DefaultTableModel modelo = (DefaultTableModel) tabela1.getModel();
         modelo.setNumRows(0);
         for (Atividade a : d.getAtividades()) {
+            a.setRecursos(c.carregaRecursoAtividade(a.getId()));
+            String aux;
+            if (a.getRecursos().size() >0) {
+                aux= a.getRecursos().get(0).getTipo();
+            }
+            else{
+                aux = "Humano";
+            }
             modelo.addRow(new Object[]{
                 a.getNome(),
                 a.getTipo(),
-                a.getRecursos().get(0).getTipo()
+                aux
             });
             
         }

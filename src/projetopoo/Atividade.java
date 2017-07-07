@@ -6,6 +6,7 @@
 package projetopoo;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -17,22 +18,22 @@ public class Atividade {
     private String tipo;
     private String tiporecurso;
     private ArrayList <Recurso> recursos;
-    private String inicio;
-    private String fim;
+    private Date inicio;
+    private Date fim;
 
-    public String getInicio() {
+    public Date getInicio() {
         return inicio;
     }
 
-    public void setInicio(String inicio) {
+    public void setInicio(Date inicio) {
         this.inicio = inicio;
     }
 
-    public String getFim() {
+    public Date getFim() {
         return fim;
     }
 
-    public void setFim(String fim) {
+    public void setFim(Date fim) {
         this.fim = fim;
     }
 
@@ -80,8 +81,6 @@ public class Atividade {
     }
     public Atividade() {
         this.recursos = new ArrayList();
-        inicio = "";
-        fim = "1";
     }
     
     

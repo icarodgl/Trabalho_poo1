@@ -278,43 +278,15 @@ public class AlterarModelo extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoCadastrarModelo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadastrarModelo3ActionPerformed
-        // TODO add your handling code here:
-//        String nome = fieldNomeModelo.getText();
-//        String id = fieldIdModelo.getText();
-//        Modelo mod = new Modelo();
-//        mod.setId(Integer.parseInt(id));
-//        mod.setNome(nome);
-//        mod.setDominio(dom);
-//        mod.setRegra(arrayReg);
-//        dispose();
+        
     }//GEN-LAST:event_botaoCadastrarModelo3ActionPerformed
 
     private void botaoCadRegra3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadRegra3ActionPerformed
-        // TODO add your handling code here:
-//        String tipo = fieldRegraTipo.getText();
-//        String regraEsq = fieldRegraEsq.getText();
-//        String regraDir = fieldRegraDir.getText();
-//        Regra reg = new Regra();
-//        reg.setTipo(tipo);
-//        reg.setLadoE(Integer.parseInt(regraEsq));
-//        reg.setLadoD(Integer.parseInt(regraDir));
-//        arrayReg.add(reg);
-//        model.insertRow(model.getRowCount(),new Object[]{reg.getTipo(),reg.getLadoE(),reg.getLadoD()});
+        
     }//GEN-LAST:event_botaoCadRegra3ActionPerformed
 
     private void botaoCadDominio3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadDominio3ActionPerformed
-        // TODO add your handling code here:
-//        String tipo = fielDominioTipo.getText();
-//        String nome = fieldDominioAti.getText();
-//        String recurso = fieldDominioRec.getText();
-//        String id = fieldDominioID.getText();
-//        ObjFluxo at = new ObjFluxo();
-//        at.setNome(nome);
-//        dom.setAtividade(at);
-//        dom.setRecurso(recurso);
-//        dom.setTipo(tipo);
-//        dom.setTid(Integer.parseInt(id));
-//        model1.insertRow(model1.getRowCount(),new Object[]{fieldDominioID.getText(),fieldDominioAti.getText(),fielDominioTipo.getText(),fieldDominioRec.getText()});
+        
     }//GEN-LAST:event_botaoCadDominio3ActionPerformed
 
     private void fieldDepedenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldDepedenciaActionPerformed

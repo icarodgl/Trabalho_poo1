@@ -22,10 +22,10 @@ public class ExcluirInstancia extends javax.swing.JInternalFrame {
     /**
      * Creates new form AlterarInstancia
      */
-//    public ExcluirInstancia() {
-//        initComponents();
-//        model =(DefaultTableModel)tableexc.getModel();
-//    }
+    public ExcluirInstancia() {
+        initComponents();
+        
+    }
     
 
 
