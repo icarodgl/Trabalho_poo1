@@ -150,14 +150,14 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Atividade", "TID", "Tipo", "Recurso", "Data Inicio", "Data Fim", "Terminado"
+                "Atividade", "Tipo", "Recurso", "Data Inicio", "Data Fim", "Terminado"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -176,7 +176,6 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
             tabelaInstancia.getColumnModel().getColumn(3).setResizable(false);
             tabelaInstancia.getColumnModel().getColumn(4).setResizable(false);
             tabelaInstancia.getColumnModel().getColumn(5).setResizable(false);
-            tabelaInstancia.getColumnModel().getColumn(6).setResizable(false);
         }
 
         cadastrarInstancia.setText("Cadastrar");
@@ -342,10 +341,38 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_botaoModeloActionPerformed
 
     private void botaoAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtividadeActionPerformed
-        // TODO add your handling code here:
-        carregaComboBoxRec(buscaAnome(comboAtividade.getSelectedItem().toString()));
+        // TODO add your handling code here
+        c = new Crud();
+        if (comboAtividade.getSelectedIndex() >=0) {
+            
+        m = modelos.get(comboAtividade.getSelectedIndex());
+        regras = c.listaRegras(m);
+        atividades = c.listaAtividade(m);
+            for (Atividade at : atividades) {
+                at.setRecursos(c.listaRecurso(at));
+            }
+        d.setAtividades(atividades);
+        m.setDominio(d);
+        carregaTabela1();
+        }
     }//GEN-LAST:event_botaoAtividadeActionPerformed
 
+    public void carregaTabela1() {
+        an.add(buscaAnome(comboAtividade.getSelectedItem().toString()));
+        DefaultTableModel modelo = (DefaultTableModel) tabelaInstancia.getModel();
+        modelo.setNumRows(0);
+        for (Atividade a : d.getAtividades()) {
+            modelo.addRow(new Object[]{
+                a.getNome(),
+                an.get(an.size()-1).getRecursos().get(0).getNome(),
+                a.getRecursos().get(0).getTipo(),
+                a.getInicio(),
+                a.getFim(),
+                false
+            });
+            
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addAtividade;
