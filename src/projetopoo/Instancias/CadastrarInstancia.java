@@ -16,7 +16,7 @@ import projetopoo.Atividade;
 import projetopoo.Dominio;
 import projetopoo.Modelo;
 import projetopoo.Regra;
-import projetopoo.Icrud;
+import bancoDeDados.Icrud;
 
 /**
  *
@@ -87,6 +87,15 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
         return null;
     }
     
+        public Modelo buscaMnome(String n){
+        for (int i=0; i<modelos.size(); i++) {
+            if(n.equals(modelos.get(i).getNome())){
+                return(modelos.get(i));
+            }
+        }
+        return null;
+    }
+        
     
     
     public void carregaComboBox() {
@@ -180,9 +189,19 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
         });
 
         comboModelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboModelo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                comboModeloItemStateChanged(evt);
+            }
+        });
         comboModelo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 comboModeloMouseClicked(evt);
+            }
+        });
+        comboModelo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboModeloActionPerformed(evt);
             }
         });
 
@@ -242,7 +261,7 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
                                         .addComponent(fieldDataFim, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(addAtividade)))))
-                        .addGap(0, 180, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -264,7 +283,7 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 1, Short.MAX_VALUE)
+                        .addGap(0, 5, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(addAtividade)
                             .addComponent(fielddataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -316,6 +335,14 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
     private void comboAtividadeItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboAtividadeItemStateChanged
           carregaComboBoxRec(buscaAnome(comboAtividade.getSelectedItem().toString()));
     }//GEN-LAST:event_comboAtividadeItemStateChanged
+
+    private void comboModeloItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboModeloItemStateChanged
+        m=buscaMnome(comboModelo.getSelectedItem().toString());
+    }//GEN-LAST:event_comboModeloItemStateChanged
+
+    private void comboModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboModeloActionPerformed
+        m=buscaMnome(comboModelo.getSelectedItem().toString());
+    }//GEN-LAST:event_comboModeloActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
