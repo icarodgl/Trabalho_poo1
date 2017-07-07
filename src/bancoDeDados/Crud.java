@@ -308,6 +308,7 @@ public class Crud {
         return recursos;
 
     }
+    
         public ArrayList<Recurso> listaRecurso(Atividade a) {
         Connection con = Conector.getConnection();
         PreparedStatement stmt = null;
@@ -447,6 +448,49 @@ public class Crud {
 
         return atividades;
     }
+     
+    public ArrayList<Atividade> listaAtividadeRecurso(Modelo m) {
+        Connection con = Conector.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ArrayList <Atividade> atividades = new ArrayList();
+        ArrayList<Recurso> r;
+        try {
+            stmt = con.prepareStatement("select  atividade.id,atividade.nome as nomeAtiv,atividade.tipo,atividade.inicio,atividade.fim,recurso.id,recurso.nome,recurso.tipo as tipoRec,recurso.descricao from modelo\n" +
+"	inner join dominio on (modelo.id = dominio.fk_modelo_id)\n" +
+"	inner join atividade on (atividade.id = dominio.fk_atividade_id)\n" +
+"	inner join atividade_recurso on (atividade_recurso.fk_atividade_id = atividade.id)\n" +
+"	inner join recurso on (atividade_recurso.fk_recurso_id = recurso.id)\n" +
+"	where modelo.id = "+ m.getId());
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                Atividade a = new Atividade();
+                r = carregaRecursoAtividade(a.getId());
+                a.setId(rs.getInt("id"));
+                a.setNome(rs.getString("nomeAtiv"));
+                a.setTipo(rs.getString("tipo"));
+                a.setTiporecurso(rs.getString("tipoRec"));
+                if(rs.getString("inicio").equals("")){
+                    a.setInicio(null);
+                }else{
+                    a.setInicio(new Date(rs.getString("inicio")));
+                }if(rs.getString("fim").equals("")){
+                    a.setFim(null);
+                }else{
+                    a.setFim(new Date(rs.getString("fim")));
+                }
+                a.setRecursos(r);
+                atividades.add(a);
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao ler: " + ex);
+        } finally {
+            Conector.closeConnection(con, stmt, rs);
+        }
+
+        return atividades;
+    }    
         
     public ArrayList<Regra> listaRegras(Modelo m) {
         Connection con = Conector.getConnection();

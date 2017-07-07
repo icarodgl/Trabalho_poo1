@@ -54,7 +54,6 @@ public class TelaMenu extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         cadastroMod = new javax.swing.JMenuItem();
-        AlterarMod = new javax.swing.JMenuItem();
         ExcluirMod = new javax.swing.JMenuItem();
         pesquisarMod = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -98,15 +97,6 @@ public class TelaMenu extends javax.swing.JFrame {
             }
         });
         jMenu1.add(cadastroMod);
-
-        AlterarMod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/write.png"))); // NOI18N
-        AlterarMod.setText("Alterar");
-        AlterarMod.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AlterarModActionPerformed(evt);
-            }
-        });
-        jMenu1.add(AlterarMod);
 
         ExcluirMod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/delete.png"))); // NOI18N
         ExcluirMod.setText("Excluir");
@@ -201,16 +191,6 @@ public class TelaMenu extends javax.swing.JFrame {
         cadi.setVisible(true);
     }//GEN-LAST:event_CadInstanciaActionPerformed
 
-    private void AlterarModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AlterarModActionPerformed
-          AlterarModelo alt = new AlterarModelo();
-          AreaDeTrabalho.add(alt);
-        alt.setVisible(true);
-//        AlterarModelo altM = new AlterarModelo();
-//        AreaDeTrabalho.add(altM);
-//        altM.setVisible(true);
-        
-    }//GEN-LAST:event_AlterarModActionPerformed
-
     private void ExcluirModActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcluirModActionPerformed
        ExcluirModelo exMod = new ExcluirModelo();
         AreaDeTrabalho.add(exMod);
@@ -282,7 +262,6 @@ public class TelaMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem AlterarMod;
     private javax.swing.JDesktopPane AreaDeTrabalho;
     private javax.swing.JMenuItem CadInstancia;
     private javax.swing.JMenuItem ExcluirMod;

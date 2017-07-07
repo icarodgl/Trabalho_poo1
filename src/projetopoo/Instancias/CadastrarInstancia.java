@@ -76,10 +76,13 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
     
     public void carregaComboBoxRec() {
         comboRecurso.removeAllItems();
-        re= c.listaRecurso();
-         for (Recurso r : re) {
-                comboRecurso.addItem(r.getNome()+"");
-    }}
+        System.out.println(a.getTiporecurso());
+        for(Recurso r2: re){
+            if(r2.getTipo().equals(a.getTiporecurso())){
+                comboRecurso.addItem(r2.getNome()+"");
+            }
+        }
+    }
     
     public ArrayList<Recurso> buscaRnome(String n){
         for (int i=0; i< re.size(); i++) {
@@ -330,9 +333,9 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
         c = new Crud();
         m = modelos.get(comboModelo.getSelectedIndex());
         atividades = c.listaAtividade(m);
-            for (Atividade at : atividades) {
-                at.setRecursos(c.listaRecurso(at));
-            }
+//            for (Atividade at : atividades) {
+//                at.setRecursos(c.listaRecurso(at));
+//            }
         d.setAtividades(atividades);
         m.setDominio(d);
         carregaComboBoxAti();
@@ -340,7 +343,10 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
 
     private void botaoAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtividadeActionPerformed
 //    
-      
+      c = new Crud();
+      atividades = c.listaAtividadeRecurso(m);
+      a = atividades.get(comboAtividade.getSelectedIndex());
+      re = c.listaRecurso();
       carregaComboBoxRec();
 //      
     }//GEN-LAST:event_botaoAtividadeActionPerformed
