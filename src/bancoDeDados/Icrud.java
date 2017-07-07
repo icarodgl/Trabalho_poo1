@@ -239,12 +239,10 @@ public class Icrud {
         PreparedStatement stmt = null;
 
         try {
-            stmt = cx.prepareStatement("INSERT INTO atividade ( nome, tid, tipo, inicio, fim)VALUES( ?, ?, ?, ?, ?)");
+            stmt = cx.prepareStatement("INSERT INTO atividade ( nome, tid, tipo)VALUES( ?, ?, ?)");
             stmt.setString(1, a.getNome());
             stmt.setInt(2, 0);
             stmt.setString(3, a.getTipo());
-            stmt.setString(4, a.getInicio());
-            stmt.setString(5, a.getFim());
             stmt.executeUpdate();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "create Recurso Erro!"+ex);
@@ -482,6 +480,67 @@ public class Icrud {
             stmt = con.prepareStatement("UPDATE modelo SET nome = ? WHERE id = ?");
             stmt.setString(1, m.getNome());
             stmt.setInt(2, m.getId());
+            stmt.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Atualizado com sucesso!");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar: " + ex);
+        } finally {
+            IConector.closeConnection(con, stmt);
+        }
+
+    }
+        public void update(Regra r) {
+        Connection con = IConector.getConnection();
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = con.prepareStatement("UPDATE regra SET tipo = ?, ladoe = ?, ladod = ? WHERE id = ?");
+            stmt.setString(1, r.getTipo());
+            stmt.setString(2, r.getLadoE());
+            stmt.setString(3, r.getLadoD());
+            stmt.setInt(4, r.getId());
+            stmt.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Atualizado com sucesso!");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar: " + ex);
+        } finally {
+            IConector.closeConnection(con, stmt);
+        }
+
+    }
+    public void update(Recurso r) {
+        Connection con = IConector.getConnection();
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = con.prepareStatement("UPDATE recurso SET nome = ?, tipo = ?, descricao = ? WHERE id = ?");
+            stmt.setString(1, r.getNome());
+            stmt.setString(2, r.getTipo());
+            stmt.setString(3, r.getDescricao());
+            stmt.setInt(4, r.getId());
+            stmt.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Atualizado com sucesso!");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar: " + ex);
+        } finally {
+            IConector.closeConnection(con, stmt);
+        }
+
+    }
+        public void update(Atividade a) {
+        Connection con = IConector.getConnection();
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = con.prepareStatement("UPDATE regra SET tipo = ?, ladoe = ?, ladod = ? WHERE id = ?");
+            stmt.setString(1, a.getNome());
+            stmt.setString(2, a.getTipo());
+            stmt.setString(3, a.getInicio());
+            stmt.setString(4, a.getFim());
+            stmt.setInt(5, a.getId());
             stmt.executeUpdate();
 
             JOptionPane.showMessageDialog(null, "Atualizado com sucesso!");

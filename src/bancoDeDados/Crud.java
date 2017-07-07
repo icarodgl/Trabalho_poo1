@@ -490,6 +490,67 @@ public class Crud {
         }
 
     }
+        public void update(Regra r) {
+        Connection con = Conector.getConnection();
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = con.prepareStatement("UPDATE regra SET tipo = ?, ladoe = ?, ladod = ? WHERE id = ?");
+            stmt.setString(1, r.getTipo());
+            stmt.setString(2, r.getLadoE());
+            stmt.setString(3, r.getLadoD());
+            stmt.setInt(4, r.getId());
+            stmt.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Atualizado com sucesso!");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar: " + ex);
+        } finally {
+            Conector.closeConnection(con, stmt);
+        }
+
+    }
+    public void update(Recurso r) {
+        Connection con = Conector.getConnection();
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = con.prepareStatement("UPDATE recurso SET nome = ?, tipo = ?, descricao = ? WHERE id = ?");
+            stmt.setString(1, r.getNome());
+            stmt.setString(2, r.getTipo());
+            stmt.setString(3, r.getDescricao());
+            stmt.setInt(4, r.getId());
+            stmt.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Atualizado com sucesso!");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar: " + ex);
+        } finally {
+            Conector.closeConnection(con, stmt);
+        }
+
+    }
+        public void update(Atividade a) {
+        Connection con = Conector.getConnection();
+        PreparedStatement stmt = null;
+
+        try {
+            stmt = con.prepareStatement("UPDATE regra SET tipo = ?, ladoe = ?, ladod = ? WHERE id = ?");
+            stmt.setString(1, a.getNome());
+            stmt.setString(2, a.getTipo());
+            stmt.setString(3, a.getInicio());
+            stmt.setString(4, a.getFim());
+            stmt.setInt(5, a.getId());
+            stmt.executeUpdate();
+
+            JOptionPane.showMessageDialog(null, "Atualizado com sucesso!");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao atualizar: " + ex);
+        } finally {
+            Conector.closeConnection(con, stmt);
+        }
+
+    }
     
     public void delete(Modelo p) {
         Connection con = Conector.getConnection();
