@@ -13,6 +13,7 @@ import java.sql.Statement;
 import javax.swing.table.DefaultTableModel;
 import projetopoo.Recurso;
 import java.util.ArrayList;
+import java.util.Date;
 import projetopoo.*;
 
 /**
@@ -63,12 +64,12 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
                 comboAtividade.addItem(at.getNome()+"");
     }}
     
-    public void carregaComboBoxRec(Atividade ati) {
-        comboRecurso.removeAllItems();
-        re= ati.getRecursos();
-         for (Recurso r : ati.getRecursos()) {
-                comboRecurso.addItem(r.getNome()+"");
-    }}
+//    public void carregaComboBoxRec(Atividade ati) {
+//        comboRecurso.removeAllItems();
+//        re= ati.getRecursos();
+//         for (Recurso r : ati.getRecursos()) {
+//                comboRecurso.addItem(r.getNome()+"");
+//    }}
     
     public ArrayList<Recurso> buscaRnome(String n){
         for (int i=0; i<re.size(); i++) {
@@ -118,14 +119,13 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
         cadastrarInstancia = new javax.swing.JButton();
         comboModelo = new javax.swing.JComboBox<>();
         comboAtividade = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
-        comboRecurso = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         fielddataInicio = new javax.swing.JTextField();
         fieldDataFim = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         botaoModelo = new javax.swing.JButton();
         botaoAtividade = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -199,10 +199,6 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel2.setText("Recurso Alocado");
-
-        comboRecurso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel3.setText("Data inicio");
 
         jLabel4.setText("Data Fim");
@@ -221,6 +217,13 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -228,41 +231,47 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(cadastrarInstancia))
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel1))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(comboAtividade, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(comboModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(comboRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(34, 34, 34)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(fielddataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(21, 21, 21)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(fieldDataFim, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(addAtividade)))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botaoModelo)
-                            .addComponent(botaoAtividade))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(cadastrarInstancia))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel6)
+                                            .addComponent(jLabel1))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(comboAtividade, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(comboModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addGap(64, 64, 64)
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(fielddataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel4)
+                                        .addGap(21, 21, 21)
+                                        .addComponent(fieldDataFim, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(botaoModelo)
+                                            .addComponent(botaoAtividade))
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
+                                        .addComponent(addAtividade)
+                                        .addGap(13, 13, 13)))))
+                        .addContainerGap())))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(172, 172, 172)
+                .addComponent(jButton2)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -277,22 +286,16 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
                     .addComponent(jLabel6)
                     .addComponent(comboAtividade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoAtividade))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 4, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(addAtividade)
-                            .addComponent(fielddataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(fieldDataFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(comboRecurso)
-                        .addGap(2, 2, 2)))
+                    .addComponent(addAtividade)
+                    .addComponent(fieldDataFim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(fielddataInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(cadastrarInstancia)
@@ -304,7 +307,7 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
 
     private void addAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addAtividadeActionPerformed
         an.add(buscaAnome(comboAtividade.getSelectedItem().toString()));
-        an.get(an.size()-1).setRecursos(buscaRnome(comboRecurso.getSelectedItem().toString()));
+        //an.get(an.size()-1).setRecursos(buscaRnome(comboRecurso.getSelectedItem().toString()));
         String dti = fielddataInicio.getText();
         String dtf = fieldDataFim.getText();
         String terminado = "Não";
@@ -357,15 +360,22 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_botaoAtividadeActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        Date data = new Date(System.currentTimeMillis());
+        
+        fielddataInicio.setText(data.toLocaleString());
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     public void carregaTabela1() {
-        an.add(buscaAnome(comboAtividade.getSelectedItem().toString()));
+        //an.add(buscaAnome(comboAtividade.getSelectedItem().toString()));
         DefaultTableModel modelo = (DefaultTableModel) tabelaInstancia.getModel();
         modelo.setNumRows(0);
         for (Atividade a : d.getAtividades()) {
             modelo.addRow(new Object[]{
                 a.getNome(),
-                an.get(an.size()-1).getRecursos().get(0).getNome(),
-                a.getRecursos().get(0).getTipo(),
+                a.getTipo(),
+                a.getRecursos().get(0).getNome(),
                 a.getInicio(),
                 a.getFim(),
                 false
@@ -381,12 +391,11 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
     private javax.swing.JButton cadastrarInstancia;
     private javax.swing.JComboBox<String> comboAtividade;
     private javax.swing.JComboBox<String> comboModelo;
-    private javax.swing.JComboBox<String> comboRecurso;
     private javax.swing.JTextField fieldDataFim;
     private javax.swing.JTextField fielddataInicio;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
