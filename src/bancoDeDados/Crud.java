@@ -241,7 +241,7 @@ public class Crud {
         PreparedStatement stmt = null;
 
         try {
-            stmt = cx.prepareStatement("INSERT INTO atividade ( nome, tid, tipo, inicio, fim)VALUES( ?, ?, ?, ?, ?)");
+            stmt = cx.prepareStatement("INSERT INTO atividade ( nome, tid, tipo, inicio, fim, recurso_alocado)VALUES( ?, ?, ?, ?, ?, ?)");
             stmt.setString(1, a.getNome());
             stmt.setInt(2, a.getId());
             stmt.setString(3, a.getTipo());
@@ -254,7 +254,7 @@ public class Crud {
             } else {
                 stmt.setString(5, "");
             }
-            
+            stmt.setString(6, "");
             
             stmt.executeUpdate();
             

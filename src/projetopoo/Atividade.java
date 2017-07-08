@@ -17,9 +17,18 @@ public class Atividade {
     private String Nome;
     private String tipo;
     private String tiporecurso;
+    private String recursoAlocado;
     private ArrayList <Recurso> recursos;
     private Date inicio;
     private Date fim;
+
+    public String getRecursoAlocado() {
+        return recursoAlocado;
+    }
+
+    public void setRecursoAlocado(String recursoAlocado) {
+        this.recursoAlocado = recursoAlocado;
+    }
 
     public Date getInicio() {
         return inicio;
