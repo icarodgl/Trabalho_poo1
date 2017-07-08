@@ -11,6 +11,7 @@ import bancoDeDados.Icrud;
 import javax.swing.table.DefaultTableModel;
 import projetopoo.Recurso;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import projetopoo.Atividade;
 import projetopoo.Dominio;
 import projetopoo.Modelo;
@@ -60,7 +61,15 @@ public class ExcluirInstancia extends javax.swing.JInternalFrame {
             }            
         }
     }
-
+    
+    public Atividade buscaMnome(String n){
+        for (int i=0; i<atividades.size(); i++) {
+            if(n.equals(atividades.get(i).getNome())){
+                return(atividades.get(i));
+            }
+        }
+        return null;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -155,11 +164,9 @@ public class ExcluirInstancia extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
-//        int tempId = Integer.parseInt(jtIdE.getText());
-//        tempId=listaM.buscaModeloI(tempId);
-//        listaM.remove(tempId);
-//        dispose();
-            
+        ic.delete(buscaMnome(comboAtividade.getSelectedItem().toString()));
+        JOptionPane.showMessageDialog(null,"excluido com sucesso!");
+        dispose();            
     }//GEN-LAST:event_jbExcluirActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
