@@ -450,6 +450,45 @@ public class Icrud {
         return atividades;
     }
      
+    public ArrayList<Atividade> listaAtividade2() {
+        Connection con = IConector.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ArrayList <Atividade> atividades = new ArrayList();
+        ArrayList<Recurso> r;
+        try {
+            stmt = con.prepareStatement("select * from atividade");
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                Atividade a = new Atividade();
+                r = carregaRecursoAtividade(a.getId());
+                a.setId(rs.getInt("id"));
+                a.setNome(rs.getString("nome"));
+                a.setRecursoAlocado(rs.getString("recurso_alocado"));
+                a.setTipo(rs.getString("tipo"));
+                if(rs.getString("inicio").equals("")){
+                    a.setInicio(null);
+                }else{
+                    a.setInicio(new Date(rs.getString("inicio")));
+                }if(rs.getString("fim").equals("")){
+                    a.setFim(null);
+                }else{
+                    a.setFim(new Date(rs.getString("fim")));
+                }
+                a.setId_modelo(rs.getInt("id_modelo"));
+                a.setRecursos(r);
+                atividades.add(a);
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao ler: " + ex);
+        } finally {
+            IConector.closeConnection(con, stmt, rs);
+        }
+
+        return atividades;
+    }    
+        
     public ArrayList<Atividade> listaAtividadeRecurso(Modelo m) {
         Connection con = IConector.getConnection();
         PreparedStatement stmt = null;
