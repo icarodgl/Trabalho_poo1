@@ -254,7 +254,7 @@ public class Icrud {
             } else {
                 stmt.setString(5, "");
             }
-            stmt.setString(6, "");
+            stmt.setString(6, a.getRecursoAlocado());
             
             stmt.executeUpdate();
             

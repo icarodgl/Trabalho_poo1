@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import projetopoo.Recurso;
 import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import projetopoo.*;
 
 /**
@@ -332,14 +333,11 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cadastrarInstanciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarInstanciaActionPerformed
-        mn.setId(m.getId());
-        mn.setNome(m.getNome());
-        mn.setRegra(m.getRegra());
-        dn.setId(d.getId());
-        dn.setAtividades(an);
-        mn.setDominio(dn);
-        ic.create(mn);
+        ic = new Icrud();
+        ic.create(a);
+        JOptionPane.showMessageDialog(null,"criado com sucesso!");
         dispose();
+        
     }//GEN-LAST:event_cadastrarInstanciaActionPerformed
 
     private void comboAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAtividadeActionPerformed
@@ -407,6 +405,8 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
                 a.getFim(),
                 true
             });
+        //System.out.println(a.getNome()+a.getTipo()+a.getTiporecurso()+a.getRecursoAlocado()+a.getInicio()+a.getFim());
+        System.out.println(a.getRecursoAlocado());
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void comboRecursoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboRecursoItemStateChanged
