@@ -64,5 +64,4 @@ ALTER TABLE Dominio ADD CONSTRAINT FK_Dominio_0
  
 ALTER TABLE Dominio ADD CONSTRAINT FK_Dominio_1
     FOREIGN KEY (FK_Modelo_id)
-    REFERENCES Modelo (id);
-```
+    REFERENCES Modelo (id);```
