@@ -17,7 +17,8 @@ CREATE TABLE Atividade (
     tid varchar(50),
     tipo varchar(50),
 	inicio varchar(50),
-	fim varchar(50)
+	fim varchar(50),
+	recurso_alocado varchar(50)
 );
 
 CREATE TABLE Recurso (
