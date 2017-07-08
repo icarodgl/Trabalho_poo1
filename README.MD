@@ -18,7 +18,8 @@ CREATE TABLE Atividade (
     tipo varchar(50),
 	inicio varchar(50),
 	fim varchar(50),
-	recurso_alocado varchar(50)
+	recurso_alocado varchar(50),
+	id_modelo int
 );
 
 CREATE TABLE Recurso (
