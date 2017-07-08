@@ -17,7 +17,8 @@ CREATE TABLE Atividade (
     tid varchar(50),
     tipo varchar(50),
 	inicio varchar(50),
-	fim varchar(50)
+	fim varchar(50),
+	recurso_alocado varchar(50)
 );
 
 CREATE TABLE Recurso (
@@ -64,5 +65,4 @@ ALTER TABLE Dominio ADD CONSTRAINT FK_Dominio_0
  
 ALTER TABLE Dominio ADD CONSTRAINT FK_Dominio_1
     FOREIGN KEY (FK_Modelo_id)
-    REFERENCES Modelo (id);
-```
+    REFERENCES Modelo (id);```
