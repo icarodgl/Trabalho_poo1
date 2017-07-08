@@ -14,6 +14,7 @@ import java.util.Date;
  */
 public class Atividade {
     private int id;
+    private int id_modelo;
     private String Nome;
     private String tipo;
     private String tiporecurso;
@@ -21,6 +22,14 @@ public class Atividade {
     private ArrayList <Recurso> recursos;
     private Date inicio;
     private Date fim;
+
+    public int getId_modelo() {
+        return id_modelo;
+    }
+
+    public void setId_modelo(int id_modelo) {
+        this.id_modelo = id_modelo;
+    }
 
     public String getRecursoAlocado() {
         return recursoAlocado;

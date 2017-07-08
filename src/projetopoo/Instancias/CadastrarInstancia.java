@@ -91,6 +91,9 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
                 false
             });
     }
+     
+     
+
     
     public ArrayList<Recurso> buscaRnome(String n){
         for (int i=0; i< re.size(); i++) {
@@ -350,6 +353,7 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
 
     private void botaoModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoModeloActionPerformed
         // TODO add your handling code here:
+    
         c = new Crud();
         m = modelos.get(comboModelo.getSelectedIndex());
         atividades = c.listaAtividade(m);
@@ -418,7 +422,7 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_comboRecursoActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        a.setId_modelo(buscaMnome(comboModelo.getSelectedItem().toString()).getId());
         carregaTabela1();
     }//GEN-LAST:event_jButton4ActionPerformed
 

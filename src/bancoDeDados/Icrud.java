@@ -241,7 +241,7 @@ public class Icrud {
         PreparedStatement stmt = null;
 
         try {
-            stmt = cx.prepareStatement("INSERT INTO atividade ( nome, tid, tipo, inicio, fim, recurso_alocado)VALUES( ?, ?, ?, ?, ?, ?)");
+            stmt = cx.prepareStatement("INSERT INTO atividade ( nome, tid, tipo, inicio, fim, recurso_alocado, id_modelo)VALUES( ?, ?, ?, ?, ?, ?, ?)");
             stmt.setString(1, a.getNome());
             stmt.setInt(2, a.getId());
             stmt.setString(3, a.getTipo());
@@ -255,6 +255,7 @@ public class Icrud {
                 stmt.setString(5, "");
             }
             stmt.setString(6, a.getRecursoAlocado());
+            stmt.setInt(7, a.getId_modelo());
             
             stmt.executeUpdate();
             
