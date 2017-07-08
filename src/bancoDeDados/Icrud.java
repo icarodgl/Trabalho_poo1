@@ -117,6 +117,8 @@ public class Icrud {
         }
         
     }
+    
+    
     /**
      *
      * @param d
@@ -239,11 +241,23 @@ public class Icrud {
         PreparedStatement stmt = null;
 
         try {
-            stmt = cx.prepareStatement("INSERT INTO atividade ( nome, tid, tipo)VALUES( ?, ?, ?)");
+            stmt = cx.prepareStatement("INSERT INTO atividade ( nome, tid, tipo, inicio, fim, recurso_alocado)VALUES( ?, ?, ?, ?, ?, ?)");
             stmt.setString(1, a.getNome());
-            stmt.setInt(2, 0);
+            stmt.setInt(2, a.getId());
             stmt.setString(3, a.getTipo());
+            if (a.getInicio() != null) {
+               stmt.setString(4, a.getInicio().toGMTString()); 
+            }else{
+            stmt.setString(4, "");
+            }if (a.getFim() != null) {
+                stmt.setString(5, a.getFim().toGMTString());
+            } else {
+                stmt.setString(5, "");
+            }
+            stmt.setString(6, "");
+            
             stmt.executeUpdate();
+            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "create Recurso Erro!"+ex);
         } finally {
@@ -294,6 +308,7 @@ public class Icrud {
         return recursos;
 
     }
+    
         public ArrayList<Recurso> listaRecurso(Atividade a) {
         Connection con = IConector.getConnection();
         PreparedStatement stmt = null;
@@ -372,6 +387,15 @@ public class Icrud {
                 a.setId(rs.getInt("id"));
                 a.setNome(rs.getString("nome"));
                 a.setTipo(rs.getString("tipo"));
+                if(rs.getString("inicio").equals("")){
+                    a.setInicio(null);
+                }else{
+                    a.setInicio(new Date(rs.getString("inicio")));
+                }if(rs.getString("fim").equals("")){
+                    a.setFim(null);
+                }else{
+                    a.setFim(new Date(rs.getString("fim")));
+                }
                 a.setRecursos(carregaRecursoAtividade(a.getId()));
                 atividades.add(a);
             }
@@ -391,17 +415,27 @@ public class Icrud {
         ArrayList <Atividade> atividades = new ArrayList();
         ArrayList<Recurso> r;
         try {
-            stmt = con.prepareStatement("select * from modelo \n" +
+            stmt = con.prepareStatement("select *, atividade.nome as nomeAtiv, recurso.descricao as recD from modelo \n" +
 "	inner join dominio on (modelo.id = dominio.fk_modelo_id)\n" +
 "	inner join atividade on (atividade.id = dominio.fk_atividade_id)\n" +
-"	where modelo.id = "+m.getId());
+"	inner join atividade_recurso on (atividade_recurso.fk_atividade_id = atividade.id)\n" +
+"	inner join recurso on (atividade_recurso.fk_recurso_id = recurso.id)where modelo.id = "+m.getId());
             rs = stmt.executeQuery();
             while (rs.next()) {
                 Atividade a = new Atividade();
                 r = carregaRecursoAtividade(a.getId());
                 a.setId(rs.getInt("id"));
-                a.setNome(rs.getString("nome"));
+                a.setNome(rs.getString("nomeAtiv"));
                 a.setTipo(rs.getString("tipo"));
+                if(rs.getString("inicio").equals("")){
+                    a.setInicio(null);
+                }else{
+                    a.setInicio(new Date(rs.getString("inicio")));
+                }if(rs.getString("fim").equals("")){
+                    a.setFim(null);
+                }else{
+                    a.setFim(new Date(rs.getString("fim")));
+                }
                 a.setRecursos(r);
                 atividades.add(a);
             }
@@ -414,6 +448,49 @@ public class Icrud {
 
         return atividades;
     }
+     
+    public ArrayList<Atividade> listaAtividadeRecurso(Modelo m) {
+        Connection con = IConector.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ArrayList <Atividade> atividades = new ArrayList();
+        ArrayList<Recurso> r;
+        try {
+            stmt = con.prepareStatement("select  atividade.id,atividade.nome as nomeAtiv,atividade.tipo,atividade.inicio,atividade.fim,recurso.id,recurso.nome,recurso.tipo as tipoRec,recurso.descricao from modelo\n" +
+"	inner join dominio on (modelo.id = dominio.fk_modelo_id)\n" +
+"	inner join atividade on (atividade.id = dominio.fk_atividade_id)\n" +
+"	inner join atividade_recurso on (atividade_recurso.fk_atividade_id = atividade.id)\n" +
+"	inner join recurso on (atividade_recurso.fk_recurso_id = recurso.id)\n" +
+"	where modelo.id = "+ m.getId());
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                Atividade a = new Atividade();
+                r = carregaRecursoAtividade(a.getId());
+                a.setId(rs.getInt("id"));
+                a.setNome(rs.getString("nomeAtiv"));
+                a.setTipo(rs.getString("tipo"));
+                a.setTiporecurso(rs.getString("tipoRec"));
+                if(rs.getString("inicio").equals("")){
+                    a.setInicio(null);
+                }else{
+                    a.setInicio(new Date(rs.getString("inicio")));
+                }if(rs.getString("fim").equals("")){
+                    a.setFim(null);
+                }else{
+                    a.setFim(new Date(rs.getString("fim")));
+                }
+                a.setRecursos(r);
+                atividades.add(a);
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao ler: " + ex);
+        } finally {
+            IConector.closeConnection(con, stmt, rs);
+        }
+
+        return atividades;
+    }    
         
     public ArrayList<Regra> listaRegras(Modelo m) {
         Connection con = IConector.getConnection();
@@ -535,11 +612,11 @@ public class Icrud {
         PreparedStatement stmt = null;
 
         try {
-            stmt = con.prepareStatement("UPDATE regra SET tipo = ?, ladoe = ?, ladod = ? WHERE id = ?");
+            stmt = con.prepareStatement("UPDATE atividade SET nome=?, tipo = ?, inicio = ?, fim = ? WHERE id = ?");
             stmt.setString(1, a.getNome());
             stmt.setString(2, a.getTipo());
-            stmt.setString(3, a.getInicio());
-            stmt.setString(4, a.getFim());
+            stmt.setString(3, a.getInicio().toString());
+            stmt.setString(4, a.getFim().toString());
             stmt.setInt(5, a.getId());
             stmt.executeUpdate();
 
@@ -556,8 +633,17 @@ public class Icrud {
         Connection con = IConector.getConnection();
         PreparedStatement stmt = null;
         try {
-            stmt = con.prepareStatement("DELETE FROM modelo WHERE id = ?");
+            stmt = con.prepareStatement("delete from modelo_regra\n" +
+            "where fk_modelo_id = ?;\n" +
+                                   "\n" +
+            "DELETE FROM dominio\n" +
+            "WHERE fk_modelo_id = ?;\n" +
+            "\n" +
+            "DELETE FROM modelo\n" +
+            "WHERE id = ?;");
             stmt.setInt(1, p.getId());
+            stmt.setInt(2, p.getId());
+            stmt.setInt(3, p.getId());
             stmt.executeUpdate();
 
         } catch (SQLException ex) {
@@ -565,6 +651,34 @@ public class Icrud {
         } finally {
             IConector.closeConnection(con, stmt);
         }
+    }
+    public void deleteDominio(Modelo m) {
+        Connection con = IConector.getConnection();
+        PreparedStatement stmt = null;
+        try {
+            stmt = con.prepareStatement("ALTER TABLE dominio DROP CONSTRAINT fk_modelo_id");
+            stmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao excluir: " + ex);
+        } finally {
+            IConector.closeConnection(con, stmt);
+        }
+        deleteModeloRegra(m);
+    }
+    public void deleteModeloRegra(Modelo m) {
+        Connection con = IConector.getConnection();
+        PreparedStatement stmt = null;
+        try {
+            stmt = con.prepareStatement("ALTER TABLE modelo_regra DROP CONSTRAINT fk_modelo_id");
+            stmt.executeUpdate();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao excluir: " + ex);
+        } finally {
+            IConector.closeConnection(con, stmt);
+        }
+        delete(m);
     }
     public void delete(Recurso r) {
         Connection con = IConector.getConnection();

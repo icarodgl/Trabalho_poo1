@@ -63,13 +63,6 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
         comboAtividade.removeAllItems();
         for (Atividade a : d.getAtividades()) {
             a.setRecursos(c.carregaRecursoAtividade(a.getId()));
-            String aux;
-            if (a.getRecursos().size() >0) {
-                aux= a.getRecursos().get(0).getTipo();
-            }
-            else{
-                aux = "Humano";
-            }
             comboAtividade.addItem(a.getNome()+"");
             
         }
@@ -77,7 +70,6 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
     
     public void carregaComboBoxRec() {
         comboRecurso.removeAllItems();
-        System.out.println(a.getTiporecurso());
         for(Recurso r2: re){
             if(r2.getTipo().equals(a.getTiporecurso())){
                 comboRecurso.addItem(r2.getNome()+"");
@@ -86,11 +78,9 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
     }
     
      public void carregaTabela1() {
-        //an.add(buscaAnome(comboAtividade.getSelectedItem().toString()));
         DefaultTableModel modelo = (DefaultTableModel) tabelaInstancia.getModel();
         modelo.setNumRows(0);
-        a.setRecursoAlocado(comboRecurso.getSelectedItem().toString());
-         System.out.println(a.getRecursoAlocado());
+        a.setRecursoAlocado(comboRecurso.getSelectedItem().toString()); //selecionando o item do combo box
             modelo.addRow(new Object[]{
                 a.getNome(),
                 a.getTipo(),
@@ -365,9 +355,6 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
         c = new Crud();
         m = modelos.get(comboModelo.getSelectedIndex());
         atividades = c.listaAtividade(m);
-//            for (Atividade at : atividades) {
-//                at.setRecursos(c.listaRecurso(at));
-//            }
         d.setAtividades(atividades);
         m.setDominio(d);
         carregaComboBoxAti();
@@ -388,8 +375,7 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         DefaultTableModel modelo = (DefaultTableModel) tabelaInstancia.getModel();
         Date data = new Date(System.currentTimeMillis());
-        //fielddataInicio.setText(data.toLocaleString());
-        a.setInicio(data);
+        a.setInicio(data); //salvando a data no objeto atividade
         String d;
         d = data.toString();
         modelo.removeRow(0);
@@ -409,9 +395,9 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
         DefaultTableModel modelo = (DefaultTableModel) tabelaInstancia.getModel();
         Date data = new Date(System.currentTimeMillis());
         //fielddataInicio.setText(data.toLocaleString());
-        a.setFim(data);
+        a.setFim(data);       // salvando a data no objeto atividade
         String d;
-        d = data.toString();
+        d = data.toString();  
         modelo.removeRow(0);
         modelo.addRow(new Object[]{
                 a.getNome(),
