@@ -5,6 +5,7 @@
  */
 package projetopoo.Instancias;
 
+import bancoDeDados.Crud;
 import bancoDeDados.Icrud;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -20,6 +21,7 @@ public class RelatorioInstancia extends javax.swing.JInternalFrame {
     Modelo m;
     Dominio d;
     Icrud c;
+    Icrud ic;
     ArrayList <Atividade> atividades;
     /**
      * Creates new form CadastrarModelo
@@ -47,6 +49,7 @@ public class RelatorioInstancia extends javax.swing.JInternalFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         tabela1 = new javax.swing.JTable();
         Pesquisar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setClosable(true);
         setMaximizable(true);
@@ -101,6 +104,8 @@ public class RelatorioInstancia extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel1.setText("Modelo");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -110,20 +115,36 @@ public class RelatorioInstancia extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(combo1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1)
+                        .addGap(32, 32, 32)
+                        .addComponent(combo1, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(Pesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)))
+                        .addComponent(Pesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+<<<<<<< HEAD
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(combo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Pesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
+=======
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(Pesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)
+                        .addGap(33, 33, 33))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(combo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45))
+>>>>>>> 333f7a8967ca9ff237d16fbc65236441cdca5837
         );
 
         getContentPane().add(jPanel1);
@@ -140,6 +161,7 @@ public class RelatorioInstancia extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_combo1ActionPerformed
 
     private void PesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarActionPerformed
+
         c = new Icrud();
 
         m = modelos.get(combo1.getSelectedIndex());
@@ -151,6 +173,7 @@ public class RelatorioInstancia extends javax.swing.JInternalFrame {
             }
         carregaTabela1();
         
+
     }//GEN-LAST:event_PesquisarActionPerformed
     public void carregaTabela1() {
         
@@ -158,6 +181,7 @@ public class RelatorioInstancia extends javax.swing.JInternalFrame {
         modelo.setNumRows(0);
         Boolean x;
         x = true;
+
         for (Atividade a : m.getDominio().getAtividades()) {
             if(a.getFim() == null){
                 x = false;
@@ -171,6 +195,7 @@ public class RelatorioInstancia extends javax.swing.JInternalFrame {
                 x,
             });
             
+
         }
     }
     
@@ -189,6 +214,7 @@ public class RelatorioInstancia extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Pesquisar;
     private javax.swing.JComboBox<String> combo1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTable tabela1;
