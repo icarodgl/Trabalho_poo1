@@ -64,11 +64,7 @@ public class CadastrarModelo1 extends javax.swing.JInternalFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tabelaRegra = new javax.swing.JTable();
         jLabel13 = new javax.swing.JLabel();
-<<<<<<< HEAD
         jLabel14 = new javax.swing.JLabel();
-=======
-        filedDepedencia = new javax.swing.JTextField();
->>>>>>> 333f7a8967ca9ff237d16fbc65236441cdca5837
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         comboEvento = new javax.swing.JComboBox<>();
@@ -184,15 +180,7 @@ public class CadastrarModelo1 extends javax.swing.JInternalFrame {
 
         jLabel13.setText("Regra");
 
-<<<<<<< HEAD
         jLabel14.setText("Tipo");
-=======
-        filedDepedencia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                filedDepedenciaActionPerformed(evt);
-            }
-        });
->>>>>>> 333f7a8967ca9ff237d16fbc65236441cdca5837
 
         jLabel15.setText("Lado Esquerdo");
 
@@ -230,8 +218,10 @@ public class CadastrarModelo1 extends javax.swing.JInternalFrame {
                         .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(14, 14, 14)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel13))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(fieldNomeModelo)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -256,23 +246,12 @@ public class CadastrarModelo1 extends javax.swing.JInternalFrame {
                                         .addComponent(botaoCadAtividade))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< HEAD
                                             .addComponent(jLabel14)
                                             .addComponent(comboTipoRegra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(66, 66, 66)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel15)
                                             .addComponent(fieldLadoE, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-=======
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(filedDepedencia, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(fieldLadoE, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel13)
-                                                .addGap(85, 85, 85)
-                                                .addComponent(jLabel15)))
->>>>>>> 333f7a8967ca9ff237d16fbc65236441cdca5837
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel16)
@@ -296,7 +275,7 @@ public class CadastrarModelo1 extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fieldNomeModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addGap(18, 30, Short.MAX_VALUE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel9)
@@ -319,6 +298,7 @@ public class CadastrarModelo1 extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel15)
                     .addComponent(jLabel16)
+                    .addComponent(jLabel14)
                     .addComponent(jLabel13))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -341,7 +321,7 @@ public class CadastrarModelo1 extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -485,6 +465,7 @@ public class CadastrarModelo1 extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;

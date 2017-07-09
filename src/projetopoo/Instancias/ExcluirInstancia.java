@@ -46,6 +46,10 @@ public class ExcluirInstancia extends javax.swing.JInternalFrame {
                 comboModelo.addItem(m.getNome()+"");
             };
     }
+    
+
+
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -101,10 +105,6 @@ public class ExcluirInstancia extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
-          
-    }//GEN-LAST:event_jbExcluirActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Icrud c = new Icrud();
