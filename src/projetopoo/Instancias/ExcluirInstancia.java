@@ -11,6 +11,7 @@ import bancoDeDados.Icrud;
 import javax.swing.table.DefaultTableModel;
 import projetopoo.Recurso;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import projetopoo.Atividade;
 import projetopoo.Dominio;
 import projetopoo.Modelo;
@@ -26,12 +27,6 @@ public class ExcluirInstancia extends javax.swing.JInternalFrame {
     
      
     ArrayList <Modelo> modelos;
-    ArrayList <Regra> regras;
-    Modelo m;
-    Dominio d;
-    Crud c;
-    Icrud ic;
-    ArrayList <Atividade> atividades;
     
     public ExcluirInstancia() {
         initComponents();
@@ -41,8 +36,8 @@ public class ExcluirInstancia extends javax.swing.JInternalFrame {
     }
     
     public void carregaModelos(){
-        c = new Crud();
-        modelos = (ArrayList<Modelo>) c.listaModelo();
+        Icrud ic = new Icrud();
+        modelos = ic.listaModelo();
        
     }
     public void carregaComboBox() {
@@ -52,14 +47,7 @@ public class ExcluirInstancia extends javax.swing.JInternalFrame {
             };
     }
     
-    public void carregaComboBoxAti() {
-        comboAtividade.removeAllItems();
-        for (Atividade a : atividades) {
-            if(m.getId() == a.getId_modelo()){
-                comboAtividade.addItem(a.getNome()+"");
-            }            
-        }
-    }
+
 
 
     /**
@@ -71,13 +59,9 @@ public class ExcluirInstancia extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        jbExcluir = new javax.swing.JButton();
-        comboAtividade = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         comboModelo = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
 
         setBorder(null);
         setClosable(true);
@@ -85,18 +69,7 @@ public class ExcluirInstancia extends javax.swing.JInternalFrame {
         setResizable(true);
         setTitle("Alterar");
 
-        jLabel2.setText("Atividade");
-
-        jbExcluir.setText("Excluir");
-        jbExcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbExcluirActionPerformed(evt);
-            }
-        });
-
-        comboAtividade.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel3.setText("Modelo");
+        jLabel3.setText("Instancia");
 
         comboModelo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -107,78 +80,45 @@ public class ExcluirInstancia extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton2.setText("OK");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jbExcluir))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(comboAtividade, 0, 379, Short.MAX_VALUE)
-                            .addComponent(comboModelo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(comboModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
                     .addComponent(comboModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
                     .addComponent(jButton1))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboAtividade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(jbExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addGap(0, 25, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbExcluirActionPerformed
-//        int tempId = Integer.parseInt(jtIdE.getText());
-//        tempId=listaM.buscaModeloI(tempId);
-//        listaM.remove(tempId);
-//        dispose();
-            
-    }//GEN-LAST:event_jbExcluirActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        c = new Crud();
-        ic = new Icrud();
-        m = modelos.get(comboModelo.getSelectedIndex());
-        atividades = ic.listaAtividade2();
-        carregaComboBoxAti();
+        Icrud c = new Icrud();
+        c.delete(modelos.get(comboModelo.getSelectedIndex()));
+        carregaModelos();
+        carregaComboBox();
+        JOptionPane.showMessageDialog(null, "Excluido!");
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> comboAtividade;
     private javax.swing.JComboBox<String> comboModelo;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JButton jbExcluir;
     // End of variables declaration//GEN-END:variables
 }

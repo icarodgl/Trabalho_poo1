@@ -160,7 +160,7 @@ public class PesquisarModelo extends javax.swing.JInternalFrame {
             
         m = modelos.get(combo1.getSelectedIndex());
         regras = c.listaRegras(m);
-        atividades = c.listaAtividadeRecurso(m);
+        atividades = c.listaAtividade(m.getId());
             for (Atividade at : atividades) {
                 at.setRecursos(c.listaRecurso(at));
             }
@@ -197,7 +197,7 @@ public class PesquisarModelo extends javax.swing.JInternalFrame {
 }
     public void carregaModelos(){
         c = new Crud();
-        modelos = (ArrayList<Modelo>) c.listaModelo();
+        modelos = c.listaModelo();
        
     }
     public void carregaComboBox() {

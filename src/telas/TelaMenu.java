@@ -5,13 +5,8 @@
  */
 package telas;
 
-import projetopoo.Instancias.CadastrarInstancia;
-import projetopoo.Instancias.ExcluirInstancia;
-import projetopoo.Instancias.RelatorioInstancia;
-import projetopoo.Modelos.PesquisarModelo;
-import projetopoo.Modelos.AlterarModelo;
-import projetopoo.Modelos.ExcluirModelo;
-import projetopoo.Modelos.CadastrarModelo1;
+import projetopoo.Instancias.*;
+import projetopoo.Modelos.*;
 import java.awt.Image;
 import java.awt.Graphics;
 import javax.swing.ImageIcon;
@@ -53,12 +48,14 @@ public class TelaMenu extends javax.swing.JFrame {
         };
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
         cadastroMod = new javax.swing.JMenuItem();
         ExcluirMod = new javax.swing.JMenuItem();
         pesquisarMod = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         cadInstancia = new javax.swing.JMenu();
         CadInstancia = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         excInstancia = new javax.swing.JMenuItem();
         relatInstancia = new javax.swing.JMenuItem();
 
@@ -88,6 +85,15 @@ public class TelaMenu extends javax.swing.JFrame {
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Apps-Calibre-B-icon.png"))); // NOI18N
         jMenu1.setText("Modelo");
+
+        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/new.png"))); // NOI18N
+        jMenuItem3.setText("Recursos");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem3);
 
         cadastroMod.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/new.png"))); // NOI18N
         cadastroMod.setText("Cadastrar");
@@ -139,6 +145,15 @@ public class TelaMenu extends javax.swing.JFrame {
         });
         cadInstancia.add(CadInstancia);
 
+        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/write.png"))); // NOI18N
+        jMenuItem2.setText("Alterar");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        cadInstancia.add(jMenuItem2);
+
         excInstancia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/delete.png"))); // NOI18N
         excInstancia.setText("Excluir");
         excInstancia.addActionListener(new java.awt.event.ActionListener() {
@@ -186,7 +201,7 @@ public class TelaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_cadastroModActionPerformed
 
     private void CadInstanciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CadInstanciaActionPerformed
-        CadastrarInstancia cadi = new CadastrarInstancia();
+        CadastrarInstancia2 cadi = new CadastrarInstancia2();
         AreaDeTrabalho.add(cadi);
         cadi.setVisible(true);
     }//GEN-LAST:event_CadInstanciaActionPerformed
@@ -224,6 +239,18 @@ public class TelaMenu extends javax.swing.JFrame {
         AreaDeTrabalho.add(relati);
         relati.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        AlterarInstancia1 relati = new AlterarInstancia1();
+        AreaDeTrabalho.add(relati);
+        relati.setVisible(true);
+
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        NovoRecurso rec = new NovoRecurso();
+        rec.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -274,6 +301,8 @@ public class TelaMenu extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem pesquisarMod;
     private javax.swing.JMenuItem relatInstancia;

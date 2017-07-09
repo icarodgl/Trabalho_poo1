@@ -65,7 +65,6 @@ public class CadastrarModelo1 extends javax.swing.JInternalFrame {
         tabelaRegra = new javax.swing.JTable();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        filedDepedencia = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         comboEvento = new javax.swing.JComboBox<>();
@@ -73,6 +72,7 @@ public class CadastrarModelo1 extends javax.swing.JInternalFrame {
         fieldLadoE = new javax.swing.JTextField();
         fieldLadoD = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
+        comboTipoRegra = new javax.swing.JComboBox<>();
 
         jCheckBoxMenuItem1.setSelected(true);
         jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
@@ -180,13 +180,7 @@ public class CadastrarModelo1 extends javax.swing.JInternalFrame {
 
         jLabel13.setText("Regra");
 
-        jLabel14.setText("Depedencia");
-
-        filedDepedencia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                filedDepedenciaActionPerformed(evt);
-            }
-        });
+        jLabel14.setText("Tipo");
 
         jLabel15.setText("Lado Esquerdo");
 
@@ -200,6 +194,8 @@ public class CadastrarModelo1 extends javax.swing.JInternalFrame {
                 botaoRegraActionPerformed(evt);
             }
         });
+
+        comboTipoRegra.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dependencia", "Escolha", "Ou" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -250,14 +246,12 @@ public class CadastrarModelo1 extends javax.swing.JInternalFrame {
                                         .addComponent(botaoCadAtividade))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(filedDepedencia, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(18, 18, 18)
-                                                .addComponent(fieldLadoE, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel14)
-                                                .addGap(43, 43, 43)
-                                                .addComponent(jLabel15)))
+                                            .addComponent(jLabel14)
+                                            .addComponent(comboTipoRegra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(66, 66, 66)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel15)
+                                            .addComponent(fieldLadoE, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel16)
@@ -308,10 +302,10 @@ public class CadastrarModelo1 extends javax.swing.JInternalFrame {
                     .addComponent(jLabel13))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(filedDepedencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fieldLadoE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fieldLadoD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoRegra))
+                    .addComponent(botaoRegra)
+                    .addComponent(comboTipoRegra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -339,17 +333,23 @@ public class CadastrarModelo1 extends javax.swing.JInternalFrame {
         ArrayList<Recurso>r;
         a.setNome(fieldDominioAti.getText());
         a.setTipo((String) comboEvento.getSelectedItem());
-        a.setTiporecurso((String) comboRecurso.getSelectedItem());
+        a.setTiporecurso(comboRecurso.getSelectedItem().toString());
         /***Aloca Recursos antes de salvar
         */
+        
         r = c.listaRecurso();
-        for (Recurso rec:r){
-            if (rec.getTipo().equals(a.getTiporecurso())) {
-                a.setRecursos(rec);
+        if (r.size() > 0) {
+            for (Recurso rec:r){
+                if (rec.getTipo().equals(a.getTiporecurso())) {
+                    a.setRecursos(rec);
+                }
             }
+            atividades.add(a);
+            carregaTabelaAtividade();
+        } else {
+            JOptionPane.showMessageDialog(null, "Adicione recursos.");
         }
-        atividades.add(a);
-        carregaTabelaAtividade();
+        
     }//GEN-LAST:event_botaoCadAtividadeActionPerformed
 
     private void fieldNomeModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldNomeModeloActionPerformed
@@ -386,10 +386,6 @@ public class CadastrarModelo1 extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_botaoCadastrarModeloActionPerformed
 
-    private void filedDepedenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filedDepedenciaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_filedDepedenciaActionPerformed
-
     private void comboRecursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboRecursoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboRecursoActionPerformed
@@ -404,7 +400,7 @@ public class CadastrarModelo1 extends javax.swing.JInternalFrame {
 
     private void botaoRegraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoRegraActionPerformed
         Regra r = new Regra();
-        r.setTipo(filedDepedencia.getText());
+        r.setTipo(comboTipoRegra.getSelectedItem().toString());
         r.setLadoD(fieldLadoD.getText());
         r.setLadoE(fieldLadoE.getText());
         regras.add(r);
@@ -459,11 +455,11 @@ public class CadastrarModelo1 extends javax.swing.JInternalFrame {
     private javax.swing.JToggleButton botaoRegra;
     private javax.swing.JComboBox<String> comboEvento;
     private javax.swing.JComboBox<String> comboRecurso;
+    private javax.swing.JComboBox<String> comboTipoRegra;
     private javax.swing.JTextField fieldDominioAti;
     private javax.swing.JTextField fieldLadoD;
     private javax.swing.JTextField fieldLadoE;
     private javax.swing.JTextField fieldNomeModelo;
-    private javax.swing.JTextField filedDepedencia;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

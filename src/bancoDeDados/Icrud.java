@@ -9,6 +9,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 import javax.swing.JOptionPane;
 import projetopoo.*;
@@ -18,6 +21,7 @@ import projetopoo.*;
  * @author icaro
  */
 public class Icrud {
+    DateTimeFormatter dataFormato = DateTimeFormatter.BASIC_ISO_DATE;
     
     public int pegaIdRegra(){
         Connection con = IConector.getConnection();
@@ -241,21 +245,21 @@ public class Icrud {
         PreparedStatement stmt = null;
 
         try {
-            stmt = cx.prepareStatement("INSERT INTO atividade ( nome, tid, tipo, inicio, fim, recurso_alocado, id_modelo)VALUES( ?, ?, ?, ?, ?, ?, ?)");
+            stmt = cx.prepareStatement("INSERT INTO atividade ( nome, tiporecurso, tipo, inicio, fim, recurso_alocado)VALUES( ?, ?, ?, ?, ?, ?)");
             stmt.setString(1, a.getNome());
-            stmt.setInt(2, a.getId());
+            stmt.setString(2, a.getTiporecurso());
             stmt.setString(3, a.getTipo());
             if (a.getInicio() != null) {
-               stmt.setString(4, a.getInicio().toGMTString()); 
+               stmt.setString(4, a.getInicio().toString()); 
             }else{
             stmt.setString(4, "");
             }if (a.getFim() != null) {
-                stmt.setString(5, a.getFim().toGMTString());
+                stmt.setString(5, a.getFim().toString());
             } else {
                 stmt.setString(5, "");
             }
             stmt.setString(6, a.getRecursoAlocado());
-            stmt.setInt(7, a.getId_modelo());
+            
             
             stmt.executeUpdate();
             
@@ -283,6 +287,32 @@ public class Icrud {
         }
 
     }
+        public ArrayList<Recurso> listaRecurso(String tipo) {
+        Connection con = IConector.getConnection();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ArrayList <Recurso> recursos = new ArrayList();
+        try {
+            stmt = con.prepareStatement("select * from recurso where tipo = '"+tipo+"'");
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                Recurso recurso = new Recurso();
+                recurso.setId(rs.getInt("id"));
+                recurso.setNome(rs.getString("nome"));
+                recurso.setTipo(rs.getString("tipo"));
+                recurso.setDescricao(rs.getString("descricao"));
+                recursos.add(recurso);
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Erro ao ler lista recurso tipoS: " + ex);
+        } finally {
+            IConector.closeConnection(con, stmt, rs);
+        }
+
+        return recursos;
+
+    }
     public ArrayList<Recurso> listaRecurso() {
         Connection con = IConector.getConnection();
         PreparedStatement stmt = null;
@@ -301,7 +331,7 @@ public class Icrud {
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao ler: " + ex);
+            JOptionPane.showMessageDialog(null, "Erro ao ler lista Recurso atividade: " + ex);
         } finally {
             IConector.closeConnection(con, stmt, rs);
         }
@@ -310,7 +340,7 @@ public class Icrud {
 
     }
     
-        public ArrayList<Recurso> listaRecurso(Atividade a) {
+    public ArrayList<Recurso> listaRecurso(Atividade a) {
         Connection con = IConector.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -331,7 +361,7 @@ public class Icrud {
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao ler: " + ex);
+            JOptionPane.showMessageDialog(null, "Erro ao ler Lista Recurso: " + ex);
         } finally {
             IConector.closeConnection(con, stmt, rs);
         }
@@ -374,6 +404,11 @@ public class Icrud {
         
     
     }
+
+    /**
+     *
+     * @return Retorna as atividades existentes no sistema
+     */
     public List<Atividade> listaAtividade() {
         Connection con = IConector.getConnection();
         PreparedStatement stmt = null;
@@ -388,35 +423,42 @@ public class Icrud {
                 a.setId(rs.getInt("id"));
                 a.setNome(rs.getString("nome"));
                 a.setTipo(rs.getString("tipo"));
+                a.setTiporecurso(rs.getString("tiporecurso"));
                 if(rs.getString("inicio").equals("")){
-                    a.setInicio(null);
+                    a.setInicio("");
                 }else{
-                    a.setInicio(new Date(rs.getString("inicio")));
+                    a.setInicio(rs.getString("inicio"));
                 }if(rs.getString("fim").equals("")){
-                    a.setFim(null);
+                    a.setFim("");
                 }else{
-                    a.setFim(new Date(rs.getString("fim")));
+                    a.setFim(rs.getString("fim"));
                 }
                 a.setRecursos(carregaRecursoAtividade(a.getId()));
                 atividades.add(a);
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao ler: " + ex);
+            JOptionPane.showMessageDialog(null, "Erro ao ler lista todas atividades: " + ex);
         } finally {
             IConector.closeConnection(con, stmt, rs);
         }
 
         return atividades;
     }
-        public ArrayList<Atividade> listaAtividade(Modelo m) {
+
+    /**
+     *
+     * @param m
+     * @return retorna as atividades de um modelo já com os recursos
+     */
+    public ArrayList<Atividade> listaAtividade(Modelo m) {
         Connection con = IConector.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         ArrayList <Atividade> atividades = new ArrayList();
         ArrayList<Recurso> r;
         try {
-            stmt = con.prepareStatement("select *, atividade.nome as nomeAtiv, recurso.descricao as recD from modelo \n" +
+            stmt = con.prepareStatement("select atividade.tiporecurso as tiporecurso, atividade.nome as nomeAtiv, recurso.descricao as recD from modelo \n" +
 "	inner join dominio on (modelo.id = dominio.fk_modelo_id)\n" +
 "	inner join atividade on (atividade.id = dominio.fk_atividade_id)\n" +
 "	inner join atividade_recurso on (atividade_recurso.fk_atividade_id = atividade.id)\n" +
@@ -427,68 +469,76 @@ public class Icrud {
                 r = carregaRecursoAtividade(a.getId());
                 a.setId(rs.getInt("id"));
                 a.setNome(rs.getString("nomeAtiv"));
+                a.setTiporecurso(rs.getString("tiporecurso"));
                 a.setTipo(rs.getString("tipo"));
                 if(rs.getString("inicio").equals("")){
-                    a.setInicio(null);
+                    a.setInicio("");
                 }else{
-                    a.setInicio(new Date(rs.getString("inicio")));
+                    a.setInicio(rs.getString("inicio"));
                 }if(rs.getString("fim").equals("")){
-                    a.setFim(null);
+                    a.setFim("");
                 }else{
-                    a.setFim(new Date(rs.getString("fim")));
+                    a.setFim(rs.getString("fim"));
                 }
                 a.setRecursos(r);
                 atividades.add(a);
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao ler: " + ex);
+            JOptionPane.showMessageDialog(null, "Erro ao ler lista atividade modelo: " + ex);
         } finally {
             IConector.closeConnection(con, stmt, rs);
         }
 
         return atividades;
     }
-     
-    public ArrayList<Atividade> listaAtividade2() {
+
+    /**
+     *
+     * @param id do modelo que deseja as atividades vinculadas
+     * @return atividades sem os recursos da mesma.
+     */
+    public ArrayList<Atividade> listaAtividade(int id) {
         Connection con = IConector.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         ArrayList <Atividade> atividades = new ArrayList();
         ArrayList<Recurso> r;
         try {
-            stmt = con.prepareStatement("select * from atividade");
+            stmt = con.prepareStatement("select atividade.recurso_alocado as ralocado, atividade.tiporecurso as tiporecurso, atividade.id as id, atividade.nome as nome, atividade.tipo as tipo, atividade.inicio as inicio, atividade.fim as fim from modelo \n" +
+"	inner join dominio on (modelo.id = dominio.fk_modelo_id)\n" +
+"	inner join atividade on (atividade.id = dominio.fk_atividade_id)\n" +
+"	where modelo.id ="+id);
             rs = stmt.executeQuery();
             while (rs.next()) {
                 Atividade a = new Atividade();
                 r = carregaRecursoAtividade(a.getId());
                 a.setId(rs.getInt("id"));
                 a.setNome(rs.getString("nome"));
-                a.setRecursoAlocado(rs.getString("recurso_alocado"));
                 a.setTipo(rs.getString("tipo"));
+                a.setRecursoAlocado(rs.getString("ralocado"));
+                a.setTiporecurso(rs.getString("tiporecurso"));
                 if(rs.getString("inicio").equals("")){
-                    a.setInicio(null);
+                    a.setInicio("");
                 }else{
-                    a.setInicio(new Date(rs.getString("inicio")));
+                   a.setInicio(rs.getString("inicio"));
                 }if(rs.getString("fim").equals("")){
-                    a.setFim(null);
+                    a.setFim("");
                 }else{
-                    a.setFim(new Date(rs.getString("fim")));
+                   a.setFim(rs.getString("fim"));
                 }
-                a.setId_modelo(rs.getInt("id_modelo"));
-                a.setRecursos(r);
                 atividades.add(a);
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao ler: " + ex);
+            JOptionPane.showMessageDialog(null, "Erro ao ler lista atividade por id: " + ex);
         } finally {
             IConector.closeConnection(con, stmt, rs);
         }
 
         return atividades;
-    }    
-        
+    }
+    
     public ArrayList<Atividade> listaAtividadeRecurso(Modelo m) {
         Connection con = IConector.getConnection();
         PreparedStatement stmt = null;
@@ -496,7 +546,7 @@ public class Icrud {
         ArrayList <Atividade> atividades = new ArrayList();
         ArrayList<Recurso> r;
         try {
-            stmt = con.prepareStatement("select  atividade.id,atividade.nome as nomeAtiv,atividade.tipo,atividade.inicio,atividade.fim,recurso.id,recurso.nome,recurso.tipo as tipoRec,recurso.descricao from modelo\n" +
+            stmt = con.prepareStatement("select  atividade.tid as tid , atividade.id,atividade.nome as nomeAtiv,atividade.tipo,atividade.inicio,atividade.fim,recurso.id,recurso.nome,recurso.tipo as tipoRec,recurso.descricao from modelo\n" +
 "	inner join dominio on (modelo.id = dominio.fk_modelo_id)\n" +
 "	inner join atividade on (atividade.id = dominio.fk_atividade_id)\n" +
 "	inner join atividade_recurso on (atividade_recurso.fk_atividade_id = atividade.id)\n" +
@@ -513,18 +563,18 @@ public class Icrud {
                 if(rs.getString("inicio").equals("")){
                     a.setInicio(null);
                 }else{
-                    a.setInicio(new Date(rs.getString("inicio")));
+                    a.setInicio(rs.getString("inicio"));
                 }if(rs.getString("fim").equals("")){
                     a.setFim(null);
                 }else{
-                    a.setFim(new Date(rs.getString("fim")));
+                    a.setFim(rs.getString("fim"));
                 }
                 a.setRecursos(r);
                 atividades.add(a);
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao ler: " + ex);
+            JOptionPane.showMessageDialog(null, "Erro ao ler lista atividade recurso: " + ex);
         } finally {
             IConector.closeConnection(con, stmt, rs);
         }
@@ -552,7 +602,7 @@ public class Icrud {
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao ler: " + ex);
+            JOptionPane.showMessageDialog(null, "Erro ao ler lista regras: " + ex);
         } finally {
             IConector.closeConnection(con, stmt, rs);
         }
@@ -560,12 +610,11 @@ public class Icrud {
         return regras;
     }
 
-    public List<Modelo> listaModelo() {
+    public ArrayList<Modelo> listaModelo() {
         Connection con = IConector.getConnection();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-
-        List<Modelo> modelos = new ArrayList();
+        ArrayList<Modelo> modelos = new ArrayList();
 
         try {
             stmt = con.prepareStatement("SELECT * FROM modelo");
@@ -580,7 +629,7 @@ public class Icrud {
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Erro ao ler: " + ex);
+            JOptionPane.showMessageDialog(null, "Erro ao ler lista modelo: " + ex);
         } finally {
             IConector.closeConnection(con, stmt, rs);
         }
@@ -652,15 +701,25 @@ public class Icrud {
         PreparedStatement stmt = null;
 
         try {
-            stmt = con.prepareStatement("UPDATE atividade SET nome=?, tipo = ?, inicio = ?, fim = ? WHERE id = ?");
+            stmt = con.prepareStatement("UPDATE atividade SET nome=?, tipo = ?,recurso_alocado = ?, inicio = ?, fim = ? WHERE id = ?");
             stmt.setString(1, a.getNome());
             stmt.setString(2, a.getTipo());
-            stmt.setString(3, a.getInicio().toString());
-            stmt.setString(4, a.getFim().toString());
-            stmt.setInt(5, a.getId());
+            stmt.setString(3, a.getRecursoAlocado());
+            
+            if(a.getInicio() != null){
+                    stmt.setString(4, a.getInicio().toString());
+                }else{
+                    stmt.setString(4, "");
+                }
+            if(a.getFim()!= null){
+                    stmt.setString(5, a.getFim().toString());
+                }else{
+                    stmt.setString(5, "");
+                }
+            stmt.setInt(6, a.getId());
             stmt.executeUpdate();
 
-            JOptionPane.showMessageDialog(null, "Atualizado com sucesso!");
+            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Erro ao atualizar: " + ex);
         } finally {

@@ -35,5 +35,8 @@ public class Dominio {
     public void setAtividades(ArrayList<Atividade> a) {
         this.atividades = a;
     }
+    public void setAtividade(Atividade a) {
+        this.atividades.add(a);
+    }
 
 }

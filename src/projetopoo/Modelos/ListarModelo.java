@@ -93,7 +93,7 @@ public class ListarModelo extends javax.swing.JInternalFrame {
     public void carregaTabelaRegras() {
         Crud c = new Crud();
         ArrayList<Modelo> modelos;
-        modelos = (ArrayList<Modelo>) c.listaModelo();
+        modelos = c.listaModelo();
         DefaultTableModel modelo = (DefaultTableModel) Tabela.getModel();
         modelo.setNumRows(0);
         for (Modelo m : modelos) {

@@ -10,6 +10,7 @@ import bancoDeDados.Icrud;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
+import java.time.LocalDate;
 import javax.swing.table.DefaultTableModel;
 import projetopoo.Recurso;
 import java.util.ArrayList;
@@ -21,108 +22,25 @@ import projetopoo.*;
  *
  * @author lucas
  */
-public class CadastrarInstancia extends javax.swing.JInternalFrame {
-    ArrayList <Modelo> modelos;
-    ArrayList <Regra> regras;
-    Modelo m;
-    Atividade a;
-    Dominio d;
-    Crud c;
-    Icrud ic;
-    ArrayList <Recurso> re;
-    ArrayList <Atividade> atividades,an;
-    Modelo mn;
-    Dominio dn;
-    Recurso rec;
+public class CadastrarInstancia2 extends javax.swing.JInternalFrame {
     DefaultTableModel model;
-    /**
-     * Creates new form CadastrarInstancia
-     */
-    
-    public CadastrarInstancia(){
+    Modelo imodelo;
+    Atividade iatividade;
+    ArrayList<Modelo>modelos;
+    ArrayList <Recurso> r;
+    Atividade aAtiva;
+    Crud c; 
+    public CadastrarInstancia2(){
         initComponents();
-        m = new Modelo();
-        d = new Dominio();
-        carregaModelos();
-        carregaComboBox();
+        c = new Crud();
+        r = new ArrayList();
+        carregaComboBoxModelo();
         model =(DefaultTableModel)tabelaInstancia.getModel();
     }
     
-    public void carregaComboBox() {
-        comboModelo.removeAllItems();
-        for (Modelo m : this.modelos) {
-                comboModelo.addItem(m.getNome()+"");
-    }}
-    
-    public void carregaModelos(){
-        c = new Crud();
-        modelos = (ArrayList<Modelo>) c.listaModelo(); 
-
-    }
-    
-    public void carregaComboBoxAti() {
-        comboAtividade.removeAllItems();
-        for (Atividade a : d.getAtividades()) {
-            a.setRecursos(c.carregaRecursoAtividade(a.getId()));
-            comboAtividade.addItem(a.getNome()+"");
-            
-        }
-    }
-    
-    public void carregaComboBoxRec() {
-        comboRecurso.removeAllItems();
-        for(Recurso r2: re){
-            if(r2.getTipo().equals(a.getTiporecurso())){
-                comboRecurso.addItem(r2.getNome()+"");
-            }
-        }
-    }
-    
-     public void carregaTabela1() {
-        DefaultTableModel modelo = (DefaultTableModel) tabelaInstancia.getModel();
-        modelo.setNumRows(0);
-        a.setRecursoAlocado(comboRecurso.getSelectedItem().toString()); //selecionando o item do combo box
-            modelo.addRow(new Object[]{
-                a.getNome(),
-                a.getTipo(),
-                a.getRecursoAlocado(),
-                a.getInicio(),
-                a.getFim(),
-                false
-            });
-    }
-     
-     
 
     
-    public ArrayList<Recurso> buscaRnome(String n){
-        for (int i=0; i< re.size(); i++) {
-            if(n.equals(re.get(i).getNome())){
-                ArrayList<Recurso> recu = new ArrayList();
-                recu.add(re.get(i));
-                return(recu);
-            }
-        }
-        return null;
-    }
-  
-    public Atividade buscaAnome(String n){
-        for (int i=0; i<atividades.size(); i++) {
-            if(n.equals(atividades.get(i).getNome())){
-                System.out.println("entrei aqui"+ atividades.get(i).getNome());
-            }
-        }
-        return null;
-    }
-    
-        public Modelo buscaMnome(String n){
-        for (int i=0; i<modelos.size(); i++) {
-            if(n.equals(modelos.get(i).getNome())){
-                return(modelos.get(i));
-            }
-        }
-        return null;
-    }
+
         
     
     /**
@@ -147,8 +65,10 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         comboRecurso = new javax.swing.JComboBox<>();
-        jButton4 = new javax.swing.JButton();
+        addRecurso = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        fieldNome = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
 
@@ -255,14 +175,22 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton4.setText("OK");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        addRecurso.setText("OK");
+        addRecurso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                addRecursoActionPerformed(evt);
             }
         });
 
         jLabel2.setText("Recursos");
+
+        fieldNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fieldNomeActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setText("Nome da instancia:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -270,31 +198,38 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(cadastrarInstancia)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(comboRecurso, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(comboAtividade, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGap(35, 35, 35)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(addRecurso)
+                                        .addComponent(botaoAtividade))
+                                    .addGap(39, 39, 39))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(comboModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jLabel3)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(fieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(botaoModelo))))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 670, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2)
-                            .addComponent(jButton3)
-                            .addComponent(cadastrarInstancia)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(comboAtividade, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(comboModelo, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(comboRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton4)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(botaoModelo)
-                            .addComponent(botaoAtividade))))
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -304,41 +239,51 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(comboModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoModelo))
-                .addGap(16, 16, 16)
+                    .addComponent(botaoModelo)
+                    .addComponent(fieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(comboAtividade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botaoAtividade))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(comboRecurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4)
+                    .addComponent(addRecurso)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton2)
                         .addGap(18, 18, 18)
                         .addComponent(jButton3))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(4, 4, 4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cadastrarInstancia)
-                .addGap(26, 26, 26))
+                .addGap(6, 6, 6))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void cadastrarInstanciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarInstanciaActionPerformed
-        ic = new Icrud();
-        ic.create(a);
-        DefaultTableModel modelo = (DefaultTableModel) tabelaInstancia.getModel();
-        modelo.setNumRows(0);
-        JOptionPane.showMessageDialog(null,"criado com sucesso!");
-        
-        //dispose();
-        
+       Icrud ic = new Icrud();
+       imodelo.setNome(imodelo.getNome()+": "+fieldNome.getText());
+        for (Atividade at: imodelo.getDominio().getAtividades()) {
+            for (Recurso rec : at.getRecursos()) {
+                ic.create(rec);
+            }
+        }
+       ic.create(imodelo);
+       DefaultTableModel modelo = (DefaultTableModel) tabelaInstancia.getModel();
+       modelo.setNumRows(0);
+       
+       comboAtividade.removeAllItems();
+       comboRecurso.removeAllItems();
+       fieldNome.setText("");
+       carregaComboBoxModelo();
+       
     }//GEN-LAST:event_cadastrarInstanciaActionPerformed
 
     private void comboAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAtividadeActionPerformed
@@ -350,65 +295,39 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_comboAtividadeItemStateChanged
 
     private void botaoModeloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoModeloActionPerformed
-        // TODO add your handling code here:
-    
-        c = new Crud();
-        m = modelos.get(comboModelo.getSelectedIndex());
-        atividades = c.listaAtividade(m);
-        d.setAtividades(atividades);
-        m.setDominio(d);
-        carregaComboBoxAti();
+        
+        carregaComboBoxAtividade();
+        
     }//GEN-LAST:event_botaoModeloActionPerformed
 
     private void botaoAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtividadeActionPerformed
-//    
-      c = new Crud();
-      atividades = c.listaAtividadeRecurso(m);
-      a = atividades.get(comboAtividade.getSelectedIndex());
-      re = c.listaRecurso();
-      carregaComboBoxRec();
+        aAtiva = imodelo.getDominio().getAtividades().get(comboAtividade.getSelectedIndex());
+        carregaComboBoxRecurso();
+        
       
-//      
     }//GEN-LAST:event_botaoAtividadeActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        DefaultTableModel modelo = (DefaultTableModel) tabelaInstancia.getModel();
-        Date data = new Date(System.currentTimeMillis());
-        a.setInicio(data); //salvando a data no objeto atividade
-        String d;
-        d = data.toString();
-        modelo.removeRow(0);
-        modelo.addRow(new Object[]{
-                a.getNome(),
-                a.getTipo(),
-                a.getRecursoAlocado(),
-                d,
-                a.getFim(),
-                false
-            });
-        
+
+        for (Atividade a :imodelo.getDominio().getAtividades()) {
+            if (a.getInicio() == null) {
+                a.setInicio(LocalDate.now().toString());
+                break;
+            } 
+        }
+    carregaTabela();  
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        DefaultTableModel modelo = (DefaultTableModel) tabelaInstancia.getModel();
-        Date data = new Date(System.currentTimeMillis());
-        //fielddataInicio.setText(data.toLocaleString());
-        a.setFim(data);       // salvando a data no objeto atividade
-        String d;
-        d = data.toString();  
-        modelo.removeRow(0);
-        modelo.addRow(new Object[]{
-                a.getNome(),
-                a.getTipo(),
-                a.getRecursoAlocado(),
-                d,
-                a.getFim(),
-                true
-            });
-        //System.out.println(a.getNome()+a.getTipo()+a.getTiporecurso()+a.getRecursoAlocado()+a.getInicio()+a.getFim());
-        System.out.println(a.getRecursoAlocado());
+    
+        for (Atividade a :imodelo.getDominio().getAtividades()) {
+            if (a.getFim() == null) {
+                a.setFim(LocalDate.now().toString());
+                break;
+            } 
+        }
+        carregaTabela();  
+      
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void comboRecursoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_comboRecursoItemStateChanged
@@ -419,29 +338,88 @@ public class CadastrarInstancia extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboRecursoActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        a.setId_modelo(buscaMnome(comboModelo.getSelectedItem().toString()).getId());
-        carregaTabela1();
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void addRecursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRecursoActionPerformed
+        Recurso rec = new Recurso();
+        rec = r.get(comboRecurso.getSelectedIndex());
+        //aAtiva.setRecursos(rec);
+        imodelo.getDominio().getAtividades().get(comboAtividade.getSelectedIndex()).setRecursos(rec);
+        imodelo.getDominio().getAtividades().get(comboAtividade.getSelectedIndex()).setRecursoAlocado(rec.getNome());
+        carregaTabela();
+    }//GEN-LAST:event_addRecursoActionPerformed
+
+    private void fieldNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fieldNomeActionPerformed
 
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addRecurso;
     private javax.swing.JButton botaoAtividade;
     private javax.swing.JButton botaoModelo;
     private javax.swing.JButton cadastrarInstancia;
     private javax.swing.JComboBox<String> comboAtividade;
     private javax.swing.JComboBox<String> comboModelo;
     private javax.swing.JComboBox<String> comboRecurso;
+    private javax.swing.JTextField fieldNome;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabelaInstancia;
     // End of variables declaration//GEN-END:variables
+
+public void carregaComboBoxModelo() {
+    this.modelos = this.c.listaModelo();
+    comboModelo.removeAllItems();
+    for (Modelo m : this.modelos) {
+            comboModelo.addItem(m.getNome());
+}}
+    
+public void carregaComboBoxAtividade() {
+    imodelo = modelos.get(comboModelo.getSelectedIndex());
+    Dominio d = new Dominio();
+    imodelo.setDominio(d);
+    this.imodelo.getDominio().setAtividades(c.listaAtividade(imodelo.getId()));
+    comboAtividade.removeAllItems();
+    for (Atividade a : imodelo.getDominio().getAtividades()) {
+            comboAtividade.addItem(a.getNome());
+}}
+
+public void carregaComboBoxRecurso() {
+    
+    r = c.listaRecurso(aAtiva);
+    comboRecurso.removeAllItems();
+    for (Recurso rec : r) {
+            comboRecurso.addItem(rec.getNome());
+}}
+    
+     public void carregaTabela() {
+        DefaultTableModel modelo = (DefaultTableModel) tabelaInstancia.getModel();
+        aAtiva.setRecursoAlocado(comboRecurso.getSelectedItem().toString());
+        modelo.setNumRows(0);
+        boolean fim;
+         for (Atividade a : imodelo.getDominio().getAtividades()) {
+             System.out.println(""+a.getTiporecurso());
+             fim=true;
+             if (a.getFim()==null) {
+                 fim = false;
+             }
+            modelo.addRow(new Object[]{
+                a.getNome(),
+                a.getTipo(),
+                a.getRecursoAlocado(),
+                a.getInicio(),
+                a.getFim(),
+                fim
+            }); 
+         }
+            
+    }
+     
 
 }

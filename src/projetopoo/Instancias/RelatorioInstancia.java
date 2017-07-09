@@ -52,6 +52,7 @@ public class RelatorioInstancia extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
         setTitle("Relatorio Instancia");
+        setFrameIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/report.png"))); // NOI18N
         setMinimumSize(new java.awt.Dimension(400, 400));
         getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
 
@@ -122,8 +123,7 @@ public class RelatorioInstancia extends javax.swing.JInternalFrame {
                     .addComponent(combo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Pesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(143, 143, 143))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         getContentPane().add(jPanel1);
@@ -141,18 +141,16 @@ public class RelatorioInstancia extends javax.swing.JInternalFrame {
 
     private void PesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PesquisarActionPerformed
         c = new Icrud();
-        if (combo1.getSelectedIndex() >=0) {
-            
+
         m = modelos.get(combo1.getSelectedIndex());
-        regras = c.listaRegras(m);
-        atividades = c.listaAtividade(m);
-            for (Atividade at : atividades) {
+        m.setRegra(c.listaRegras(m));
+        m.setDominio(new Dominio());
+        m.getDominio().setAtividades(c.listaAtividade(m.getId()));
+            for (Atividade at : m.getDominio().getAtividades()) {
                 at.setRecursos(c.listaRecurso(at));
             }
-        d.setAtividades(atividades);
-        m.setDominio(d);
         carregaTabela1();
-        }
+        
     }//GEN-LAST:event_PesquisarActionPerformed
     public void carregaTabela1() {
         
@@ -160,14 +158,14 @@ public class RelatorioInstancia extends javax.swing.JInternalFrame {
         modelo.setNumRows(0);
         Boolean x;
         x = true;
-        for (Atividade a : d.getAtividades()) {
-            if(a.getFim().equals("")){
+        for (Atividade a : m.getDominio().getAtividades()) {
+            if(a.getFim() == null){
                 x = false;
             }
             modelo.addRow(new Object[]{
                 a.getNome(),
                 a.getTipo(),
-                a.getRecursos().get(0).getNome(),
+                a.getRecursoAlocado(),
                 a.getInicio(),
                 a.getFim(),
                 x,
