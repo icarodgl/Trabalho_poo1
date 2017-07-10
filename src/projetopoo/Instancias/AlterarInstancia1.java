@@ -279,7 +279,7 @@ public class AlterarInstancia1 extends javax.swing.JInternalFrame {
     private void botaoAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoAtividadeActionPerformed
         aAtiva = imodelo.getDominio().getAtividades().get(comboAtividade.getSelectedIndex());
         carregaComboBoxRecurso();
-        
+        carregaTabela();
       
     }//GEN-LAST:event_botaoAtividadeActionPerformed
 
@@ -319,7 +319,6 @@ public class AlterarInstancia1 extends javax.swing.JInternalFrame {
         rec = r.get(comboRecurso.getSelectedIndex());
         imodelo.getDominio().getAtividades().get(comboAtividade.getSelectedIndex()).setRecursos(rec);
         imodelo.getDominio().getAtividades().get(comboAtividade.getSelectedIndex()).setRecursoAlocado(rec.getNome());
-        System.out.println(""+imodelo.getDominio().getAtividades().get(comboAtividade.getSelectedIndex()).getRecursoAlocado());
         carregaTabela();
     }//GEN-LAST:event_addRecursoActionPerformed
 

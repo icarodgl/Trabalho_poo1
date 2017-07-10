@@ -10,7 +10,9 @@ import bancoDeDados.Icrud;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
+import java.time.Clock;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import javax.swing.table.DefaultTableModel;
 import projetopoo.Recurso;
 import java.util.ArrayList;
@@ -404,7 +406,6 @@ public void carregaComboBoxRecurso() {
         modelo.setNumRows(0);
         boolean fim;
          for (Atividade a : imodelo.getDominio().getAtividades()) {
-             System.out.println(""+a.getTiporecurso());
              fim=true;
              if (a.getFim()==null) {
                  fim = false;
