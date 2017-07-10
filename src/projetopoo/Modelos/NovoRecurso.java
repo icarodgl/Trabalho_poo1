@@ -40,6 +40,11 @@ public class NovoRecurso extends javax.swing.JFrame {
         comboTipo = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Novo Recurso");
+        setAlwaysOnTop(true);
+        setLocation(new java.awt.Point(100, 100));
+        setName("Novo Recurso"); // NOI18N
+        setResizable(false);
 
         jLabel1.setText("Nome");
 
@@ -110,6 +115,9 @@ public class NovoRecurso extends javax.swing.JFrame {
                     .addComponent(Cancelar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        getAccessibleContext().setAccessibleName("Novo Recurso");
+        getAccessibleContext().setAccessibleDescription("Novo Recurso");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

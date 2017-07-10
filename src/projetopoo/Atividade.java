@@ -6,6 +6,8 @@
 package projetopoo;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,10 +25,14 @@ public class Atividade {
     private String tiporecurso;
     private String recursoAlocado;
     private ArrayList <Recurso> recursos;
-    private LocalDate inicio;
-    private LocalDate fim;
-    DateTimeFormatter formatter = DateTimeFormatter.BASIC_ISO_DATE;
-
+    private LocalDateTime inicio;
+    private LocalDateTime fim;
+    
+    
+    public Atividade() {
+        this.recursos = new ArrayList();
+        
+    }
     public int getId_modelo() {
         return id_modelo;
     }
@@ -43,24 +49,24 @@ public class Atividade {
         this.recursoAlocado = recursoAlocado;
     }
 
-    public LocalDate getInicio() {
+    public LocalDateTime getInicio() {
         return inicio;
     }
 
     public void setInicio(String inicio) {
         if (!inicio.equals("")) {
-            this.inicio = LocalDate.parse(inicio);
+            this.inicio = LocalDateTime.parse(inicio);
         }else{this.inicio = null;}
         
     }
 
-    public LocalDate getFim() {
+    public LocalDateTime getFim() {
         return fim;
     }
 
     public void setFim(String fim) {
         if (!fim.equals("")) {
-           this.fim = LocalDate.parse(fim);
+           this.fim = LocalDateTime.parse(fim);
         }else{this.fim = null;
         
         }
@@ -109,9 +115,7 @@ public class Atividade {
     public void setRecursos(ArrayList<Recurso> r) {
         this.recursos = r;
     }
-    public Atividade() {
-        this.recursos = new ArrayList();
-    }
+    
     
     
 }

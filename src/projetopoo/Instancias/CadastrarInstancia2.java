@@ -12,6 +12,7 @@ import java.sql.DriverManager;
 import java.sql.Statement;
 import java.time.Clock;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import javax.swing.table.DefaultTableModel;
 import projetopoo.Recurso;
@@ -313,7 +314,7 @@ public class CadastrarInstancia2 extends javax.swing.JInternalFrame {
 
         for (Atividade a :imodelo.getDominio().getAtividades()) {
             if (a.getInicio() == null) {
-                a.setInicio(LocalDate.now().toString());
+                a.setInicio(LocalDateTime.now().toString());
                 break;
             } 
         }
@@ -324,7 +325,7 @@ public class CadastrarInstancia2 extends javax.swing.JInternalFrame {
     
         for (Atividade a :imodelo.getDominio().getAtividades()) {
             if (a.getFim() == null) {
-                a.setFim(LocalDate.now().toString());
+                a.setFim(LocalDateTime.now().toString());
                 break;
             } 
         }

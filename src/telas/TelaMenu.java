@@ -68,6 +68,8 @@ public class TelaMenu extends javax.swing.JFrame {
         jMenuBar2.add(jMenu3);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Gerencia De Processos");
+        setPreferredSize(new java.awt.Dimension(1366, 768));
 
         AreaDeTrabalho.setName("Programa POO"); // NOI18N
         AreaDeTrabalho.setPreferredSize(new java.awt.Dimension(800, 600));

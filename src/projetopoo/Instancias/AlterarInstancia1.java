@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import javax.swing.table.DefaultTableModel;
 import projetopoo.Recurso;
 import java.util.ArrayList;
@@ -287,7 +288,7 @@ public class AlterarInstancia1 extends javax.swing.JInternalFrame {
     
         for (Atividade a :imodelo.getDominio().getAtividades()) {
             if (a.getInicio() == null) {
-                a.setInicio(LocalDate.now().toString());
+                a.setInicio(LocalDateTime.now().toString());
                 break;
             } 
         }
@@ -298,7 +299,7 @@ public class AlterarInstancia1 extends javax.swing.JInternalFrame {
 
         for (Atividade a :imodelo.getDominio().getAtividades()) {
             if (a.getFim() == null) {
-                a.setFim(LocalDate.now().toString());
+                a.setFim(LocalDateTime.now().toString());
                 break;
             } 
         }
