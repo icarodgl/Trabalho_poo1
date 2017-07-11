@@ -329,6 +329,8 @@ public class CadastrarModelo1 extends javax.swing.JInternalFrame {
 
     private void botaoCadAtividadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoCadAtividadeActionPerformed
         Atividade a = new Atividade();
+        a.setInicio("");
+        a.setFim("");
         Crud c = new Crud();
         ArrayList<Recurso>r;
         a.setNome(fieldDominioAti.getText());
